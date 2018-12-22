@@ -12,21 +12,51 @@ public class BaseMove : MonoBehaviour {
     private Vector3 boostLock;
 
     public Rigidbody ship;
+    public Transform engine;
+    public Transform pointer;
+
+    public GameObject blueFlame;
+    public GameObject orangeFlame;
+
+    private Vector3 invDir;
 
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
 	void Update ()
     {
 
+        //I know it's messy no h8 just testing its feel
+        blueFlame.SetActive(Input.GetKey(KeyCode.Space));
+        //orangeFlame.SetActive(Input.GetKey(KeyCode.LeftShift));
+
         ship.velocity += transform.TransformDirection(new Vector3(0, 0, acceleration * Time.deltaTime * Input.GetAxis("Vertical")));
+
+        invDir = transform.InverseTransformDirection(ship.velocity);
+        invDir.z = 0;
+        invDir = invDir.normalized;
 
         if (!slowing & Input.GetKey(KeyCode.LeftShift))
         {
-            boostLock = transform.InverseTransformDirection(ship.velocity);
-            boostLock.z = 0;
-            boostLock = boostLock.normalized;
+            boostLock = invDir;
         }
         slowing = Input.GetKey(KeyCode.LeftShift);
+        boosting = Input.GetKey(KeyCode.Space);
+
+        if (!Input.GetKey(KeyCode.Space))
+        {
+            //slowing = Input.GetKey(KeyCode.LeftShift);
+            orangeFlame.SetActive(Input.GetKey(KeyCode.LeftShift));
+        }
+        else
+        {
+            blueFlame.SetActive(true);
+            orangeFlame.SetActive(false);
+        }
 
 
         Vector3 euler = Vector3.zero;
@@ -38,23 +68,38 @@ public class BaseMove : MonoBehaviour {
 
         transform.RotateAround(ship.transform.right, -Input.GetAxis("Mouse Y") * Time.deltaTime * 2);
         transform.RotateAround(ship.transform.up, Input.GetAxis("Mouse X") * Time.deltaTime * 2);
-        transform.RotateAround(ship.transform.forward, -Input.GetAxis("Horizontal") * Time.deltaTime * 2);
+        transform.RotateAround(ship.transform.forward, -Input.GetAxis("Horizontal") * Time.deltaTime * 3);
 
-       
+        Debug.Log(boosting);
+        if (!slowing)
+        {
+            engine.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(invDir.y, invDir.x) * 180 / Mathf.PI);
+        }
+        pointer.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(invDir.y, invDir.x) * 180 / Mathf.PI);
+
 
     }
 		
 	void FixedUpdate()
     {
-        if (slowing)
+        if (slowing & !boosting)
         {
             //Vector3 lVel = transform.InverseTransformDirection(ship.velocity);
             //ship.velocity = transform.TransformDirection(new Vector3(lVel.x * 0.95f, lVel.y * 0.95f, lVel.z));
 
             ship.velocity = ship.velocity - transform.TransformDirection(boostLock) * acceleration * Time.deltaTime;
-
-
-
+        }
+        if (boosting)
+        {
+            if (slowing)
+            {
+                ship.velocity = ship.velocity + transform.TransformDirection(boostLock) * acceleration * Time.deltaTime / 2;
+            }
+            else
+            {
+                ship.velocity = ship.velocity + transform.TransformDirection(invDir) * acceleration * Time.deltaTime / 2;
+            }
+            
         }
     }
 

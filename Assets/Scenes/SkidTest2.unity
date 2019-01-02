@@ -943,8 +943,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ship: {fileID: 402852708}
-  acceleration: 30
-  maxSpeed: 80
+  acceleration: 60
+  maxSpeed: 160
   skidRatio: 2
 --- !u!114 &402852712
 MonoBehaviour:

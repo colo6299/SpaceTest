@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: 402852707}
   - component: {fileID: 402852710}
   - component: {fileID: 402852711}
+  - component: {fileID: 402852712}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Untagged
@@ -546,11 +547,11 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 3
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 2
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!4 &402852709
 Transform:
@@ -562,7 +563,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.8387, y: 3.8387, z: 3.8387}
   m_Children:
-  - {fileID: 534669905}
   - {fileID: 1401538791}
   - {fileID: 1438043062}
   - {fileID: 1441698418}
@@ -570,6 +570,7 @@ Transform:
   - {fileID: 2122254534}
   - {fileID: 1979987281}
   - {fileID: 1875198330}
+  - {fileID: 534669905}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -603,8 +604,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ship: {fileID: 402852708}
   acceleration: 30
-  maxSpeed: 40
+  maxSpeed: 80
   skidRatio: 2
+--- !u!114 &402852712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 402852706}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b82d4e962cdcd45a6a4806ca43a26e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 534669905}
+  ship: {fileID: 402852709}
 --- !u!1 &506337993
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,11 +775,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.468, z: -2.414}
+  m_LocalPosition: {x: 0, y: 0.46800002, z: -2.4140003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 402852709}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &623528719
 GameObject:
@@ -1524,7 +1538,7 @@ Transform:
   m_LocalScale: {x: 0.32858, y: 0.32858, z: 0.32858}
   m_Children: []
   m_Father: {fileID: 402852709}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1401538792
 BoxCollider:
@@ -1609,7 +1623,7 @@ Transform:
   m_LocalScale: {x: 0.32858, y: 0.32858, z: 0.32858}
   m_Children: []
   m_Father: {fileID: 402852709}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1438043063
 BoxCollider:
@@ -1694,7 +1708,7 @@ Transform:
   m_LocalScale: {x: 0.32858, y: 0.32858, z: 0.32858}
   m_Children: []
   m_Father: {fileID: 402852709}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1441698419
 BoxCollider:
@@ -1949,7 +1963,7 @@ Transform:
   m_LocalScale: {x: 0.15189596, y: 0.19604725, z: 0.3648724}
   m_Children: []
   m_Father: {fileID: 402852709}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1653266753
 BoxCollider:
@@ -2287,7 +2301,7 @@ Transform:
   m_Children:
   - {fileID: 147279538}
   m_Father: {fileID: 402852709}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1979987280
 GameObject:
@@ -2315,7 +2329,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 402852709}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2002410212
 GameObject:
@@ -2601,7 +2615,7 @@ Transform:
   m_LocalScale: {x: 0.15189596, y: 0.19604725, z: 0.3648724}
   m_Children: []
   m_Father: {fileID: 402852709}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2122254535
 BoxCollider:

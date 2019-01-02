@@ -39,7 +39,10 @@ public class SimpleMove : MonoBehaviour {
         Vector3 euler = Vector3.zero;
 
         euler.x = -Input.GetAxis("Mouse Y") + euler.x;
+
         euler.y = Input.GetAxis("Mouse X") + euler.y;
+
+        
 
         transform.RotateAround(ship.transform.right, -Input.GetAxis("Mouse Y") * Time.deltaTime * 2);
         transform.RotateAround(ship.transform.up, Input.GetAxis("Mouse X") * Time.deltaTime * 2);

@@ -9,6 +9,10 @@ public class SkidFly : MonoBehaviour {
     public float maxSpeed = 20f;
     public float skidRatio = 0.8f;
 
+    private float xavg;
+    private float yavg;
+    private float zavg;
+
 
     void Start()
     {
@@ -35,7 +39,7 @@ public class SkidFly : MonoBehaviour {
         //clamp velocity
         ship.velocity = Vector3.ClampMagnitude(ship.velocity, maxSpeed);
 
-        if (Input.GetAxis("Vertical") > 0)
+        if (!Input.GetKey(KeyCode.LeftShift))
         {
 
             //do the skid thing
@@ -47,9 +51,14 @@ public class SkidFly : MonoBehaviour {
 
             //do the thrust thing
             ship.velocity += ship.transform.forward * Time.deltaTime * acceleration;
-
-
         }
+
+        else
+        {
+           
+        }
+
+
     }
 
 
@@ -57,12 +66,25 @@ public class SkidFly : MonoBehaviour {
     {
         Vector3 euler = Vector3.zero;
 
+        //Debug.Log(Input.GetAxis("Mouse Y"));
+
         euler.x = -Input.GetAxis("Mouse Y") + euler.x;
         euler.y = Input.GetAxis("Mouse X") + euler.y;
 
-        transform.RotateAround(ship.transform.right, -Input.GetAxis("Mouse Y") * Time.deltaTime * 2);
-        transform.RotateAround(ship.transform.up, Input.GetAxis("Mouse X") * Time.deltaTime * 2);
-        transform.RotateAround(ship.transform.forward, -Input.GetAxis("Horizontal") * Time.deltaTime * 3);
+        float rotx = Mathf.Clamp(-Input.GetAxis("Mouse Y"), -1.5f, 1.5f);
+        float roty = Mathf.Clamp(Input.GetAxis("Mouse X"), -1.5f, 1.5f);
+        float rotz = Mathf.Clamp(-Input.GetAxis("Horizontal"), -1, 1);
+
+        Vector3 rotVec = new Vector3(rotx, roty, rotz);
+
+        ship.angularVelocity = ship.transform.TransformDirection(rotVec) * Time.deltaTime * 10 + ship.angularVelocity;
+
+        ship.maxAngularVelocity = 5f;
+
+
+        //transform.RotateAround(ship.transform.right, rotx  * Time.deltaTime * 2);
+        //transform.RotateAround(ship.transform.up, roty  * Time.deltaTime * 2);
+        //transform.RotateAround(ship.transform.forward, rotz  * Time.deltaTime * 3.5f);
     }
 
 

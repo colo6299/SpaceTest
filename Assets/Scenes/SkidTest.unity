@@ -621,6 +621,7 @@ MonoBehaviour:
   Projectile: {fileID: 1983003278483286, guid: 450520ae74b547b4b9b8296e8fead113, type: 2}
   Weapon: {fileID: 680079250}
   RateOfFire: 400
+  timeTillNextShot: 1
 --- !u!1 &506337993
 GameObject:
   m_ObjectHideFlags: 0

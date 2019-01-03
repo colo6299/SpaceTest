@@ -9,24 +9,38 @@ using UnityEngine;
 /// </summary>
 public class FireCoordinator : MonoBehaviour
 {
-    public bool IsFiring { get; private set; }
 
-    // The current selected weapon (assuming more than one type of weapon is)
-    public MonoBehaviour Selected;
+    public bool IsPrimaryFiring = false;
+
+    public bool IsSecondaryFiring = false;
+
+    public Basic Primary;
+    public Basic Secondary;
 
 	// Update is called once per frame
 	void Update ()
     {
+        IsPrimaryFiring = false;
+        IsSecondaryFiring = false;
 
         if (Input.GetKey(KeyCode.Space))
         {
-            IsFiring = true;
+            IsPrimaryFiring = true;
         }
-        else
+
+        if (Input.GetKey(KeyCode.R))
         {
-
+            IsSecondaryFiring = true;
         }
 
+        if (Primary != null)
+        {
+            Primary.IsFireing = IsPrimaryFiring;
+        }
 
+        if (Secondary != null)
+        {
+            Secondary.IsFireing = IsSecondaryFiring;
+        }
     }
 }

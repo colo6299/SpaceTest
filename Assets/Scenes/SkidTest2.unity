@@ -790,9 +790,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0e4efebfb9ebd4480e9353486251b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsFireing: 0
+  System: 0
+  RateOfFire: 400
   Projectile: {fileID: 1209761148871740, guid: 5f119e99bf534fa48b4d39c9c7fc2962, type: 2}
-  Weapon: {fileID: 1688765468}
-  RateOfFire: 10
+  Barrels:
+  - {fileID: 1319649293}
 --- !u!114 &402852714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,9 +807,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0e4efebfb9ebd4480e9353486251b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsFireing: 0
+  System: 0
+  RateOfFire: 400
   Projectile: {fileID: 1209761148871740, guid: 5f119e99bf534fa48b4d39c9c7fc2962, type: 2}
-  Weapon: {fileID: 1319649293}
-  RateOfFire: 10
+  Barrels:
+  - {fileID: 1688765468}
+--- !u!114 &402852715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 402852706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3b48030a52bbe4da873bc088e4c6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPrimaryFiring: 0
+  IsSecondaryFiring: 0
+  Primary: {fileID: 402852713}
+  Secondary: {fileID: 0}
+--- !u!114 &402852716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 402852706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3b48030a52bbe4da873bc088e4c6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPrimaryFiring: 0
+  IsSecondaryFiring: 0
+  Primary: {fileID: 402852714}
+  Secondary: {fileID: 0}
 --- !u!1 &506337993
 GameObject:
   m_ObjectHideFlags: 0

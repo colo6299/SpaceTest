@@ -23,7 +23,12 @@ public class FireCoordinator : MonoBehaviour
         IsPrimaryFiring = false;
         IsSecondaryFiring = false;
 
-        if (Input.GetKey(KeyCode.Space))
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    IsPrimaryFiring = true;
+        //}
+
+        if (Input.GetMouseButton(0))
         {
             IsPrimaryFiring = true;
         }

@@ -3091,10 +3091,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb4d9bd051a71f48a18edd27bce7c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.027
-  intensity: 0.1
-  blurSize: 0.33
-  blurIterations: 2
+  threshold: 0.967
+  intensity: 0.08
+  blurSize: 0.37
+  blurIterations: 3
   fastBloomMaterial: {fileID: 2100000, guid: 221340b8b5ad10940ba1646f87e3770c, type: 2}
 --- !u!1 &1241132500
 GameObject:

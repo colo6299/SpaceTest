@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114375768258744666}
   - component: {fileID: 114576940996988754}
   m_Layer: 0
-  m_Name: Standard
+  m_Name: StandardBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: c04d6d9dc3d946941843a9e2693d7ad1, type: 2}
+  - {fileID: 2100000, guid: b00e76db55c2e94498cab6a7fd551882, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

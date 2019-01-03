@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0e4efebfb9ebd4480e9353486251b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsFireing: 0
+  IsFireing: 1
   System: 0
   RateOfFire: 200
   Projectile: {fileID: 1983003278483286, guid: 450520ae74b547b4b9b8296e8fead113, type: 2}

@@ -24,6 +24,10 @@ GameObject:
   - component: {fileID: 114676710351978818}
   - component: {fileID: 114191519905691494}
   - component: {fileID: 114574077989018878}
+  - component: {fileID: 114775215233903778}
+  - component: {fileID: 114490122554115436}
+  - component: {fileID: 114333262850773404}
+  - component: {fileID: 114068383948460566}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Untagged
@@ -815,6 +819,21 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1306241601466302}
   m_Enabled: 1
+--- !u!114 &114068383948460566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1003130845974636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3b48030a52bbe4da873bc088e4c6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPrimaryFiring: 0
+  IsSecondaryFiring: 0
+  Primary: {fileID: 114490122554115436}
+  Secondary: {fileID: 0}
 --- !u!114 &114191519905691494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -830,6 +849,38 @@ MonoBehaviour:
   acceleration: 60
   maxSpeed: 160
   skidRatio: 2
+--- !u!114 &114333262850773404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1003130845974636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3b48030a52bbe4da873bc088e4c6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPrimaryFiring: 0
+  IsSecondaryFiring: 0
+  Primary: {fileID: 114775215233903778}
+  Secondary: {fileID: 0}
+--- !u!114 &114490122554115436
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1003130845974636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0e4efebfb9ebd4480e9353486251b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsFireing: 0
+  System: 0
+  RateOfFire: 400
+  Projectile: {fileID: 1209761148871740, guid: 43f2df82c92aefc4ebce4e47114f3ac0, type: 2}
+  Barrels:
+  - {fileID: 4123894723114654}
 --- !u!114 &114574077989018878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -860,6 +911,23 @@ MonoBehaviour:
   pointer: {fileID: 0}
   blueFlame: {fileID: 0}
   orangeFlame: {fileID: 0}
+--- !u!114 &114775215233903778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1003130845974636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0e4efebfb9ebd4480e9353486251b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsFireing: 0
+  System: 0
+  RateOfFire: 400
+  Projectile: {fileID: 1209761148871740, guid: 43f2df82c92aefc4ebce4e47114f3ac0, type: 2}
+  Barrels:
+  - {fileID: 4016654133837596}
 --- !u!114 &114875010033710402
 MonoBehaviour:
   m_ObjectHideFlags: 1

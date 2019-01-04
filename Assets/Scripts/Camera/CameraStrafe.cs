@@ -33,12 +33,12 @@ public class CameraStrafe : MonoBehaviour {
 
         Vector3 rotVec = shipR.angularVelocity;
 
-        slewVec *= 4 / 5;
-        slewVec.x += rotVec.y;
-        slewVec.y += rotVec.x;
+        slewVec *= 59 / 60;
+        slewVec.x += rotVec.y/59;
+        slewVec.y += rotVec.x/59;
         
 
-        cam.position = ship.TransformPoint(offset + slewVec/5);
+        cam.position = ship.TransformPoint(offset + slewVec);
 
         //rcam.angularVelocity = cam.transform.TransformDirection(rotVec) * Time.deltaTime * 10 + rcam.angularVelocity;
         //rcam.maxAngularVelocity = 5f;

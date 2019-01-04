@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.StatSheets;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,13 @@ namespace Assets.Scripts.Projectile
         public Rigidbody Parent;
 
         public float MaxTrajectory = 1000f;
-        public float Damage = 10f;
+        public WeaponInfo Stats = new WeaponInfo
+        {
+            Type = DamageAndResistances.Plate,
+            Damage = 25f,
+            CritChance = 0.03f,
+            CritDamageMultiplier = 1
+        };
         public float Speed = 50f;
 
         private Vector3 inharetedVelocity;
@@ -36,7 +43,7 @@ namespace Assets.Scripts.Projectile
 
                 if (ship != null)
                 {
-                    ship.TakeDamage(Damage);
+                    ship.TakeDamage(Stats);
                     Destroy(gameObject);
                 }
             }

@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4949203218080898}
-  - component: {fileID: 114576940996988754}
+  - component: {fileID: 114082408384464648}
   m_Layer: 0
   m_Name: StandardBullet
   m_TagString: Untagged
@@ -142,7 +142,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816111290784604}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114576940996988754
+--- !u!114 &114082408384464648
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,6 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f312ffacc74db704d9aaf294c302ee4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxTrajectory: 2000
-  Damage: 50
-  Speed: 1000
+  Parent: {fileID: 0}
+  MaxTrajectory: 5000
+  Speed: 700

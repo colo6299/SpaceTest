@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Projectile;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -166,7 +167,7 @@ public abstract class WeaponBase : MonoBehaviour
         // ensures the game does not crash if array is not initialized
         if (Barrels != null && Barrels.Length > 0)
         {
-            Instantiate(Projectile, Barrels[currentBarrelIndex].position, Barrels[currentBarrelIndex].rotation);
+            FireProjectile(Barrels[currentBarrelIndex]);
 
             currentBarrelIndex++;
             if (currentBarrelIndex == Barrels.Length)
@@ -183,11 +184,17 @@ public abstract class WeaponBase : MonoBehaviour
     {
         foreach (Transform t in Barrels)
         {
-            Instantiate(Projectile, t.position, t.rotation);
+            FireProjectile(t);
             ConsumeAmmo();
         }
 
         ReduceTimeTillNextShot();
+    }
+
+    public void FireProjectile(Transform tran)
+    {
+        ProjectileBase projectile = Instantiate(Projectile, tran.position, tran.rotation).GetComponent<ProjectileBase>();
+        projectile.Parent = gameObject.GetComponent<Rigidbody>();
     }
 
     /// <summary>

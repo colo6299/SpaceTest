@@ -14,9 +14,8 @@ namespace Assets.Scripts.Projectile
         public float Damage = 10f;
         public float Speed = 50f;
 
-        private float CurrentTrajectory = 0;
-
         private Vector3 inharetedVelocity;
+        private float currentTrajectory = 0;
 
         private void Start()
         {
@@ -27,7 +26,7 @@ namespace Assets.Scripts.Projectile
         void Update()
         {
             float distance = Speed * Time.deltaTime;
-            CurrentTrajectory += distance;
+            currentTrajectory += distance;
             transform.position += ((transform.forward * distance) + inharetedVelocity * Time.deltaTime);
 
             RaycastHit hit;
@@ -38,7 +37,7 @@ namespace Assets.Scripts.Projectile
                 ship.TakeDamage(Damage);
                 Destroy(gameObject);
             }
-            else if (CurrentTrajectory >= MaxTrajectory)
+            else if (currentTrajectory >= MaxTrajectory)
             {
                 Destroy(gameObject);
             }

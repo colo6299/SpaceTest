@@ -38,9 +38,11 @@ public class CameraStrafe : MonoBehaviour {
         slewVec.y += rotVec.x/59;
         slewVec.x -= rotVec.z / 59;
 
-        cam.localEulerAngles = new Vector3(0, 0, slewVec.z * 2);
+        //cam.localEulerAngles = new Vector3(0, 0, slewVec.z * 2);
 
-        cam.position = ship.TransformPoint(offset + slewVec);
+        
+
+        cam.position = ship.TransformPoint(offset + new Vector3(slewVec.x, slewVec.y * 2, 0) * 2);
 
 
         //rcam.angularVelocity = cam.transform.TransformDirection(rotVec) * Time.deltaTime * 10 + rcam.angularVelocity;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009786535, g: 0.05188808, b: 0.1522932, a: 1}
+  m_IndirectSpecularColor: {r: 0.00978638, g: 0.051889956, b: 0.15229365, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6559,13 +6559,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2079701682}
   - component: {fileID: 2079701681}
-  - component: {fileID: 2079701680}
-  - component: {fileID: 2079701679}
   - component: {fileID: 2079701678}
-  - component: {fileID: 2079701676}
-  - component: {fileID: 2079701675}
-  - component: {fileID: 2079701674}
   - component: {fileID: 2079701673}
+  - component: {fileID: 2079701674}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Untagged
@@ -6587,60 +6583,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPrimaryFiring: 0
   IsSecondaryFiring: 0
-  Primary: {fileID: 2079701675}
-  Secondary: {fileID: 0}
 --- !u!114 &2079701674
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114333262850773404, guid: 9b598da0cd98f244ca22df0d18fb3b01,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2079701672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d3b48030a52bbe4da873bc088e4c6a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 70fa283844d52504c8d37112391fc9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsPrimaryFiring: 0
-  IsSecondaryFiring: 0
-  Primary: {fileID: 2079701676}
-  Secondary: {fileID: 0}
---- !u!114 &2079701675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114490122554115436, guid: 9b598da0cd98f244ca22df0d18fb3b01,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2079701672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0e4efebfb9ebd4480e9353486251b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsFireing: 0
   System: 0
-  RateOfFire: 800
-  Projectile: {fileID: 1209761148871740, guid: fcd7cbb54dac1a14481a8e2cfa75c02e, type: 2}
-  Barrels:
-  - {fileID: 1141509608}
---- !u!114 &2079701676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114775215233903778, guid: 9b598da0cd98f244ca22df0d18fb3b01,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2079701672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0e4efebfb9ebd4480e9353486251b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsFireing: 0
-  System: 0
-  RateOfFire: 800
+  Type: 0
+  RateOfFire: 600
+  Ammunition: 50
+  ReloadTime: 3
   Projectile: {fileID: 1209761148871740, guid: fcd7cbb54dac1a14481a8e2cfa75c02e, type: 2}
   Barrels:
   - {fileID: 307772605}
+  - {fileID: 1141509608}
 --- !u!114 &2079701678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6657,42 +6619,6 @@ MonoBehaviour:
   acceleration: 60
   maxSpeed: 160
   skidRatio: 2
---- !u!114 &2079701679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114676710351978818, guid: 9b598da0cd98f244ca22df0d18fb3b01,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2079701672}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccdb117b336049b49b9717ed9c266e3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceleration: 20
-  ship: {fileID: 2079701681}
-  engine: {fileID: 0}
-  pointer: {fileID: 0}
-  blueFlame: {fileID: 0}
-  orangeFlame: {fileID: 0}
---- !u!114 &2079701680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114875010033710402, guid: 9b598da0cd98f244ca22df0d18fb3b01,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2079701672}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06556b0d706923941814c92ec80a4dfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceleration: 10
-  ship: {fileID: 2079701681}
-  engine: {fileID: 0}
-  pointer: {fileID: 0}
-  blueFlame: {fileID: 0}
-  orangeFlame: {fileID: 0}
 --- !u!54 &2079701681
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
@@ -42,6 +43,7 @@ public abstract class WeaponBase : MonoBehaviour
     protected double timeTillNextShot = 1;
     protected int currentAmmunition;
     protected float currentReloadTime = 0;
+    protected float idleReloadTime = 0;
 
     private FireCoordinator coordinator = null;
 
@@ -60,6 +62,13 @@ public abstract class WeaponBase : MonoBehaviour
         return RateOfFire <= 0;
     }
 
+    private bool CanFire()
+    {
+        return coordinator != null &&
+            ((Type == WeaponType.Primary && coordinator.IsPrimaryFiring) ||
+            (Type == WeaponType.Secondary && coordinator.IsSecondaryFiring));
+    }
+
     private void Start()
     {
         currentAmmunition = Ammunition;
@@ -71,19 +80,26 @@ public abstract class WeaponBase : MonoBehaviour
         }
     }
 
+    void OnGUI()
+    {
+        if (Application.isEditor)  // or check the app debug flag
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("Type: " + Type.ToString());
+            sb.AppendLine("System: " + System.ToString());
+            sb.AppendLine("Projectile: " + Projectile.GetType().Name);
+            sb.AppendLine(string.Format("Shot: {0}/{1}", currentAmmunition, Ammunition));
+            sb.AppendLine(string.Format("Reload: {0}/{1}", currentReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
+            sb.AppendLine(string.Format("Idle Reload: {0}/{1}", idleReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
+            GUI.Label(new Rect(10, 0, 500, 500), sb.ToString());
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        // if primary and is not fireing or secondary and is not firing, do nothing
-        if (coordinator != null &&
-            ((Type == WeaponType.Primary && !coordinator.IsPrimaryFiring) ||
-            (Type == WeaponType.Secondary && !coordinator.IsSecondaryFiring))) return;
-
-        if (IsReloading())
-        {
-            currentReloadTime -= Time.deltaTime;
-            currentAmmunition = Ammunition;
-        }
+        ReloadUpdate();
 
         if (ShootEveryFrame())
         {
@@ -91,7 +107,7 @@ public abstract class WeaponBase : MonoBehaviour
         }
         else
         {
-            if (IsReloading() && timeTillNextShot > 1)
+            if (timeTillNextShot > 1 && (IsReloading() || !CanFire()))
             {
                 timeTillNextShot = 1;
             }
@@ -102,7 +118,7 @@ public abstract class WeaponBase : MonoBehaviour
         }
 
         // If the rate of fire is high enough, more than one bullet may need to be spawned per frame
-        while (IsReadyToFire())
+        while (CanFire() && IsReadyToFire())
         {
             switch (System)
             {
@@ -115,6 +131,34 @@ public abstract class WeaponBase : MonoBehaviour
             }
         }
 
+    }
+
+    public void ReloadUpdate()
+    {
+        if (IsReloading())
+        {
+            currentReloadTime -= Time.deltaTime;
+        }
+
+        if (!IsReloading() && currentAmmunition <= 0)
+        {
+            currentAmmunition = Ammunition;
+        }
+
+        if (CanFire())
+        {
+            idleReloadTime = 0;
+        }
+        else
+        {
+            idleReloadTime += Time.deltaTime;
+
+            if (idleReloadTime >= ReloadTime)
+            {
+                currentAmmunition = Ammunition;
+                idleReloadTime = 0;
+            }
+        }
     }
 
     private void FireNextInSequence()
@@ -147,7 +191,7 @@ public abstract class WeaponBase : MonoBehaviour
     }
 
     /// <summary>
-    /// Reduces ammo and starts a reload if ammo  reaches 0
+    /// Reduces ammo count
     /// </summary>
     private void ConsumeAmmo(int count = 1)
     {
@@ -156,7 +200,7 @@ public abstract class WeaponBase : MonoBehaviour
         if (currentAmmunition <= 0)
         {
             currentReloadTime = ReloadTime;
-        } 
+        }
     }
 
     private void ReduceTimeTillNextShot()

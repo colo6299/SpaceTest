@@ -34,8 +34,11 @@ namespace Assets.Scripts.Projectile
             {
                 EntityInfo ship = hit.transform.GetComponent<EntityInfo>();
 
-                ship.TakeDamage(Damage);
-                Destroy(gameObject);
+                if (ship != null)
+                {
+                    ship.TakeDamage(Damage);
+                    Destroy(gameObject);
+                }
             }
             else if (currentTrajectory >= MaxTrajectory)
             {

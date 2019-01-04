@@ -11,11 +11,7 @@ public class FireCoordinator : MonoBehaviour
 {
 
     public bool IsPrimaryFiring = false;
-
     public bool IsSecondaryFiring = false;
-
-    public Basic Primary;
-    public Basic Secondary;
 
 	// Update is called once per frame
 	void Update ()
@@ -23,29 +19,14 @@ public class FireCoordinator : MonoBehaviour
         IsPrimaryFiring = false;
         IsSecondaryFiring = false;
 
-        //if (Input.GetKey(KeyCode.Space))
-        //{
-        //    IsPrimaryFiring = true;
-        //}
-
         if (Input.GetMouseButton(0))
         {
             IsPrimaryFiring = true;
         }
 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetMouseButton(1))
         {
             IsSecondaryFiring = true;
-        }
-
-        if (Primary != null)
-        {
-            Primary.IsFireing = IsPrimaryFiring;
-        }
-
-        if (Secondary != null)
-        {
-            Secondary.IsFireing = IsSecondaryFiring;
         }
     }
 }

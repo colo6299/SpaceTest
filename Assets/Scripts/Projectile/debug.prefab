@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33787075423082756}
   - component: {fileID: 23650957213976726}
   - component: {fileID: 65199158472583670}
-  - component: {fileID: 114622729042094230}
+  - component: {fileID: 114981706643598778}
   m_Layer: 0
   m_Name: debug
   m_TagString: Untagged
@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114622729042094230
+--- !u!114 &114981706643598778
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,9 +105,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1983003278483286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee70e09fef7bbce45a162cbb3f3bcea2, type: 3}
+  m_Script: {fileID: 11500000, guid: f312ffacc74db704d9aaf294c302ee4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxTrajectory: 1000
   Damage: 10
-  Speed: 500
+  Speed: 50

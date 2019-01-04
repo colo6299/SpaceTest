@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4949203218080898}
-  - component: {fileID: 114375768258744666}
+  - component: {fileID: 114493228690292880}
   m_Layer: 0
   m_Name: CapsuleProjectile
   m_TagString: Untagged
@@ -113,7 +113,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816111290784604}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114375768258744666
+--- !u!114 &114493228690292880
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,9 +121,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1209761148871740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee70e09fef7bbce45a162cbb3f3bcea2, type: 3}
+  m_Script: {fileID: 11500000, guid: f312ffacc74db704d9aaf294c302ee4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxTrajectory: 2000
+  MaxTrajectory: 1000
   Damage: 10
-  Speed: 1000
+  Speed: 50

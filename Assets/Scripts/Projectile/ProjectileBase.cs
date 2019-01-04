@@ -34,8 +34,11 @@ namespace Assets.Scripts.Projectile
             {
                 DestroyableCoordinator ship = hit.transform.GetComponent<DestroyableCoordinator>();
 
-                ship.TakeDamage(Damage);
-                Destroy(gameObject);
+                if (ship != null)
+                {
+                    ship.TakeDamage(Damage);
+                    Destroy(gameObject);
+                }
             }
             else if (currentTrajectory >= MaxTrajectory)
             {

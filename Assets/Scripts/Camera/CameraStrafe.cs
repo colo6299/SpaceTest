@@ -42,7 +42,7 @@ public class CameraStrafe : MonoBehaviour {
 
         
 
-        cam.position = ship.TransformPoint(offset + new Vector3(slewVec.x, slewVec.y, 0) * 2);
+        cam.position = ship.TransformPoint(offset + new Vector3(slewVec.x, -slewVec.y, 0) * 2);
 
 
         //rcam.angularVelocity = cam.transform.TransformDirection(rotVec) * Time.deltaTime * 10 + rcam.angularVelocity;

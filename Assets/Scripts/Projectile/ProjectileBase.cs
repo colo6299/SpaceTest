@@ -32,7 +32,7 @@ namespace Assets.Scripts.Projectile
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, distance))
             {
-                DestroyableCoordinator ship = hit.transform.GetComponent<DestroyableCoordinator>();
+                EntityInfo ship = hit.transform.GetComponent<EntityInfo>();
 
                 ship.TakeDamage(Damage);
                 Destroy(gameObject);

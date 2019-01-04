@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyableCoordinator : MonoBehaviour {
+public class EntityInfo : MonoBehaviour {
 
 
-    public float health = 100;
+    public float Health = 100;
+    public float Armor = 5;
+
+    public float Acceleration = 10f;
+    public float MaxSpeed = 20f;
+    public float SkidRatio = 0.8f;
+
     public GameObject dmgPrefab;
 
     
     public void TakeDamage(float dmg)
     {
-        health -= dmg;
-        if (health <= 0)
+        Health -= dmg;
+        if (Health <= 0)
         {
             Destroy(gameObject);
             Destroy(Instantiate(dmgPrefab, transform.position, transform.rotation, null), 5f);

@@ -20,10 +20,16 @@ public class StandardProjectile : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, distance))
         {
-            DestroyableCoordinator ship = hit.transform.GetComponent<DestroyableCoordinator>();
 
-            ship.TakeDamage(Damage);
+            if (hit.transform.gameObject.GetComponent<DestroyableCoordinator>() != null)
+            {
+                DestroyableCoordinator ship = hit.transform.GetComponent<DestroyableCoordinator>();
+                ship.TakeDamage(Damage);              
+            }
+
             Destroy(gameObject);
+
+
         }
         else if (CurrentTrajectory >= MaxTrajectory)
         {

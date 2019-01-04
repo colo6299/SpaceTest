@@ -8,6 +8,7 @@ public class SkidFly : MonoBehaviour {
     public float acceleration = 10f;
     public float maxSpeed = 20f;
     public float skidRatio = 0.8f;
+    public EntityInfo info;
 
     private float xavg;
     private float yavg;
@@ -16,6 +17,11 @@ public class SkidFly : MonoBehaviour {
 
     void Start()
     {
+
+        info = GetComponent<EntityInfo>();
+
+        UpdateInfo();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -32,6 +38,12 @@ public class SkidFly : MonoBehaviour {
         FlightSkid();
     }
 
+    public void UpdateInfo()
+    {
+        acceleration = info.Acceleration;
+        maxSpeed = info.MaxSpeed;
+        skidRatio = info.SkidRatio;
+    }
 
     void FlightSkid()
     {
@@ -57,8 +69,6 @@ public class SkidFly : MonoBehaviour {
         {
            
         }
-
-
     }
 
 

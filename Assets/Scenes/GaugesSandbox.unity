@@ -17051,9 +17051,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2079701682}
   - component: {fileID: 2079701681}
-  - component: {fileID: 2079701678}
-  - component: {fileID: 2079701673}
+  - component: {fileID: 2079701675}
+  - component: {fileID: 2079701676}
   - component: {fileID: 2079701674}
+  - component: {fileID: 2079701673}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Untagged
@@ -17064,8 +17065,58 @@ GameObject:
 --- !u!114 &2079701673
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114068383948460566, guid: 9b598da0cd98f244ca22df0d18fb3b01,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2079701672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fa283844d52504c8d37112391fc9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RateOfFire: 400
+  Ammunition: 100
+  ReloadTime: 3
+  System: 0
+  Type: 0
+  Projectile: {fileID: 1209761148871740, guid: fcd7cbb54dac1a14481a8e2cfa75c02e, type: 2}
+  Barrels:
+  - {fileID: 307772605}
+  - {fileID: 1141509608}
+--- !u!114 &2079701674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2079701672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb1dc56aa440964a859d69f2d99b500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship: {fileID: 2079701681}
+  acceleration: 10
+  maxSpeed: 20
+  skidRatio: 0.8
+--- !u!114 &2079701675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2079701672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e68838493a67a94c9091c59c6137ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 2000
+  dmgPrefab: {fileID: 0}
+  Acceleration: 10
+  MaxSpeed: 20
+  SkidRatio: 0.8
+--- !u!114 &2079701676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2079701672}
   m_Enabled: 1
@@ -17075,42 +17126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPrimaryFiring: 0
   IsSecondaryFiring: 0
---- !u!114 &2079701674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2079701672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70fa283844d52504c8d37112391fc9a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  System: 0
-  Type: 0
-  RateOfFire: 600
-  Ammunition: 50
-  ReloadTime: 3
-  Projectile: {fileID: 1209761148871740, guid: fcd7cbb54dac1a14481a8e2cfa75c02e, type: 2}
-  Barrels:
-  - {fileID: 307772605}
-  - {fileID: 1141509608}
---- !u!114 &2079701678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114191519905691494, guid: 9b598da0cd98f244ca22df0d18fb3b01,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2079701672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afb1dc56aa440964a859d69f2d99b500, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ship: {fileID: 2079701681}
-  acceleration: 60
-  maxSpeed: 160
-  skidRatio: 2
 --- !u!54 &2079701681
 Rigidbody:
   m_ObjectHideFlags: 0

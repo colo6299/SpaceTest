@@ -1,23 +1,10 @@
-﻿using Assets.Scripts.Projectile;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
     public enum FiringSystem { Sequenced, Simultaneous }
     public enum WeaponType { Primary, Secondary }
-
-    /// <summary>
-    /// How projectiles are spawned between weapon barrels
-    /// </summary>
-    public FiringSystem System = FiringSystem.Sequenced;
-
-    /// <summary>
-    /// What weapon slot does this fit in. (Will be moved somewhere else)
-    /// </summary>
-    public WeaponType Type = WeaponType.Primary;
 
     /// <summary>
     /// Shots per minute
@@ -30,12 +17,30 @@ public abstract class WeaponBase : MonoBehaviour
     /// 0 or less means no reload
     /// </summary>
     public int Ammunition = 0;
-    
+
     /// <summary>
     /// Reload Time in seconds
     /// 0 or less means no reload
     /// </summary>
     public float ReloadTime = 0;
+
+    public WeaponInfo Stats = new WeaponInfo
+    {
+        DamageType = ResistanceTypes.Plate,
+        Damage = 50,
+        CritChance = 0.03f,
+        CritDamageMultiplier = 1f
+    };
+
+    /// <summary>
+    /// How projectiles are spawned between weapon barrels
+    /// </summary>
+    public FiringSystem System = FiringSystem.Sequenced;
+
+    /// <summary>
+    /// What weapon slot does this fit in. (Will be moved somewhere else)
+    /// </summary>
+    public WeaponType Type = WeaponType.Primary;
 
     public GameObject Projectile;
     public Transform[] Barrels;

@@ -4,36 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 
-namespace Assets.Scripts.StatSheets
+public enum ResistanceTypes { Plate, Thermal, Antimater }
+
+public class ResistanceInfo
 {
-    public enum DamageAndResistances { Plate, Thermal, Antimater }
+    private static Random rng = new Random((int)(DateTime.Now.Ticks / 17));
 
-    public class ResistanceInfo
+    public float Armor;
+    public float CritChance;
+    public float CritResistance;
+
+
+    public DamageReductionReport ReduceDamage(float damage)
     {
-        private static Random rng = new Random((int)(DateTime.Now.Ticks/17));
+        DamageReductionReport info = new DamageReductionReport();
 
-        public float Armor;
-        public float CritChance;
-        public float CritResistance;
-
-
-        public DamageReductionReport ReduceDamage(float damage)
+        if (rng.NextDouble() <= CritChance)
         {
-            DamageReductionReport info = new DamageReductionReport();
-
-            if (rng.NextDouble() <= CritChance)
-            {
-                info.Crit = true;
-                info.Reduction = (Armor * CritResistance);
-            }
-
-            info.Reduction += Armor;
-
-            info.Remaining = (damage - info.Reduction < 0) ? 0 : damage - info.Reduction;
-
-            return info;
-
+            info.Crit = true;
+            info.Reduction = (Armor * CritResistance);
         }
 
+        info.Reduction += Armor;
+
+        info.Remaining = (damage - info.Reduction < 0) ? 0 : damage - info.Reduction;
+
+        return info;
+
     }
+
 }

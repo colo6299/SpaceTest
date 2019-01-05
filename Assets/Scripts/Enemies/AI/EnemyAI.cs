@@ -57,7 +57,7 @@ public class EnemyAI : MonoBehaviour {
     void NavChoice()
     {
         distance = (player.transform.position - transform.position).magnitude;
-        playerPrediction = player.transform.position + prb.velocity;
+        playerPrediction = player.transform.position + (prb.velocity - rb.velocity);
 
         if (distance < minStrafe)
         {

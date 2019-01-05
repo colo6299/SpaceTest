@@ -897,7 +897,7 @@ MonoBehaviour:
   Acceleration: 80
   MaxSpeed: 110
   SkidRatio: 0.8
-  dmgPrefab: {fileID: 0}
+  dmgPrefab: {fileID: 1430535507656180, guid: c1a4bdc2059be144aa7dbb05fa994887, type: 2}
 --- !u!114 &114958540419802372
 MonoBehaviour:
   m_ObjectHideFlags: 1

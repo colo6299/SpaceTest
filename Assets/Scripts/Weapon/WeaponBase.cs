@@ -7,6 +7,18 @@ public abstract class WeaponBase : MonoBehaviour
     public enum WeaponType { Primary, Secondary }
 
     /// <summary>
+    /// The weapon's power level
+    /// I wouldn't recommend setting this below zero
+    /// </summary>
+    public int Power = 0;
+
+    /// <summary>
+    /// The weapon's per bullet damage
+    /// I wouldn't recommend setting this below zero
+    /// </summary>
+    public float Damage = 0;
+
+    /// <summary>
     /// Shots per minute
     /// 0 or less means shoot every update
     /// </summary>
@@ -53,6 +65,10 @@ public abstract class WeaponBase : MonoBehaviour
 
     private FireCoordinator coordinator = null;
 
+    public RollInfo rollInfo;
+    private int rollIterator;
+    private float[] rollArray;
+
     public bool IsReadyToFire()
     {
         return timeTillNextShot >= 1 && !IsReloading();
@@ -78,7 +94,14 @@ public abstract class WeaponBase : MonoBehaviour
     private void Start()
     {
         currentAmmunition = Ammunition;
-        coordinator = gameObject.GetComponent<FireCoordinator>();
+        if (transform.parent.parent.parent.GetComponent<FireCoordinator>() != null)
+        {
+            coordinator = transform.parent.parent.parent.GetComponent<FireCoordinator>();
+        }
+        else
+        {
+            coordinator = gameObject.GetComponent<FireCoordinator>();
+        }
 
         if (coordinator == null)
         {
@@ -199,7 +222,7 @@ public abstract class WeaponBase : MonoBehaviour
     public void FireProjectile(Transform tran)
     {
         ProjectileBase projectile = Instantiate(Projectile, tran.position, tran.rotation).GetComponent<ProjectileBase>();
-        projectile.Parent = gameObject.GetComponent<Rigidbody>();
+        projectile.Parent = gameObject.GetComponentInParent<Rigidbody>();
     }
 
     /// <summary>
@@ -219,4 +242,18 @@ public abstract class WeaponBase : MonoBehaviour
     {
         timeTillNextShot -= 1;
     }
+
+    protected float Roll()
+    {
+        rollIterator++;
+        return rollArray[rollIterator];
+    }
+
+    protected void StartRolling(RollInfo _Info)
+    {
+        rollInfo = _Info;
+        rollArray = _Info.rollArray;
+        rollIterator = -1;
+    }
+
 }

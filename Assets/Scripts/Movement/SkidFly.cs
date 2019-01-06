@@ -8,7 +8,7 @@ public class SkidFly : MonoBehaviour {
     public float acceleration = 10f;
     public float maxSpeed = 20f;
     public float skidRatio = 0.8f;
-    public EntityInfo info;
+    public ShipInfo info;
 
     private float xavg;
     private float yavg;
@@ -18,7 +18,7 @@ public class SkidFly : MonoBehaviour {
     void Start()
     {
 
-        info = GetComponent<EntityInfo>();
+        info = GetComponent<ShipInfo>();
 
         UpdateInfo();
 

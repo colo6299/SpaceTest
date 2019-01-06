@@ -180,9 +180,9 @@ GameObject:
   - component: {fileID: 4546736705773874}
   - component: {fileID: 54577333136780912}
   - component: {fileID: 114162735102402450}
-  - component: {fileID: 114604771208554230}
   - component: {fileID: 114562783638664366}
   - component: {fileID: 114573307972270380}
+  - component: {fileID: 114186440912511326}
   m_Layer: 0
   m_Name: PlayerFighter
   m_TagString: Player
@@ -1841,7 +1841,23 @@ MonoBehaviour:
   acceleration: 60
   maxSpeed: 160
   skidRatio: 2
-  info: {fileID: 114604771208554230}
+  info: {fileID: 0}
+--- !u!114 &114186440912511326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1325256679103744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e68838493a67a94c9091c59c6137ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 2000
+  dmgPrefab: {fileID: 0}
+  Acceleration: 60
+  MaxSpeed: 160
+  SkidRatio: 2
 --- !u!114 &114264802569672788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1881,11 +1897,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fa283844d52504c8d37112391fc9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  System: 0
-  Type: 0
   RateOfFire: 2000
   Ammunition: 150
   ReloadTime: 3
+  System: 0
+  Type: 0
   Projectile: {fileID: 1209761148871740, guid: fcd7cbb54dac1a14481a8e2cfa75c02e, type: 2}
   Barrels:
   - {fileID: 4894417204853930}
@@ -1903,23 +1919,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPrimaryFiring: 0
   IsSecondaryFiring: 0
---- !u!114 &114604771208554230
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1325256679103744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb7c5c29cf60d543a12d13d0ffeb849, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 100
-  Armor: 5
-  Acceleration: 60
-  MaxSpeed: 160
-  SkidRatio: 2
-  dmgPrefab: {fileID: 1430535507656180, guid: c1a4bdc2059be144aa7dbb05fa994887, type: 2}
 --- !u!114 &114860165537280954
 MonoBehaviour:
   m_ObjectHideFlags: 1

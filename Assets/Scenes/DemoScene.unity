@@ -241,8 +241,7 @@ Prefab:
       propertyPath: m_Name
       value: Enemy Fighter (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 114793667410641938, guid: 0426ab23ccbe73f4490bb49683a94526,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: MaxSpeed
       value: 140
       objectReference: {fileID: 0}
@@ -783,8 +782,7 @@ Prefab:
       propertyPath: m_Name
       value: Enemy Fighter (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114793667410641938, guid: 0426ab23ccbe73f4490bb49683a94526,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: MaxSpeed
       value: 140
       objectReference: {fileID: 0}
@@ -876,6 +874,27 @@ Transform:
   m_Father: {fileID: 984262141}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: -55.72, y: 40.044003, z: 32.93}
+--- !u!1 &498856920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1100450071998656, guid: 0426ab23ccbe73f4490bb49683a94526,
+    type: 2}
+  m_PrefabInternal: {fileID: 1151435914}
+--- !u!114 &498856921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 498856920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e68838493a67a94c9091c59c6137ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 2000
+  dmgPrefab: {fileID: 0}
+  Acceleration: 80
+  MaxSpeed: 120
+  SkidRatio: 0.8
 --- !u!1 &506337993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2321,6 +2340,27 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 951897672}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &968490324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1100450071998656, guid: 0426ab23ccbe73f4490bb49683a94526,
+    type: 2}
+  m_PrefabInternal: {fileID: 75594108}
+--- !u!114 &968490325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 968490324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e68838493a67a94c9091c59c6137ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 2000
+  dmgPrefab: {fileID: 0}
+  Acceleration: 80
+  MaxSpeed: 120
+  SkidRatio: 0.8
 --- !u!1001 &974852629
 Prefab:
   m_ObjectHideFlags: 0
@@ -2359,11 +2399,6 @@ Prefab:
     - target: {fileID: 4206678869130342, guid: 0426ab23ccbe73f4490bb49683a94526, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114793667410641938, guid: 0426ab23ccbe73f4490bb49683a94526,
-        type: 2}
-      propertyPath: MaxSpeed
-      value: 140
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0426ab23ccbe73f4490bb49683a94526, type: 2}
@@ -2885,8 +2920,7 @@ Prefab:
       propertyPath: m_Name
       value: Enemy Fighter (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 114793667410641938, guid: 0426ab23ccbe73f4490bb49683a94526,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: MaxSpeed
       value: 140
       objectReference: {fileID: 0}
@@ -3534,8 +3568,7 @@ Prefab:
       propertyPath: m_Name
       value: Enemy Fighter (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 114793667410641938, guid: 0426ab23ccbe73f4490bb49683a94526,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: MaxSpeed
       value: 140
       objectReference: {fileID: 0}
@@ -4222,6 +4255,27 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1704209741}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1714635607 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1100450071998656, guid: 0426ab23ccbe73f4490bb49683a94526,
+    type: 2}
+  m_PrefabInternal: {fileID: 273951312}
+--- !u!114 &1714635608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1714635607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e68838493a67a94c9091c59c6137ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 2000
+  dmgPrefab: {fileID: 0}
+  Acceleration: 80
+  MaxSpeed: 120
+  SkidRatio: 0.8
 --- !u!1 &1736355977
 GameObject:
   m_ObjectHideFlags: 0
@@ -5454,6 +5508,27 @@ Transform:
   m_Father: {fileID: 984262141}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: -55.72, y: 40.044003, z: 32.93}
+--- !u!1 &2054650286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1100450071998656, guid: 0426ab23ccbe73f4490bb49683a94526,
+    type: 2}
+  m_PrefabInternal: {fileID: 1370787634}
+--- !u!114 &2054650287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2054650286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e68838493a67a94c9091c59c6137ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 2000
+  dmgPrefab: {fileID: 0}
+  Acceleration: 80
+  MaxSpeed: 120
+  SkidRatio: 0.8
 --- !u!1 &2068197645
 GameObject:
   m_ObjectHideFlags: 0

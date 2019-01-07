@@ -16,9 +16,4 @@ public class ActiveItemsBar : MonoBehaviour {
         secondarySlot = transform.Find("SecondarySlot").gameObject;
         armorSlot = transform.Find("ArmorSlot").gameObject;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

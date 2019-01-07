@@ -2,7 +2,7 @@
 
 public abstract class ProjectileBase : MonoBehaviour
 {
-    public Rigidbody Parent;
+    public WeaponBase Parent;
 
     public float MaxTrajectory = 1000f;
     public float Speed = 50f;
@@ -12,7 +12,7 @@ public abstract class ProjectileBase : MonoBehaviour
 
     private void Start()
     {
-        inharetedVelocity = Parent.velocity;
+        inharetedVelocity = Parent.GetComponentInParent<Rigidbody>().velocity;
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public abstract class ProjectileBase : MonoBehaviour
 
             if (ship != null)
             {
-                ship.TakeDamage(Parent.GetComponentInParent<WeaponBase>().Stats);
+                ship.TakeDamage(Parent.Stats);
             }
 
             Destroy(gameObject);

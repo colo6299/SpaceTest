@@ -13,9 +13,8 @@ public class EntityInfo : MonoBehaviour
         { ResistanceTypes.Thermal, new ResistanceInfo { Armor = 10, CritChance = 0.003f, CritResistance = 1 } },
         { ResistanceTypes.Antimater, new ResistanceInfo { Armor = 10, CritChance = 0.03f, CritResistance = 1 } },
     };
-    public GameObject dmgPrefab;
 
-    
+    public GameObject dmgPrefab = null;
 
     public void TakeDamage(WeaponInfo info)
     {
@@ -38,7 +37,11 @@ public class EntityInfo : MonoBehaviour
         if (Health <= 0)
         {
             Destroy(gameObject);
-            Destroy(Instantiate(dmgPrefab, transform.position, transform.rotation, null), 5f);
+
+            if (dmgPrefab != null)
+            {
+                Destroy(Instantiate(dmgPrefab, transform.position, transform.rotation, null), 5f);
+            }
         }
     }
 

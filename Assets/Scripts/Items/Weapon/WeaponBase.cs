@@ -1,16 +1,12 @@
 ﻿using System.Text;
 using UnityEngine;
 
-public abstract class WeaponBase : MonoBehaviour
+public abstract class WeaponBase : ItemBase
 {
     public enum FiringSystem { Sequenced, Simultaneous }
     public enum WeaponType { Primary, Secondary }
 
-    /// <summary>
-    /// The weapon's power level
-    /// I wouldn't recommend setting this below zero
-    /// </summary>
-    public int Power = 0;
+
 
     /*
     /// <summary>
@@ -67,10 +63,6 @@ public abstract class WeaponBase : MonoBehaviour
 
     private FireCoordinator coordinator = null;
 
-    public RollInfo rollInfo;
-    private int rollIterator;
-    private float[] rollArray;
-
     public bool IsReadyToFire()
     {
         return timeTillNextShot >= 1 && !IsReloading();
@@ -96,35 +88,23 @@ public abstract class WeaponBase : MonoBehaviour
     private void Start()
     {
         currentAmmunition = Ammunition;
-        if (transform.parent.parent.parent.GetComponent<FireCoordinator>() != null)
-        {
-            coordinator = transform.parent.parent.parent.GetComponent<FireCoordinator>();
-        }
-        else
-        {
-            coordinator = gameObject.GetComponent<FireCoordinator>();
-        }
-
-        if (coordinator == null)
-        {
-            Debug.Log("FireCoordinator was not found on: " + gameObject.name);
-        }
+        coordinator = transform.GetComponentInParent<FireCoordinator>();
     }
 
     void OnGUI()
     {
-        if (Application.isEditor)  // or check the app debug flag
-        {
-            StringBuilder sb = new StringBuilder();
+        //if (Application.isEditor)  // or check the app debug flag
+        //{
+        //    StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("Type: " + Type.ToString());
-            sb.AppendLine("System: " + System.ToString());
-            sb.AppendLine("Projectile: " + Projectile.GetType().Name);
-            sb.AppendLine(string.Format("Shot: {0}/{1}", currentAmmunition, Ammunition));
-            sb.AppendLine(string.Format("Reload: {0}/{1}", currentReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
-            sb.AppendLine(string.Format("Idle Reload: {0}/{1}", idleReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
-            GUI.Label(new Rect(10, 0, 500, 500), sb.ToString());
-        }
+        //    sb.AppendLine("Type: " + Type.ToString());
+        //    sb.AppendLine("System: " + System.ToString());
+        //    sb.AppendLine("Projectile: " + Projectile.GetType().Name);
+        //    sb.AppendLine(string.Format("Shot: {0}/{1}", currentAmmunition, Ammunition));
+        //    sb.AppendLine(string.Format("Reload: {0}/{1}", currentReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
+        //    sb.AppendLine(string.Format("Idle Reload: {0}/{1}", idleReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
+        //    GUI.Label(new Rect(10, 0, 500, 500), sb.ToString());
+        //}
     }
 
     // Update is called once per frame
@@ -224,7 +204,7 @@ public abstract class WeaponBase : MonoBehaviour
     public void FireProjectile(Transform tran)
     {
         ProjectileBase projectile = Instantiate(Projectile, tran.position, tran.rotation).GetComponent<ProjectileBase>();
-        projectile.Parent = gameObject.GetComponentInParent<Rigidbody>();
+        projectile.Parent = gameObject.GetComponent<WeaponBase>();
     }
 
     /// <summary>
@@ -244,18 +224,4 @@ public abstract class WeaponBase : MonoBehaviour
     {
         timeTillNextShot -= 1;
     }
-
-    protected float Roll()
-    {
-        rollIterator++;
-        return rollArray[rollIterator];
-    }
-
-    protected void StartRolling(RollInfo _Info)
-    {
-        rollInfo = _Info;
-        rollArray = _Info.rollArray;
-        rollIterator = -1;
-    }
-
 }

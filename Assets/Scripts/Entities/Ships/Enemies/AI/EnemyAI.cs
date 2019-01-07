@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-
-
     public GameObject player;
 
     private ShipInfo info;
@@ -26,19 +24,6 @@ public class EnemyAI : MonoBehaviour
 
     private Vector3 playerPrediction;
     private Vector3 targetPoint;
-
-    public int thing
-    {
-        get
-        {
-            throw new System.NotImplementedException();
-        }
-
-        set
-        {
-            throw new System.NotImplementedException();
-        }
-    }
 
     void Start()
     {
@@ -122,8 +107,6 @@ public class EnemyAI : MonoBehaviour
         Vector3 rotVec = transform.InverseTransformPoint(targetPoint);
         rotVec = new Vector3(-rotVec.y, rotVec.x, 0);
 
-        Debug.Log(targetPoint);
-
         rb.angularVelocity = transform.TransformDirection(rotVec.normalized);
 
     }
@@ -150,10 +133,5 @@ public class EnemyAI : MonoBehaviour
     void Retreat()
     {
          
-    }
-
-    public void RollStat(int anptsddaasdsdf)
-    {
-        throw new System.NotImplementedException();
     }
 }

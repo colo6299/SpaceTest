@@ -11,7 +11,7 @@ public class Minigun : WeaponBase
         ReloadTime = 0;
         Power = Mathf.RoundToInt(Roll());
         RateOfFire = Roll() * 20 + 500;
-        Damage = Power * (Roll() * 5 + 40);
+        Stats.Damage = Power * (Roll() * 5 + 40);
     }
 
 }

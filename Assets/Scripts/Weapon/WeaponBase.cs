@@ -12,11 +12,13 @@ public abstract class WeaponBase : MonoBehaviour
     /// </summary>
     public int Power = 0;
 
+    /*
     /// <summary>
     /// The weapon's per bullet damage
     /// I wouldn't recommend setting this below zero
     /// </summary>
     public float Damage = 0;
+    */
 
     /// <summary>
     /// Shots per minute

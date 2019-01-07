@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour {
+public class EnemyAI : MonoBehaviour
+{
 
 
     public GameObject player;
@@ -25,6 +26,19 @@ public class EnemyAI : MonoBehaviour {
 
     private Vector3 playerPrediction;
     private Vector3 targetPoint;
+
+    public int thing
+    {
+        get
+        {
+            throw new System.NotImplementedException();
+        }
+
+        set
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 
     void Start()
     {
@@ -138,6 +152,8 @@ public class EnemyAI : MonoBehaviour {
          
     }
 
-
-
+    public void RollStat(int anptsddaasdsdf)
+    {
+        throw new System.NotImplementedException();
+    }
 }

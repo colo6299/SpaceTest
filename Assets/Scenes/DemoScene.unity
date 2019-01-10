@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00978638, g: 0.051889956, b: 0.15229365, a: 1}
+  m_IndirectSpecularColor: {r: 0.009786535, g: 0.05188808, b: 0.1522932, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roll:
     name: 
+    rarity: 
     prefabID: 0
     durability: 0
     rollArray: []
@@ -1094,6 +1095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roll:
     name: 
+    rarity: 
     prefabID: 0
     durability: 0
     rollArray: []
@@ -1109,7 +1111,7 @@ GameObject:
   - component: {fileID: 738569733}
   - component: {fileID: 738569732}
   m_Layer: 0
-  m_Name: PrefabHolder
+  m_Name: DungeonMaster
   m_TagString: DungeonMaster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1126,8 +1128,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417275bc861b51446839878c9ea42dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabArray:
+  prefabArray: []
+  itemArray:
   - {fileID: 1905832755134520, guid: 6cf80c6e2079f4743b594c69fb67eaf2, type: 2}
+  - {fileID: 1905832755134520, guid: 6cf80c6e2079f4743b594c69fb67eaf2, type: 2}
+  bossArray: []
 --- !u!4 &738569733
 Transform:
   m_ObjectHideFlags: 0
@@ -1249,6 +1254,7 @@ GameObject:
   - component: {fileID: 778643096}
   - component: {fileID: 778643095}
   - component: {fileID: 778643093}
+  - component: {fileID: 778643094}
   m_Layer: 0
   m_Name: PlayerFighter
   m_TagString: Player
@@ -1273,6 +1279,19 @@ MonoBehaviour:
   Acceleration: 60
   MaxSpeed: 125
   SkidRatio: 2
+--- !u!114 &778643094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 778643092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10743f5b0033de4294b3ddf1418df29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowRatio: 0.5
+  slowSpeed: 0
 --- !u!114 &778643095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1616,6 +1635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roll:
     name: 
+    rarity: 
     prefabID: 0
     durability: 0
     rollArray: []
@@ -2524,6 +2544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roll:
     name: 
+    rarity: 
     prefabID: 0
     durability: 0
     rollArray: []
@@ -2853,6 +2874,60 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &1767434598
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4323605104965954, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -46.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323605104965954, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323605104965954, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 4.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323605104965954, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323605104965954, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323605104965954, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323605104965954, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323605104965954, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323605104965954, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.2639
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323605104965954, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2.2639
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323605104965954, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 2.2639
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1776754240
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,20 +1,9 @@
 ﻿using System.Text;
 using UnityEngine;
 
-public abstract class WeaponBase : ItemBase
+public abstract class WeaponBase : ItemBase, IItem
 {
     public enum FiringSystem { Sequenced, Simultaneous }
-    public enum WeaponType { Primary, Secondary }
-
-
-
-    /*
-    /// <summary>
-    /// The weapon's per bullet damage
-    /// I wouldn't recommend setting this below zero
-    /// </summary>
-    public float Damage = 0;
-    */
 
     /// <summary>
     /// Shots per minute
@@ -48,9 +37,9 @@ public abstract class WeaponBase : ItemBase
     public FiringSystem System = FiringSystem.Sequenced;
 
     /// <summary>
-    /// What weapon slot does this fit in. (Will be moved somewhere else)
+    /// Identifies this weapons slot compatability: Primary, Secondary
     /// </summary>
-    public WeaponType Type = WeaponType.Primary;
+    public SlotType Type = SlotType.Primary;
 
     public GameObject Projectile;
     public Transform[] Barrels;
@@ -81,8 +70,8 @@ public abstract class WeaponBase : ItemBase
     private bool CanFire()
     {
         return coordinator != null &&
-            ((Type == WeaponType.Primary && coordinator.IsPrimaryFiring) ||
-            (Type == WeaponType.Secondary && coordinator.IsSecondaryFiring));
+            ((Type == SlotType.Primary && coordinator.IsPrimaryFiring) ||
+            (Type == SlotType.Secondary && coordinator.IsSecondaryFiring));
     }
 
     private void Start()
@@ -223,5 +212,14 @@ public abstract class WeaponBase : ItemBase
     private void ReduceTimeTillNextShot()
     {
         timeTillNextShot -= 1;
+    }
+
+    public SlotType Slot()
+    {
+        return Type;
+    }
+
+    public void RollStats(RollInfo info)
+    {
     }
 }

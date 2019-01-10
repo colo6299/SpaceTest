@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour
 {
+
     /// <summary>
     /// The items power level
     /// I wouldn't recommend setting this below zero

@@ -7,6 +7,7 @@ public class EntityInfo : MonoBehaviour
     private static System.Random rng = new System.Random((int)(DateTime.Now.Ticks / 5));
 
     public float Health = 2000;
+    public float Energy = 2000;
     Dictionary<ResistanceTypes, ResistanceInfo> Armors = new Dictionary<ResistanceTypes, ResistanceInfo>()
     {
         { ResistanceTypes.Plate, new ResistanceInfo { Armor = 10, CritChance = 0.003f, CritResistance = 1 } },

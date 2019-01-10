@@ -111,5 +111,10 @@ public class BeamWeaponBase : ItemBase, IItem {
 
     public void RollStats(RollInfo info)
     {
+        StartRolling(info);
+        PowerLevel = Mathf.RoundToInt(Roll());
+        Range = Mathf.Abs(Roll() * PowerLevel) + 1;
+        Stats.Damage = PowerLevel * (Roll() * 5 + 40);
+
     }
 }

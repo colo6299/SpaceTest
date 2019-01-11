@@ -30,5 +30,4 @@ public class ItemBase : MonoBehaviour
         rollArray = _Info.rollArray;
         rollIterator = -1;
     }
-
 }

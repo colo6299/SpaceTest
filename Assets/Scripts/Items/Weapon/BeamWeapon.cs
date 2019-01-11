@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeamWeaponBase : ItemBase, IItem {
+public class BeamWeapon: WeaponBase {
     
     /// <summary>
     /// The beam range
@@ -14,39 +14,18 @@ public class BeamWeaponBase : ItemBase, IItem {
     /// </summary>
     public float PowerConsumption = 100;
 
-    /// <summary>
-    /// The slot this item fits into
-    /// </summary>
-    public SlotType Type = SlotType.Primary;
-
-    public WeaponInfo Stats = new WeaponInfo
-    {
-        DamageType = ResistanceTypes.Thermal,
-        Damage = 200,
-        CritChance = 0.01f,
-        CritDamageMultiplier = 1
-    };
-
-    public GameObject Beam;
-    public Transform[] Barrels;
-
-
-    private EntityInfo entity;
-    private FireCoordinator coordinator;
-
     private bool WasShootingLastFrame;
 
-    // Use this for initialization
-    void Start () {
-
-        entity = GetComponentInParent<EntityInfo>();
-        coordinator = GetComponentInParent<FireCoordinator>();
+    void Start()
+    {
+        Entity = GetComponentInParent<EntityInfo>();
+        Coordinator = GetComponentInParent<FireCoordinator>();
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (UserShootRequested() && ConsumePower())
+    // Update is called once per frame
+    void Update () {
+
+        if (HasShootRequest() && ConsumePower())
         {
             if (!WasShootingLastFrame)
             {
@@ -88,33 +67,12 @@ public class BeamWeaponBase : ItemBase, IItem {
     {
         float powerDraw = PowerConsumption * Time.deltaTime;
 
-        if (entity.Energy >= powerDraw)
+        if (Entity.Energy >= powerDraw)
         {
-            entity.Energy -= powerDraw;
+            Entity.Energy -= powerDraw;
             return true;
         }
 
         return false;
-    }
-
-    private bool UserShootRequested()
-    {
-        return coordinator != null &&
-            ((Type == SlotType.Primary && coordinator.IsPrimaryFiring) ||
-            (Type == SlotType.Secondary && coordinator.IsSecondaryFiring));
-    }
-
-    public SlotType Slot()
-    {
-        return Type;
-    }
-
-    public void RollStats(RollInfo info)
-    {
-        StartRolling(info);
-        PowerLevel = Mathf.RoundToInt(Roll());
-        Range = Mathf.Abs(Roll() * PowerLevel) + 1;
-        Stats.Damage = PowerLevel * (Roll() * 5 + 40);
-
     }
 }

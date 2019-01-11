@@ -6,32 +6,6 @@ public abstract class WeaponBase : ItemBase, IItem
     public enum FiringSystem { Sequenced, Simultaneous }
 
     /// <summary>
-    /// Shots per minute
-    /// 0 or less means shoot every update
-    /// </summary>
-    public float RateOfFire = 400;
-
-    /// <summary>
-    /// Number of shots before reload
-    /// 0 or less means no reload
-    /// </summary>
-    public int Ammunition = 0;
-
-    /// <summary>
-    /// Reload Time in seconds
-    /// 0 or less means no reload
-    /// </summary>
-    public float ReloadTime = 0;
-
-    public WeaponInfo Stats = new WeaponInfo
-    {
-        DamageType = ResistanceTypes.Plate,
-        Damage = 50,
-        CritChance = 0.03f,
-        CritDamageMultiplier = 1f
-    };
-
-    /// <summary>
     /// How projectiles are spawned between weapon barrels
     /// </summary>
     public FiringSystem System = FiringSystem.Sequenced;
@@ -41,177 +15,49 @@ public abstract class WeaponBase : ItemBase, IItem
     /// </summary>
     public SlotType Type = SlotType.Primary;
 
-    public GameObject Projectile;
+    /// <summary>
+    /// Weapon damage stats
+    /// </summary>
+    public WeaponInfo Stats = new WeaponInfo
+    {
+        DamageType = ResistanceTypes.Plate,
+        Damage = 50,
+        CritChance = 0.03f,
+        CritDamageMultiplier = 1f
+    };
+
+    /// <summary>
+    /// projectile spawn locations
+    /// </summary>
     public Transform[] Barrels;
 
-    protected int currentBarrelIndex = 0;
-    protected double timeTillNextShot = 1;
-    protected int currentAmmunition;
-    protected float currentReloadTime = 0;
-    protected float idleReloadTime = 0;
+    /// <summary>
+    /// The prefab object that is spawned when the weapon fires
+    /// </summary>
+    public GameObject Projectile;
 
-    private FireCoordinator coordinator = null;
+    /// <summary>
+    /// The stat details for this ship/entity
+    /// </summary>
+    protected EntityInfo Entity;
+    protected FireCoordinator Coordinator;
 
-    public bool IsReadyToFire()
+    // Use this for initialization
+    void Start()
     {
-        return timeTillNextShot >= 1 && !IsReloading();
-    }
-
-    public bool IsReloading()
-    {
-        return currentReloadTime > 0;
-    }
-
-    public bool ShootEveryFrame()
-    {
-        return RateOfFire <= 0;
-    }
-
-    private bool CanFire()
-    {
-        return coordinator != null &&
-            ((Type == SlotType.Primary && coordinator.IsPrimaryFiring) ||
-            (Type == SlotType.Secondary && coordinator.IsSecondaryFiring));
-    }
-
-    private void Start()
-    {
-        currentAmmunition = Ammunition;
-        coordinator = transform.GetComponentInParent<FireCoordinator>();
-    }
-
-    void OnGUI()
-    {
-        //if (Application.isEditor)  // or check the app debug flag
-        //{
-        //    StringBuilder sb = new StringBuilder();
-
-        //    sb.AppendLine("Type: " + Type.ToString());
-        //    sb.AppendLine("System: " + System.ToString());
-        //    sb.AppendLine("Projectile: " + Projectile.GetType().Name);
-        //    sb.AppendLine(string.Format("Shot: {0}/{1}", currentAmmunition, Ammunition));
-        //    sb.AppendLine(string.Format("Reload: {0}/{1}", currentReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
-        //    sb.AppendLine(string.Format("Idle Reload: {0}/{1}", idleReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
-        //    GUI.Label(new Rect(10, 0, 500, 500), sb.ToString());
-        //}
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ReloadUpdate();
-
-        if (ShootEveryFrame())
-        {
-            timeTillNextShot = 1;
-        }
-        else
-        {
-            if (timeTillNextShot > 1 && (IsReloading() || !CanFire()))
-            {
-                timeTillNextShot = 1;
-            }
-            else
-            {
-                timeTillNextShot += Time.deltaTime * RateOfFire / 60;
-            }
-        }
-
-        // If the rate of fire is high enough, more than one bullet may need to be spawned per frame
-        while (CanFire() && IsReadyToFire())
-        {
-            switch (System)
-            {
-                case FiringSystem.Sequenced: 
-                    FireNextInSequence();
-                    break;
-                case FiringSystem.Simultaneous:
-                    FireSimultaneous();
-                    break;
-            }
-        }
-
-    }
-
-    public void ReloadUpdate()
-    {
-        if (IsReloading())
-        {
-            currentReloadTime -= Time.deltaTime;
-        }
-
-        if (!IsReloading() && currentAmmunition <= 0)
-        {
-            currentAmmunition = Ammunition;
-        }
-
-        if (CanFire())
-        {
-            idleReloadTime = 0;
-        }
-        else
-        {
-            idleReloadTime += Time.deltaTime;
-
-            if (idleReloadTime >= ReloadTime)
-            {
-                currentAmmunition = Ammunition;
-                idleReloadTime = 0;
-            }
-        }
-    }
-
-    private void FireNextInSequence()
-    {
-        // ensures the game does not crash if array is not initialized
-        if (Barrels != null && Barrels.Length > 0)
-        {
-            FireProjectile(Barrels[currentBarrelIndex]);
-
-            currentBarrelIndex++;
-            if (currentBarrelIndex == Barrels.Length)
-            {
-                currentBarrelIndex = 0;
-            }
-
-            ConsumeAmmo();
-            ReduceTimeTillNextShot();
-        }
-    }
-
-    private void FireSimultaneous()
-    {
-        foreach (Transform t in Barrels)
-        {
-            FireProjectile(t);
-            ConsumeAmmo();
-        }
-
-        ReduceTimeTillNextShot();
-    }
-
-    public void FireProjectile(Transform tran)
-    {
-        ProjectileBase projectile = Instantiate(Projectile, tran.position, tran.rotation).GetComponent<ProjectileBase>();
-        projectile.Parent = gameObject.GetComponent<WeaponBase>();
+        Entity = GetComponentInParent<EntityInfo>();
+        Coordinator = GetComponentInParent<FireCoordinator>();
     }
 
     /// <summary>
-    /// Reduces ammo count
+    /// Returns true if the user is requesting to firing this weapon
     /// </summary>
-    private void ConsumeAmmo(int count = 1)
+    /// <returns></returns>
+    public bool HasShootRequest()
     {
-        currentAmmunition -= count;
-
-        if (currentAmmunition <= 0)
-        {
-            currentReloadTime = ReloadTime;
-        }
-    }
-
-    private void ReduceTimeTillNextShot()
-    {
-        timeTillNextShot -= 1;
+        return Coordinator != null &&
+            ((Type == SlotType.Primary && Coordinator.IsPrimaryFiring) ||
+            (Type == SlotType.Secondary && Coordinator.IsSecondaryFiring));
     }
 
     public SlotType Slot()
@@ -219,7 +65,7 @@ public abstract class WeaponBase : ItemBase, IItem
         return Type;
     }
 
-    public void RollStats(RollInfo info)
+    public virtual void RollStats(RollInfo info)
     {
     }
 }

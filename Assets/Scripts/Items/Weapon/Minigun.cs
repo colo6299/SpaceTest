@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minigun : WeaponBase, IItem
+public class Minigun : ProjectileWeapon
 {  
-    public void RollStats(RollInfo info)
+    public override void RollStats(RollInfo info)
     {
         info.name = info.rarity + " Minigun";
         StartRolling(info);

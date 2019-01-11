@@ -22,6 +22,11 @@ public class BaseRoller {
     private static float rareChance = 0.1f;
 
     /// <summary>
+    /// Chance to roll a legendary rarity or higher.
+    /// </summary>
+    private static float legendaryChance = 0.04f;
+
+    /// <summary>
     /// Chance to roll an ultimate rarity or higher.
     /// </summary>
     private static float ultimateChance = 0.01f;
@@ -80,6 +85,7 @@ public class BaseRoller {
 
         //there's a good way to make this expandable, but it's not like it matters
         if (rareRoll <= ultimateChance) { rarity = "Ultimate"; }
+        else if (rareRoll <= legendaryChance) { rarity = "Legendary"; }
         else if (rareRoll <= rareChance) { rarity = "Rare"; }
         else if (rareRoll <= uncommonChance) { rarity = "Uncommon"; }
         else if (rareRoll <= commonChance) { rarity = "Common"; }

@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class ProjectileWeapon : WeaponBase {
 
     /// <summary>
     /// Shots per minute
-    /// 0 or less means shoot every update
     /// </summary>
     public float RateOfFire = 400;
 
@@ -14,13 +14,12 @@ public class ProjectileWeapon : WeaponBase {
     /// Number of shots before reload
     /// 0 or less means no reload
     /// </summary>
-    public int Ammunition = 0;
+    public int Ammunition = 100;
 
     /// <summary>
     /// Reload Time in seconds
-    /// 0 or less means no reload
     /// </summary>
-    public float ReloadTime = 0;
+    public float ReloadTime = 1000;
 
     protected int currentBarrelIndex = 0;
     protected double timeTillNextShot = 1;
@@ -38,11 +37,6 @@ public class ProjectileWeapon : WeaponBase {
         return currentReloadTime > 0;
     }
 
-    public bool ShootEveryFrame()
-    {
-        return RateOfFire <= 0;
-    }
-
     void Start()
     {
         Entity = GetComponentInParent<EntityInfo>();
@@ -53,18 +47,18 @@ public class ProjectileWeapon : WeaponBase {
 
     void OnGUI()
     {
-        //if (Application.isEditor)  // or check the app debug flag
-        //{
-        //    StringBuilder sb = new StringBuilder();
+        if (Application.isEditor)  // or check the app debug flag
+        {
+            StringBuilder sb = new StringBuilder();
 
-        //    sb.AppendLine("Type: " + Type.ToString());
-        //    sb.AppendLine("System: " + System.ToString());
-        //    sb.AppendLine("Projectile: " + Projectile.GetType().Name);
-        //    sb.AppendLine(string.Format("Shot: {0}/{1}", currentAmmunition, Ammunition));
-        //    sb.AppendLine(string.Format("Reload: {0}/{1}", currentReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
-        //    sb.AppendLine(string.Format("Idle Reload: {0}/{1}", idleReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
-        //    GUI.Label(new Rect(10, 0, 500, 500), sb.ToString());
-        //}
+            sb.AppendLine("Type: " + Type.ToString());
+            sb.AppendLine("System: " + System.ToString());
+            sb.AppendLine("Projectile: " + Projectile.GetType().Name);
+            sb.AppendLine(string.Format("Shot: {0}/{1}", currentAmmunition, Ammunition));
+            sb.AppendLine(string.Format("Reload: {0}/{1}", currentReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
+            sb.AppendLine(string.Format("Idle Reload: {0}/{1}", idleReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
+            GUI.Label(new Rect(10, 0, 500, 500), sb.ToString());
+        }
     }
 
     // Update is called once per frame
@@ -72,20 +66,14 @@ public class ProjectileWeapon : WeaponBase {
     {
         ReloadUpdate();
 
-        if (ShootEveryFrame())
+        // charge for next sho
+        if (timeTillNextShot > 1 && (IsReloading() || !HasShootRequest()))
         {
             timeTillNextShot = 1;
         }
         else
         {
-            if (timeTillNextShot > 1 && (IsReloading() || !HasShootRequest()))
-            {
-                timeTillNextShot = 1;
-            }
-            else
-            {
-                timeTillNextShot += Time.deltaTime * RateOfFire / 60;
-            }
+            timeTillNextShot += Time.deltaTime * RateOfFire / 60;
         }
 
         // If the rate of fire is high enough, more than one bullet may need to be spawned per frame
@@ -146,7 +134,7 @@ public class ProjectileWeapon : WeaponBase {
             }
 
             ConsumeAmmo();
-            ReduceTimeTillNextShot();
+            timeTillNextShot -= 1;
         }
     }
 
@@ -158,7 +146,7 @@ public class ProjectileWeapon : WeaponBase {
             ConsumeAmmo();
         }
 
-        ReduceTimeTillNextShot();
+        timeTillNextShot -= 1;
     }
 
     public void FireProjectile(Transform tran)
@@ -178,10 +166,5 @@ public class ProjectileWeapon : WeaponBase {
         {
             currentReloadTime = ReloadTime;
         }
-    }
-
-    private void ReduceTimeTillNextShot()
-    {
-        timeTillNextShot -= 1;
     }
 }

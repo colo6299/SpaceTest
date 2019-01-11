@@ -6,6 +6,7 @@ using UnityEngine;
 public class RollInfo {
 
     public string name;
+    public string rarity;
     public int prefabID;
     public float durability;
     public float[] rollArray;

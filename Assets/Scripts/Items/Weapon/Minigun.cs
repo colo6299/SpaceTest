@@ -6,7 +6,9 @@ public class Minigun : WeaponBase, IItem
 {  
     public void RollStats(RollInfo info)
     {
+        info.name = info.rarity + " Minigun";
         StartRolling(info);
+        name = info.name;
         Ammunition = 0;
         ReloadTime = 0;
         PowerLevel = Mathf.RoundToInt(Roll());

@@ -22,10 +22,12 @@ public class SaveLoadObject : MonoBehaviour {
         }
 
         //Instantiate(dm.prefabArray[Random.Range(0, dm.prefabArray.Length)]);
-        GameObject go = Instantiate(dm.prefabArray[0], transform);
+        //GameObject go = Instantiate(dm.prefabArray[0], transform);
 
-        //yeah there's a better way to do this
-        go.GetComponent<Minigun>().RollStats(new RollInfo(BaseRoller.RollInitiative(100)));
+        ////yeah there's a better way to do this
+        //go.GetComponent<IItem>().RollStats(new RollInfo(BaseRoller.RollInitiative(100)));
+
+        BaseRoller.InstantiateRandomItem(100, transform.position, transform.rotation, transform);
     }
 
     public void SaveSlot()

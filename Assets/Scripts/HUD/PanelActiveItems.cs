@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveItemsBar : MonoBehaviour {
+public class PanelActiveItems : MonoBehaviour {
 
-    private GameObject primarySlot = null;
-    private GameObject secondarySlot = null;
-    private GameObject armorSlot = null;
+    private GameObject primarySlot;
+    private GameObject secondarySlot;
+    private GameObject armorSlot;
 
+    private Transform loadout;
 
     // Use this for initialization
 	void Start ()
@@ -15,5 +16,10 @@ public class ActiveItemsBar : MonoBehaviour {
         primarySlot = transform.Find("PrimarySlot").gameObject;
         secondarySlot = transform.Find("SecondarySlot").gameObject;
         armorSlot = transform.Find("ArmorSlot").gameObject;
+
+        GameObject obj = GameObject.FindGameObjectWithTag("Player");
+
+        Transform loadout = obj.transform.Find("Loadout");
 	}
+
 }

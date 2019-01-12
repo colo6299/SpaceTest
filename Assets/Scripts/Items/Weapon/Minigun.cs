@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Minigun : ProjectileWeapon
-{  
+{
     public override void RollStats(RollInfo info)
     {
         int AmmoMin = 25;

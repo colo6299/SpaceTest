@@ -1,26 +1,123 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HudCoordinator : MonoBehaviour
 {
+    private Camera thisCamera;
+    private GraphicRaycaster rayCaster;
+    private PointerEventData eventData;
 
-    public bool IsPendingItemsBarExtended;
+    private Transform selectedItem;
 
-    public void Update()
+    private void Awake()
     {
-        if (Input.GetKey(KeyCode.Tab))
+        enabled = false;
+
+        GameObject obj = GameObject.FindGameObjectWithTag("Player");
+        thisCamera = obj.GetComponentInChildren<Camera>();
+        rayCaster = GetComponentInParent<GraphicRaycaster>();
+        eventData = new PointerEventData(null);
+
+        SystemControls.HudStateChange += OnHudChange;
+        SystemControls.ClickDown += BeginDrag;
+        SystemControls.ClickUp += EndDrag;
+    }
+
+    private void Update()
+    {
+        if (selectedItem == null) return;
+
+        selectedItem.position = Input.mousePosition;
+    }
+
+    private void OnHudChange(SystemControls.HudStates state)
+    {
+        if (state == SystemControls.HudStates.Menu)
         {
-            IsPendingItemsBarExtended = true;
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
-            IsPendingItemsBarExtended = false;
+            EndDrag();
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
+    }
+
+    private void BeginDrag()
+    {
+        DragContainer entity = RaycastDragEntity();
+
+        if (entity != null)
+        {
+            selectedItem = entity.transform;
+        }
+
+        enabled = true;
+    }
+
+    private void EndDrag()
+    {
+        if (selectedItem == null) return;
+
+        DropContainer container = RaycastDropContainer();
+
+        if (container == null)
+        {
+            selectedItem.localPosition = Vector3.zero;
+        }
+        else
+        {
+            Transform p = selectedItem.parent;
+            selectedItem.SetParent(container.transform);
+
+            if (p.name == "Slot")
+            {
+                p.gameObject.SetActive(false);
+            }
+        }
+
+        selectedItem = null;
+        enabled = false;
+    }
+
+    public DragContainer RaycastDragEntity()
+    {
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        rayCaster.Raycast(eventData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            DragContainer item = result.gameObject.GetComponent<DragContainer>();
+            if (item != null)
+            {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    public DropContainer RaycastDropContainer()
+    {
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        rayCaster.Raycast(eventData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            DropContainer container = result.gameObject.GetComponent<DropContainer>();
+            if (container != null)
+            {
+                return container;
+            }
+        }
+
+        return null;
     }
 }
 

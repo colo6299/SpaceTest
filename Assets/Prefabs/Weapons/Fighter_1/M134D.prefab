@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 114747837693745468}
   m_Layer: 0
   m_Name: M134D
-  m_TagString: Untagged
+  m_TagString: Primary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,15 +183,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaad195904dc1354caf62e1523b390c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Power: 0
-  Damage: 0
-  RateOfFire: 0
-  Ammunition: 0
-  ReloadTime: 0
+  PowerLevel: 0
+  RollInfo:
+    name: 
+    slot: 
+    rarity: 
+    prefabID: 0
+    durability: 0
+    rollArray: []
   System: 0
   Type: 0
-  Projectile: {fileID: 1687546613928352, guid: 04233f75c9e057f44a1954c6c0851d72, type: 2}
   Barrels:
   - {fileID: 4996450598534920}
   - {fileID: 4790394410825446}
-  rollArray: []
+  Projectile: {fileID: 1687546613928352, guid: 04233f75c9e057f44a1954c6c0851d72, type: 2}
+  RateOfFire: 0
+  Ammunition: 0
+  ReloadTime: 0

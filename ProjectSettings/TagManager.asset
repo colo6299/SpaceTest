@@ -6,6 +6,15 @@ TagManager:
   tags:
   - Enemy
   - DungeonMaster
+  - Primary
+  - Secondary
+  - Armor
+  - UI_Pending
+  - UI_Primary
+  - UI_Secondary
+  - UI_Armor
+  - UI_Engine
+  - Loadout
   layers:
   - Default
   - TransparentFX

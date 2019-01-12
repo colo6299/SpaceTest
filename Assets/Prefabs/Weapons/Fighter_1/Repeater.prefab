@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 114521251460382434}
   m_Layer: 0
   m_Name: Repeater
-  m_TagString: Untagged
+  m_TagString: Primary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,6 +186,7 @@ MonoBehaviour:
   PowerLevel: 0
   RollInfo:
     name: 
+    slot: 
     rarity: 
     prefabID: 0
     durability: 0

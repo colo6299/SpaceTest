@@ -14,8 +14,8 @@ public class PrefabHolder : MonoBehaviour {
     public static GameObject[] staticItemArray;
     public static int itemLength;
 
-    public Texture2D[] iconArray;
-    public static Texture2D[] staticIconArray;
+    public PrefabInfo[] iconArray;
+    public static PrefabInfo[] staticIconArray;
 
     public GameObject[] bossArray;
 

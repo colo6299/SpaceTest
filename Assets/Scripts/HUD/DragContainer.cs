@@ -4,4 +4,5 @@ using UnityEngine;
 
 public class DragContainer : MonoBehaviour
 {
+    public GameObject item;
 }

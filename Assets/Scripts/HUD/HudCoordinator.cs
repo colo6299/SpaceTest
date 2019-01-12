@@ -8,6 +8,7 @@ public class HudCoordinator : MonoBehaviour
     private Camera thisCamera;
     private GraphicRaycaster rayCaster;
     private PointerEventData eventData;
+    private LoadoutManager loadout;
 
     private Transform selectedItem;
 
@@ -23,6 +24,8 @@ public class HudCoordinator : MonoBehaviour
         SystemControls.HudStateChange += OnHudChange;
         SystemControls.ClickDown += BeginDrag;
         SystemControls.ClickUp += EndDrag;
+
+        loadout = GameObject.FindGameObjectWithTag("Loadout").GetComponent<LoadoutManager>();
     }
 
     private void Update()
@@ -69,15 +72,24 @@ public class HudCoordinator : MonoBehaviour
         {
             selectedItem.localPosition = Vector3.zero;
         }
-        else
+        else if (selectedItem.tag == container.tag || container.tag == "Untagged")
         {
             Transform p = selectedItem.parent;
             selectedItem.SetParent(container.transform);
+            if (selectedItem.tag == container.tag)
+            {
+                //2 lazy to pass Entity :)
+                loadout.SlotItem(selectedItem.GetComponent<DragContainer>().item);
+            }
 
             if (p.name == "Slot")
             {
                 p.gameObject.SetActive(false);
             }
+        }
+        else
+        {
+            selectedItem.localPosition = Vector3.zero; //I do realize this is here twice, I'm too lazy to swap 1 & 2
         }
 
         selectedItem = null;

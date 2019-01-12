@@ -273,10 +273,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roll:
     name: 
+    slot: 
     rarity: 
     prefabID: 0
     durability: 0
     rollArray: []
+  slot: {fileID: 1720312483119584, guid: e1520daf565776f42a68faeea122331e, type: 2}
+  pending: {fileID: 0}
 --- !u!135 &135603953258112758
 SphereCollider:
   m_ObjectHideFlags: 1

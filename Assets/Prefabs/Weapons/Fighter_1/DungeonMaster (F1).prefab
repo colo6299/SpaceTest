@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1520549048730058}
+  m_IsPrefabAsset: 1
+--- !u!1 &1520549048730058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4277069210444282}
+  - component: {fileID: 114487146149280800}
+  m_Layer: 0
+  m_Name: DungeonMaster (F1)
+  m_TagString: DungeonMaster
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4277069210444282
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520549048730058}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.591646, y: -16.520792, z: -10.281611}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114487146149280800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520549048730058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417275bc861b51446839878c9ea42dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabArray: []
+  itemArray:
+  - {fileID: 1905832755134520, guid: 6cf80c6e2079f4743b594c69fb67eaf2, type: 2}
+  - {fileID: 1994425024962620, guid: f2e0822b57da9e74b94eb47dcd87ed04, type: 2}
+  - {fileID: 1756887444311540, guid: b81b1235df8bf904183845ef169335ce, type: 2}
+  - {fileID: 1545876209525082, guid: 09897a14ace17ba4c9e11df0f34fdea0, type: 2}
+  - {fileID: 1786408469676322, guid: 8b9faa35ad4436a47bbe8893ae8cdd7a, type: 2}
+  iconArray:
+  - {fileID: 2800000, guid: b0191a83348888649a479565ae30f8bc, type: 3}
+  - {fileID: 2800000, guid: e989bb92d82ee804e841f61fce5b9932, type: 3}
+  - {fileID: 2800000, guid: a6596e644323a6542a118aee87211169, type: 3}
+  - {fileID: 2800000, guid: e5130b4fcd74ad2479843348cffafd41, type: 3}
+  - {fileID: 2800000, guid: 0350e0cf7cefc4240b1739a639adf40c, type: 3}
+  bossArray: []

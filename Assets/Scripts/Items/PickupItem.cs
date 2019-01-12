@@ -8,10 +8,10 @@ public class PickupItem : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponentInParent<Rigidbody>().gameObject.tag == "Player")
+        if (other.tag == "Player")
         {
-            //whaaaaaaat no way this is bunk... not at aaaaalllll
-            BaseRoller.InstantiateItem(roll, other.GetComponentInParent<Rigidbody>().transform.position, other.GetComponentInParent<Rigidbody>().transform.rotation, other.GetComponentInParent<Rigidbody>().transform.GetChild(2)).SetActive(false);
+            //somewhat better now
+            BaseRoller.InstantiateItem(roll, other.transform.position, other.transform.rotation, other.transform.GetChild(0)).SetActive(false);
             Destroy(gameObject);
         }
     }

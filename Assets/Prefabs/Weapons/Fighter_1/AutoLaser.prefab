@@ -9,16 +9,33 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1994425024962620}
+  m_RootGameObject: {fileID: 1756887444311540}
   m_IsPrefabAsset: 1
---- !u!1 &1395687404462824
+--- !u!1 &1502029328594370
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4887949294187986}
+  - component: {fileID: 4871645841342894}
+  - component: {fileID: 33233004911335226}
+  - component: {fileID: 23837488733165414}
+  m_Layer: 0
+  m_Name: AutoLaserGFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1542422935409288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4042718533894446}
   m_Layer: 0
   m_Name: FirePos (1)
   m_TagString: Untagged
@@ -26,86 +43,69 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1476052106789666
+--- !u!1 &1756887444311540
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4181693930603390}
-  - component: {fileID: 33064396599638598}
-  - component: {fileID: 23526275513188544}
+  - component: {fileID: 4308257890988060}
+  - component: {fileID: 114682951345992536}
   m_Layer: 0
-  m_Name: ArcLaserGFX
+  m_Name: AutoLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1994425024962620
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4500633836313020}
-  - component: {fileID: 114342364632442642}
-  m_Layer: 0
-  m_Name: ArcLaser
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4181693930603390
+--- !u!4 &4042718533894446
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1476052106789666}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1542422935409288}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.898, z: 1.326}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4500633836313020}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!4 &4500633836313020
+  m_Father: {fileID: 4308257890988060}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4308257890988060
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1994425024962620}
+  m_GameObject: {fileID: 1756887444311540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 83.343, y: 83.34289, z: 83.34289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4181693930603390}
-  - {fileID: 4887949294187986}
+  - {fileID: 4871645841342894}
+  - {fileID: 4042718533894446}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4887949294187986
+--- !u!4 &4871645841342894
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1395687404462824}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01182, z: 0.014171}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1502029328594370}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: -0.50204235, z: 3.8292058}
+  m_LocalScale: {x: 100, y: 99.99989, z: 99.99989}
   m_Children: []
-  m_Father: {fileID: 4500633836313020}
-  m_RootOrder: 1
+  m_Father: {fileID: 4308257890988060}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23526275513188544
+--- !u!23 &23837488733165414
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1476052106789666}
+  m_GameObject: {fileID: 1502029328594370}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -115,8 +115,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 9a5e9973fb2480a4c83a427c8a3b4c29, type: 2}
   - {fileID: 2100000, guid: 46a990466f391e345b7de238c469005c, type: 2}
+  - {fileID: 2100000, guid: 9a5e9973fb2480a4c83a427c8a3b4c29, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,22 +136,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33064396599638598
+--- !u!33 &33233004911335226
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1476052106789666}
-  m_Mesh: {fileID: 4300000, guid: 675a5020bb2bcf143a1cbf8d4722245a, type: 3}
---- !u!114 &114342364632442642
+  m_GameObject: {fileID: 1502029328594370}
+  m_Mesh: {fileID: 4300000, guid: accd29c077e079d41a9304d61959100a, type: 3}
+--- !u!114 &114682951345992536
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1994425024962620}
+  m_GameObject: {fileID: 1756887444311540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaad195904dc1354caf62e1523b390c2, type: 3}
+  m_Script: {fileID: 11500000, guid: c5a9448e861858544bb1ffb2fd46246d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PowerLevel: 0
@@ -164,8 +164,8 @@ MonoBehaviour:
   System: 0
   Type: 1
   Barrels:
-  - {fileID: 4887949294187986}
-  Projectile: {fileID: 1209761148871740, guid: 43f2df82c92aefc4ebce4e47114f3ac0, type: 2}
+  - {fileID: 4042718533894446}
+  Projectile: {fileID: 1209761148871740, guid: 36e26c7e73e1a37468dcf548448aadf4, type: 2}
   RateOfFire: 400
-  Ammunition: 0
-  ReloadTime: 0
+  Ammunition: 100
+  ReloadTime: 1000

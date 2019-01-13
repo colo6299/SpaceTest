@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009786535, g: 0.05188808, b: 0.1522932, a: 1}
+  m_IndirectSpecularColor: {r: 0.00978638, g: 0.051889956, b: 0.15229365, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -437,7 +437,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1097193524832986, guid: 26f59b95bedb827459126f5554e2a755, type: 2}
       propertyPath: m_TagString
-      value: Armor
+      value: UI_Slot
+      objectReference: {fileID: 0}
+    - target: {fileID: 114220185863735980, guid: 26f59b95bedb827459126f5554e2a755,
+        type: 2}
+      propertyPath: Type
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26f59b95bedb827459126f5554e2a755, type: 2}
@@ -566,7 +571,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1097193524832986, guid: 26f59b95bedb827459126f5554e2a755, type: 2}
       propertyPath: m_TagString
-      value: Secondary
+      value: UI_Slot
+      objectReference: {fileID: 0}
+    - target: {fileID: 114220185863735980, guid: 26f59b95bedb827459126f5554e2a755,
+        type: 2}
+      propertyPath: Type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26f59b95bedb827459126f5554e2a755, type: 2}
@@ -839,7 +849,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1097193524832986, guid: 26f59b95bedb827459126f5554e2a755, type: 2}
       propertyPath: m_TagString
-      value: Primary
+      value: UI_Slot
+      objectReference: {fileID: 0}
+    - target: {fileID: 114220185863735980, guid: 26f59b95bedb827459126f5554e2a755,
+        type: 2}
+      propertyPath: Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26f59b95bedb827459126f5554e2a755, type: 2}
@@ -885,7 +900,7 @@ GameObject:
   - component: {fileID: 675003071}
   m_Layer: 5
   m_Name: Trash
-  m_TagString: Untagged
+  m_TagString: UI_Slot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -920,6 +935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a0d195c2b3e6c44a6ecca75a2e765b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 0
 --- !u!114 &675003069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,6 +1093,11 @@ Prefab:
       propertyPath: iconArray.Array.size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
+        type: 2}
+      propertyPath: TierArray.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4277069210444282, guid: f068ab9fda5019d4090cfaec9c885ec0, type: 2}
       propertyPath: m_LocalPosition.x
       value: -16.591646
@@ -1142,28 +1163,70 @@ Prefab:
     - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
         type: 2}
       propertyPath: iconArray.Array.data[0].type
-      value: Primary
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
         type: 2}
       propertyPath: iconArray.Array.data[1].type
-      value: Secondary
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
         type: 2}
       propertyPath: iconArray.Array.data[2].type
-      value: Secondary
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
         type: 2}
       propertyPath: iconArray.Array.data[3].type
-      value: Primary
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
         type: 2}
       propertyPath: iconArray.Array.data[4].type
-      value: Primary
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
+        type: 2}
+      propertyPath: TierArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 1758034105329528, guid: 6672016f6c878c24f9370cbf1920ee1b,
+        type: 2}
+    - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
+        type: 2}
+      propertyPath: TierArray.Array.data[5]
+      value: 
+      objectReference: {fileID: 1058004936530756, guid: 6d129890879673a4195818c5e958f7d5,
+        type: 2}
+    - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
+        type: 2}
+      propertyPath: TierArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 1727506332794072, guid: 044c1036092f08b4983070717c4bd5c6,
+        type: 2}
+    - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
+        type: 2}
+      propertyPath: TierArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 1061416695912870, guid: d238d92bd304d6b4aa2f0971f18ba059,
+        type: 2}
+    - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
+        type: 2}
+      propertyPath: TierArray.Array.data[3]
+      value: 
+      objectReference: {fileID: 1849765261583874, guid: c0f32c03337e3354eb2f49726cd4f1ec,
+        type: 2}
+    - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
+        type: 2}
+      propertyPath: TierArray.Array.data[4]
+      value: 
+      objectReference: {fileID: 1991349146396172, guid: 8ac768f19821c204fb11ad45abf6f38d,
+        type: 2}
+    - target: {fileID: 114487146149280800, guid: f068ab9fda5019d4090cfaec9c885ec0,
+        type: 2}
+      propertyPath: TierArray.Array.data[6]
+      value: 
+      objectReference: {fileID: 1058004936530756, guid: 6d129890879673a4195818c5e958f7d5,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f068ab9fda5019d4090cfaec9c885ec0, type: 2}
   m_IsPrefabAsset: 0

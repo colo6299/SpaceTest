@@ -16,6 +16,7 @@ public class Minigun : ProjectileWeapon
         float FireRateMax = 1000;
 
         info.name = info.rarity + " Minigun";
+        Rarity = info.rarity;
         StartRolling(info);
         name = info.name;
         PowerLevel = Mathf.RoundToInt(Roll());

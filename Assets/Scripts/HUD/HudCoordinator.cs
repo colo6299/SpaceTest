@@ -10,7 +10,8 @@ public class HudCoordinator : MonoBehaviour
     private PointerEventData eventData;
     private LoadoutManager loadout;
 
-    private Transform selectedItem;
+    private DragContainer selectedItem;
+    private DropContainer selectedItemSlot;
 
     private void Awake()
     {
@@ -32,7 +33,7 @@ public class HudCoordinator : MonoBehaviour
     {
         if (selectedItem == null) return;
 
-        selectedItem.position = Input.mousePosition;
+        selectedItem.transform.position = Input.mousePosition;
     }
 
     private void OnHudChange(SystemControls.HudStates state)
@@ -52,11 +53,13 @@ public class HudCoordinator : MonoBehaviour
 
     private void BeginDrag()
     {
-        DragContainer entity = RaycastDragEntity();
+        GameObject item = RaycastUI("UI_Item");
+        GameObject slot = RaycastUI("UI_Slot");
 
-        if (entity != null)
+        if (item != null && slot != null)
         {
-            selectedItem = entity.transform;
+            selectedItem = item.GetComponent<DragContainer>();
+            selectedItemSlot = slot.GetComponent<DropContainer>();
         }
 
         enabled = true;
@@ -66,37 +69,63 @@ public class HudCoordinator : MonoBehaviour
     {
         if (selectedItem == null) return;
 
-        DropContainer container = RaycastDropContainer();
+        GameObject container = RaycastUI("UI_Slot");
 
-        if (container == null)
+        DropContainer dropContainer = container.GetComponent<DropContainer>();
+
+        // could not find valid drop location
+        if (container == null || container == selectedItemSlot.gameObject)
         {
-            selectedItem.localPosition = Vector3.zero;
+            selectedItem.transform.localPosition = Vector3.zero;
         }
-        else if (selectedItem.tag == container.tag || container.tag == "Untagged")
+        // delete item
+        else if (container.name == "Trash")
         {
-            Transform p = selectedItem.parent;
-            selectedItem.SetParent(container.transform);
-            if (selectedItem.tag == container.tag)
+            selectedItem.transform.SetParent(container.transform);
+            loadout.TrashItem(selectedItem.Item);
+
+            if (selectedItemSlot.transform.parent.name == "PendingItems")
             {
-                //2 lazy to pass Entity :)
-                loadout.SlotItem(selectedItem.GetComponent<DragContainer>().item);
+                Destroy(selectedItemSlot.gameObject);
             }
 
-            if (p.name == "Slot")
+            Destroy(selectedItem.gameObject);
+        }
+        // only slot items of the same type
+        else if (dropContainer.Type == selectedItem.Item.Type || dropContainer.Type == SlotType.None)
+        {
+            // swap items
+            if (container.transform.childCount > 0) 
             {
-                p.gameObject.SetActive(false);
+                loadout.SlotItem(selectedItem.Item);
+
+                container.transform.GetChild(0).SetParent(selectedItemSlot.transform);
+                selectedItem.transform.SetParent(container.transform);
+            }
+            // fill empty slot
+            else
+            {
+                loadout.SlotItem(selectedItem.Item);
+                selectedItem.transform.SetParent(container.transform);
+
+                if (selectedItemSlot.name == "Slot")
+                {
+                    Destroy(selectedItemSlot.gameObject);
+                }
             }
         }
+        // drop failed for some reason
         else
         {
-            selectedItem.localPosition = Vector3.zero; //I do realize this is here twice, I'm too lazy to swap 1 & 2
+            selectedItem.transform.localPosition = Vector3.zero;
         }
 
         selectedItem = null;
+        selectedItemSlot = null;
         enabled = false;
     }
 
-    public DragContainer RaycastDragEntity()
+    public GameObject RaycastUI(string tag)
     {
         eventData.position = Input.mousePosition;
         List<RaycastResult> results = new List<RaycastResult>();
@@ -104,28 +133,9 @@ public class HudCoordinator : MonoBehaviour
 
         foreach (RaycastResult result in results)
         {
-            DragContainer item = result.gameObject.GetComponent<DragContainer>();
-            if (item != null)
+            if (result.gameObject.tag == tag)
             {
-                return item;
-            }
-        }
-
-        return null;
-    }
-
-    public DropContainer RaycastDropContainer()
-    {
-        eventData.position = Input.mousePosition;
-        List<RaycastResult> results = new List<RaycastResult>();
-        rayCaster.Raycast(eventData, results);
-
-        foreach (RaycastResult result in results)
-        {
-            DropContainer container = result.gameObject.GetComponent<DropContainer>();
-            if (container != null)
-            {
-                return container;
+                return result.gameObject;
             }
         }
 

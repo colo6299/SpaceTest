@@ -78,17 +78,17 @@ public class BaseRoller {
         return roll; 
     }
 
-    private static string ChooseRarity()
+    private static Rarity ChooseRarity()
     {
-        string rarity = "";
+        Rarity rarity = Rarity.Common;
         float rareRoll = Random.value;
 
         //there's a good way to make this expandable, but it's not like it matters
-        if (rareRoll <= ultimateChance) { rarity = "Ultimate"; }
-        else if (rareRoll <= legendaryChance) { rarity = "Legendary"; }
-        else if (rareRoll <= rareChance) { rarity = "Rare"; }
-        else if (rareRoll <= uncommonChance) { rarity = "Uncommon"; }
-        else if (rareRoll <= commonChance) { rarity = "Common"; }
+        if (rareRoll <= ultimateChance) { rarity = Rarity.Ultimate; }
+        else if (rareRoll <= legendaryChance) { rarity = Rarity.Legendary; }
+        else if (rareRoll <= rareChance) { rarity = Rarity.Rare; }
+        else if (rareRoll <= uncommonChance) { rarity = Rarity.Uncommon; }
+        else if (rareRoll <= commonChance) { rarity = Rarity.Common; }
 
         return rarity;
     }

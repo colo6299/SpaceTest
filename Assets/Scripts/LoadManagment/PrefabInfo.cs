@@ -6,9 +6,9 @@ using UnityEngine;
 public class PrefabInfo {
 
     public GameObject icon;
-    public string type;
+    public SlotType type;
 
-    public PrefabInfo(GameObject _icon, string _type)
+    public PrefabInfo(GameObject _icon, SlotType _type)
     {
         icon = _icon;
         type = _type;

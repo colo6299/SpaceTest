@@ -12,7 +12,9 @@ public class PrefabHolder : MonoBehaviour {
 
     public GameObject[] itemArray;
     public static GameObject[] staticItemArray;
-    public static int itemLength;
+
+    public GameObject[] TierArray;
+    public static GameObject[] staticTierArray;
 
     public PrefabInfo[] iconArray;
     public static PrefabInfo[] staticIconArray;
@@ -21,8 +23,8 @@ public class PrefabHolder : MonoBehaviour {
 
     void Start()
     {
-        itemLength = itemArray.Length;
         staticItemArray = itemArray;
         staticIconArray = iconArray;
+        staticTierArray = TierArray;
     }
 }

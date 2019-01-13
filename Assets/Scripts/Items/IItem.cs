@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public enum SlotType { Primary, Secondary, Armor }
+
 
 interface IItem
 {

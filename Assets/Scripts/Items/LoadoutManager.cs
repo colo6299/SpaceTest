@@ -5,19 +5,21 @@ using UnityEngine;
 public class LoadoutManager : MonoBehaviour {
 
     //I've resigned myself to leaving this confusing.
-    public void SlotItem(GameObject item)
+    public void SlotItem(Item item)
     {
-        foreach (Transform child in transform)
+        foreach (Item child in transform.GetComponentsInChildren<Item>())
         {
-            if (child.tag == item.tag)
+            if (child.Type == item.Type)
             {
                 child.gameObject.SetActive(false);
             }
         }
-        item.SetActive(true);
+
+        item.gameObject.SetActive(true);
     }
 
-
-
-
+    public void TrashItem(Item item)
+    {
+        Destroy(item.gameObject);
+    }
 }

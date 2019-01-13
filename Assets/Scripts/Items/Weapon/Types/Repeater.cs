@@ -11,6 +11,7 @@ public class Repeater : ProjectileWeapon
         float FireRateMax = 800;
 
         info.name = info.rarity + " Repeater";
+        Rarity = info.rarity;
         StartRolling(info);
         name = info.name;
         PowerLevel = Mathf.RoundToInt(Roll());

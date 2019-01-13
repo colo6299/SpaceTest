@@ -4,4 +4,5 @@ using UnityEngine;
 
 public class DropContainer : MonoBehaviour
 {
+    public SlotType Type = SlotType.None;
 }

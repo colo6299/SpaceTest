@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using UnityEngine;
 
-public abstract class WeaponBase : ItemBase, IItem
+public abstract class WeaponBase : Item
 {
     public enum FiringSystem { Sequenced, Simultaneous }
 
@@ -9,11 +9,6 @@ public abstract class WeaponBase : ItemBase, IItem
     /// How projectiles are spawned between weapon barrels
     /// </summary>
     public FiringSystem System = FiringSystem.Sequenced;
-
-    /// <summary>
-    /// Identifies this weapons slot compatability: Primary, Secondary
-    /// </summary>
-    public SlotType Type = SlotType.Primary;
 
     /// <summary>
     /// Weapon damage stats
@@ -58,14 +53,5 @@ public abstract class WeaponBase : ItemBase, IItem
         return Coordinator != null &&
             ((Type == SlotType.Primary && Coordinator.IsPrimaryFiring) ||
             (Type == SlotType.Secondary && Coordinator.IsSecondaryFiring));
-    }
-
-    public SlotType Slot()
-    {
-        return Type;
-    }
-
-    public virtual void RollStats(RollInfo info)
-    {
     }
 }

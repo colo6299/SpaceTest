@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightCannon : ProjectileWeapon {
+public class LightCannon : ProjectileWeapon
+{
 
     public override void RollStats(RollInfo info)
     {
@@ -16,6 +17,7 @@ public class LightCannon : ProjectileWeapon {
         float FireRateMax = 150;
 
         info.name = info.rarity + " Light Cannon";
+        Rarity = info.rarity;
         StartRolling(info);
         name = info.name;
         PowerLevel = Mathf.RoundToInt(Roll());

@@ -22,6 +22,9 @@ public class HudCoordinator : MonoBehaviour
         rayCaster = GetComponentInParent<GraphicRaycaster>();
         eventData = new PointerEventData(null);
 
+        // set trash to false
+        transform.GetChild(2).gameObject.SetActive(false);
+
         SystemControls.HudStateChange += OnHudChange;
         SystemControls.ClickDown += BeginDrag;
         SystemControls.ClickUp += EndDrag;
@@ -63,6 +66,7 @@ public class HudCoordinator : MonoBehaviour
         }
 
         enabled = true;
+        transform.GetChild(2).gameObject.SetActive(true);
     }
 
     private void EndDrag()
@@ -120,6 +124,7 @@ public class HudCoordinator : MonoBehaviour
             selectedItem.transform.localPosition = Vector3.zero;
         }
 
+        transform.GetChild(2).gameObject.SetActive(false);
         selectedItem = null;
         selectedItemSlot = null;
         enabled = false;

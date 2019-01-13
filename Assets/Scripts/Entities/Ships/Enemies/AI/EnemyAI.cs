@@ -16,11 +16,15 @@ public class EnemyAI : MonoBehaviour
     private float minStrafe = 100f;
     private float minStart = 400f;
     private float maxStart = 800f;
+    private float dodgeScalar = 10f;
+    private float dodgeTime = 0f;
+    private float dodgeDelay = 3f; //Time after dodging before tracking player
 
     private bool strafing = false;
     private bool stalking = false;
     private bool slewing = false;
     private bool retreating = false;
+    private bool dodging = false;
 
     private Vector3 playerPrediction;
     private Vector3 targetPoint;
@@ -37,7 +41,23 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        targetPoint = playerPrediction;
+        RaycastHit hit;
+        Physics.Raycast(transform.position, transform.forward, out hit, 100f, 1 << 10);
+
+        if (Time.time - dodgeTime > dodgeDelay)
+        {
+            targetPoint = playerPrediction;
+        }
+        
+        if (hit.distance < 40f)
+        {
+            dodgeTime = Time.time;
+            Vector3 normal = transform.InverseTransformPoint(hit.normal);
+            normal = normal.normalized * dodgeScalar;
+            normal.z = hit.distance;
+            normal = transform.TransformPoint(normal);
+            targetPoint = normal;
+        }
 
         NavChoice();
 

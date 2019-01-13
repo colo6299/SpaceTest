@@ -12,8 +12,8 @@ public class Minigun : ProjectileWeapon
         float ReloadMin = 1;
         float ReloadMax = 5;
 
-        float FireRateMin = 300;
-        float FireRateMax = 500;
+        float FireRateMin = 600;
+        float FireRateMax = 1000;
 
         info.name = info.rarity + " Minigun";
         StartRolling(info);

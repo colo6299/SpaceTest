@@ -23,7 +23,7 @@ public abstract class ProjectileBase : MonoBehaviour
         transform.position += ((transform.forward * distance) + inharetedVelocity * Time.deltaTime);
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, distance))
+        if (Physics.SphereCast(transform.position, 5, transform.forward, out hit, distance))
         {
             EntityInfo ship = hit.transform.GetComponent<EntityInfo>();
 

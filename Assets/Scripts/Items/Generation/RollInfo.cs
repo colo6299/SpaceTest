@@ -6,8 +6,8 @@ using UnityEngine;
 public class RollInfo {
 
     public string name;
-    public string slot;
-    public string rarity;
+    public SlotType slot;
+    public Rarity rarity;
     public int prefabID;
     public float durability;
     public float[] rollArray;
@@ -15,8 +15,8 @@ public class RollInfo {
     public RollInfo(float[] _rollArray)
     {
         name = "";
-        slot = "None";
-        rarity = "None";
+        slot = SlotType.None;
+        rarity = Rarity.None;
         prefabID = 0;
         durability = 100;
         rollArray = _rollArray;

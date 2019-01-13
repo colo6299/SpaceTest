@@ -10,11 +10,9 @@ TagManager:
   - Secondary
   - Armor
   - UI_Pending
-  - UI_Primary
-  - UI_Secondary
-  - UI_Armor
-  - UI_Engine
   - Loadout
+  - UI_Slot
+  - UI_Item
   layers:
   - Default
   - TransparentFX

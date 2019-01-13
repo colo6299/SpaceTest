@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoLaser : ProjectileWeapon {
+public class AutoLaser : ProjectileWeapon
+{
 
     public override void RollStats(RollInfo info)
     {
@@ -11,6 +12,7 @@ public class AutoLaser : ProjectileWeapon {
         float FireRateMax = 100;
 
         info.name = info.rarity + " Autolaser";
+        Rarity = info.rarity;
         StartRolling(info);
         name = info.name;
         PowerLevel = Mathf.RoundToInt(Roll());

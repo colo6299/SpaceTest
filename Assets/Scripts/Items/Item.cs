@@ -4,8 +4,14 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class ItemBase : MonoBehaviour
+public enum SlotType { Primary, Secondary, Armor, Engine, None}
+public enum Rarity { Common, Uncommon, Rare, Legendary, Ultimate, Unique, None };
+
+public class Item : MonoBehaviour, IItem
 {
+    public SlotType Type;
+
+    public Rarity Rarity;
 
     /// <summary>
     /// The items power level
@@ -17,6 +23,16 @@ public class ItemBase : MonoBehaviour
 
     private int rollIterator;
     private float[] rollArray;
+
+
+    public SlotType Slot()
+    {
+        return Type;
+    }
+
+    public virtual void RollStats(RollInfo info)
+    {
+    }
 
     protected float Roll()
     {

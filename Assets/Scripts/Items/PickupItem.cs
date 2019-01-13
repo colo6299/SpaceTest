@@ -9,22 +9,12 @@ public class PickupItem : MonoBehaviour {
     public GameObject slot;
     public Transform pending;
 
-    private GameObject go;
+    private Item go;
     private Collider gg;
-    private bool s = false;
 
     void Start()
     {
         pending = GameObject.FindGameObjectWithTag("UI_Pending").transform;
-    }
-
-    void Update()
-    {
-        if (s)
-        {
-            gg.GetComponentInChildren<LoadoutManager>().SlotItem(go);
-            Destroy(gameObject);
-        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -32,19 +22,20 @@ public class PickupItem : MonoBehaviour {
         if (other.tag == "Player")
         {
             gg = other;
-            //somewhat better now
-            //use this one for really -> //BaseRoller.InstantiateItem(roll, other.transform.position, other.transform.rotation, other.transform.GetChild(0)).SetActive(false);
-            go = BaseRoller.InstantiateItem(roll, other.transform.position, other.transform.rotation, other.transform.GetChild(0));
-            go.SetActive(false);
 
-            GameObject dg = Instantiate(slot, pending.position, pending.rotation, pending);           
-            Instantiate(PrefabHolder.staticIconArray[roll.prefabID].icon, dg.transform.position, dg.transform.rotation, dg.transform).tag = PrefabHolder.staticIconArray[roll.prefabID].type;
-            dg.GetComponentInChildren<DragContainer>().item = go;
-            //dg.transform.GetChild(0).tag = PrefabHolder.staticIconArray[roll.prefabID].type;
-            //dg.transform.GetChild(0).GetComponent<Renderer>() = PrefabHolder.staticIconArray[roll.prefabID].icon;
+            go = BaseRoller.InstantiateItem(roll, other.transform.position, other.transform.rotation, other.transform.GetChild(0)).GetComponent<Item>();
+            go.gameObject.SetActive(false);
+
+            GameObject dg = Instantiate(slot, pending.position, pending.rotation, pending);
             dg.name = "Slot";
 
-            //s = true;
+            GameObject item = Instantiate(PrefabHolder.staticIconArray[roll.prefabID].icon, dg.transform.position, dg.transform.rotation, dg.transform);
+            item.tag = Constants.Tag_UI_Item;
+            Instantiate(PrefabHolder.staticTierArray[(int)go.Rarity], item.transform.position, item.transform.rotation).transform.SetParent(item.transform);
+
+            DragContainer dragContainer = dg.GetComponentInChildren<DragContainer>();
+            dragContainer.Item = go;
+
             Destroy(gameObject);
         }
     }

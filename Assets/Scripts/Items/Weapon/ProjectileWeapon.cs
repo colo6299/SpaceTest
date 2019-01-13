@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class ProjectileWeapon : WeaponBase {
+public class ProjectileWeapon : WeaponBase, IItem
+{
 
     /// <summary>
     /// Shots per minute

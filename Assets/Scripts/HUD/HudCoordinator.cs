@@ -75,7 +75,7 @@ public class HudCoordinator : MonoBehaviour
 
         GameObject container = RaycastUI("UI_Slot");
 
-        DropContainer dropContainer = container.GetComponent<DropContainer>();
+        DropContainer dropContainer = (container == null) ? null : container.GetComponent<DropContainer>();
 
         // could not find valid drop location
         if (container == null || container == selectedItemSlot.gameObject)
@@ -118,12 +118,8 @@ public class HudCoordinator : MonoBehaviour
                 }
             }
         }
-        // drop failed for some reason
-        else
-        {
-            selectedItem.transform.localPosition = Vector3.zero;
-        }
 
+        selectedItem.transform.localPosition = Vector3.zero;
         transform.GetChild(2).gameObject.SetActive(false);
         selectedItem = null;
         selectedItemSlot = null;

@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 114719449890556932}
   - component: {fileID: 114747831129153154}
   m_Layer: 0
-  m_Name: NavEnemy
+  m_Name: Normal NavEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,7 +342,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214181825999108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.6, y: 139, z: -233.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.39246747, y: 0.39246747, z: 0.39246747}
   m_Children:
   - {fileID: 4662212785200202}
@@ -913,7 +913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 200
   Energy: 2000
-  dmgPrefab: {fileID: 0}
+  dmgPrefab: {fileID: 1430535507656180, guid: c1a4bdc2059be144aa7dbb05fa994887, type: 2}
   Acceleration: 80
   MaxSpeed: 60
   SkidRatio: 0.8

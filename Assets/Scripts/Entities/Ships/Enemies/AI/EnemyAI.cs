@@ -16,9 +16,10 @@ public class EnemyAI : MonoBehaviour
     private float minStrafe = 100f;
     private float minStart = 400f;
     private float maxStart = 800f;
-    private float dodgeScalar = 10f;
+    private float dodgeScalar = 30f;
     private float dodgeTime = 0f;
-    private float dodgeDelay = 3f; //Time after dodging before tracking player
+    private float dodgeDelay = 2f; //Time after dodging before tracking player
+    private float dodgeDistance = 30f;
 
     private bool strafing = false;
     private bool stalking = false;
@@ -41,23 +42,36 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        RaycastHit turn;
         RaycastHit hit;
-        Physics.Raycast(transform.position, transform.forward, out hit, 100f, 1 << 10);
 
-        if (Time.time - dodgeTime > dodgeDelay)
-        {
-            targetPoint = playerPrediction;
-        }
-        
-        if (hit.distance < 40f)
+        Physics.Raycast(transform.position, transform.forward, out hit, 100f, 1 << 9);
+        Physics.Raycast(transform.position, transform.forward, out turn, 100f, 1 << 10);
+
+        Debug.DrawLine(transform.position, targetPoint);
+        if (turn.distance < dodgeDistance && turn.distance > 0)
         {
             dodgeTime = Time.time;
-            Vector3 normal = transform.InverseTransformPoint(hit.normal);
+            Vector3 normal = transform.InverseTransformPoint(turn.normal);
             normal = normal.normalized * dodgeScalar;
-            normal.z = hit.distance;
+            normal.z = turn.distance;
             normal = transform.TransformPoint(normal);
             targetPoint = normal;
+            speed = info.MaxSpeed / Mathf.Min(10, 100f / hit.distance);
+            dodgeDistance = 60f;
         }
+        else if (Time.time - dodgeTime > dodgeDelay)
+        {
+            Debug.Log("following player");
+            targetPoint = playerPrediction;
+            dodgeDistance = 30f;
+            speed = info.MaxSpeed;
+        }
+        if (hit.distance == 0)
+        {
+            speed = info.MaxSpeed;
+        }
+
 
         NavChoice();
 

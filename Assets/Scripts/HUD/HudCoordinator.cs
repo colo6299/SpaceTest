@@ -9,18 +9,20 @@ public class HudCoordinator : MonoBehaviour
     private GraphicRaycaster rayCaster;
     private PointerEventData eventData;
     private LoadoutManager loadout;
+    private PanelInfo InfoPanel;
+
 
     private DragContainer selectedItem;
     private DropContainer selectedItemSlot;
 
     private void Awake()
     {
-        enabled = false;
-
         GameObject obj = GameObject.FindGameObjectWithTag("Player");
         thisCamera = obj.GetComponentInChildren<Camera>();
         rayCaster = GetComponentInParent<GraphicRaycaster>();
         eventData = new PointerEventData(null);
+
+        InfoPanel = transform.GetComponentInChildren<PanelInfo>();
 
         // set trash to false
         transform.GetChild(2).gameObject.SetActive(false);
@@ -34,6 +36,14 @@ public class HudCoordinator : MonoBehaviour
 
     private void Update()
     {
+        GameObject item = RaycastUI("UI_Item");
+
+        if (item != null)
+        {
+            Item i = item.GetComponent<DragContainer>().Item;
+            InfoPanel.UpdateStats(i, loadout.GetItemInSlot(i.Type));
+        }
+
         if (selectedItem == null) return;
 
         selectedItem.transform.position = Input.mousePosition;
@@ -45,12 +55,14 @@ public class HudCoordinator : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            enabled = true;
         }
         else
         {
             EndDrag();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            enabled = false;
         }
     }
 
@@ -65,7 +77,6 @@ public class HudCoordinator : MonoBehaviour
             selectedItemSlot = slot.GetComponent<DropContainer>();
         }
 
-        enabled = true;
         transform.GetChild(2).gameObject.SetActive(true);
     }
 
@@ -123,7 +134,6 @@ public class HudCoordinator : MonoBehaviour
         transform.GetChild(2).gameObject.SetActive(false);
         selectedItem = null;
         selectedItemSlot = null;
-        enabled = false;
     }
 
     public GameObject RaycastUI(string tag)

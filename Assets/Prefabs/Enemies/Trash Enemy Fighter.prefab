@@ -53,13 +53,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4206678869130342}
   - component: {fileID: 54864293624955188}
-  - component: {fileID: 114460986547133264}
   - component: {fileID: 114641658410438732}
   - component: {fileID: 114746640806808582}
   - component: {fileID: 114958540419802372}
   - component: {fileID: 114462400440718532}
   m_Layer: 0
-  m_Name: Enemy Fighter
+  m_Name: Trash Enemy Fighter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,8 +310,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1807088004220684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.01, y: -0.92502, z: 0.05795}
-  m_LocalScale: {x: 2.4531, y: 2.4531, z: 2.4531}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4939129333964568}
   - {fileID: 4050505040846764}
@@ -836,26 +835,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114460986547133264
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1100450071998656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70fa283844d52504c8d37112391fc9a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RateOfFire: 800
-  Ammunition: 100
-  ReloadTime: 3
-  System: 0
-  Type: 0
-  Projectile: {fileID: 1209761148871740, guid: fcd7cbb54dac1a14481a8e2cfa75c02e, type: 2}
-  Barrels:
-  - {fileID: 4414101151102852}
-  - {fileID: 4194001095540756}
 --- !u!114 &114462400440718532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -867,8 +846,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e68838493a67a94c9091c59c6137ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 2000
-  dmgPrefab: {fileID: 0}
+  Health: 200
+  Energy: 2000
+  dmgPrefab: {fileID: 1430535507656180, guid: c1a4bdc2059be144aa7dbb05fa994887, type: 2}
   Acceleration: 80
   MaxSpeed: 120
   SkidRatio: 0.8

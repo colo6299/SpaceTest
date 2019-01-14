@@ -46,21 +46,21 @@ public class ProjectileWeapon : WeaponBase, IItem
 
     }
 
-    void OnGUI()
-    {
-        if (Application.isEditor)  // or check the app debug flag
-        {
-            StringBuilder sb = new StringBuilder();
+    //void OnGUI()
+    //{
+    //    if (Application.isEditor)  // or check the app debug flag
+    //    {
+    //        StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("Type: " + Type.ToString());
-            sb.AppendLine("System: " + System.ToString());
-            sb.AppendLine("Projectile: " + Projectile.GetType().Name);
-            sb.AppendLine(string.Format("Shot: {0}/{1}", currentAmmunition, Ammunition));
-            sb.AppendLine(string.Format("Reload: {0}/{1}", currentReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
-            sb.AppendLine(string.Format("Idle Reload: {0}/{1}", idleReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
-            GUI.Label(new Rect(10, 0, 500, 500), sb.ToString());
-        }
-    }
+    //        sb.AppendLine("Type: " + Type.ToString());
+    //        sb.AppendLine("System: " + System.ToString());
+    //        sb.AppendLine("Projectile: " + Projectile.GetType().Name);
+    //        sb.AppendLine(string.Format("Shot: {0}/{1}", currentAmmunition, Ammunition));
+    //        sb.AppendLine(string.Format("Reload: {0}/{1}", currentReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
+    //        sb.AppendLine(string.Format("Idle Reload: {0}/{1}", idleReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
+    //        GUI.Label(new Rect(10, 0, 500, 500), sb.ToString());
+    //    }
+    //}
 
     // Update is called once per frame
     void Update()
@@ -74,7 +74,7 @@ public class ProjectileWeapon : WeaponBase, IItem
         }
         else
         {
-            timeTillNextShot += Time.deltaTime * RateOfFire / 60;
+            timeTillNextShot += Time.deltaTime * (RateOfFire / 60) / (System == FiringSystem.Simultaneous ? Barrels.Length : 1);
         }
 
         // If the rate of fire is high enough, more than one bullet may need to be spawned per frame

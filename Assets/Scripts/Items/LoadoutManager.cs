@@ -18,6 +18,19 @@ public class LoadoutManager : MonoBehaviour {
         item.gameObject.SetActive(true);
     }
 
+    public Item GetItemInSlot(SlotType slot)
+    {
+        foreach (Item child in transform.GetComponentsInChildren<Item>())
+        {
+            if (child.Type == slot)
+            {
+                return child;
+            }
+        }
+
+        return null;
+    }
+
     public void TrashItem(Item item)
     {
         Destroy(item.gameObject);

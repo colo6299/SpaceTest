@@ -10,7 +10,6 @@ public enum Rarity { Common, Uncommon, Rare, Legendary, Ultimate, Unique, None }
 public class Item : MonoBehaviour, IItem
 {
     public SlotType Type;
-
     public Rarity Rarity;
 
     /// <summary>

@@ -8,33 +8,18 @@ public class EntityInfo : MonoBehaviour
 
     public float Health = 2000;
     public float Energy = 2000;
-    Dictionary<ResistanceTypes, ResistanceInfo> Armors = new Dictionary<ResistanceTypes, ResistanceInfo>()
-    {
-        { ResistanceTypes.Plate, new ResistanceInfo { Armor = 10, CritChance = 0.003f, CritResistance = 1 } },
-        { ResistanceTypes.Thermal, new ResistanceInfo { Armor = 10, CritChance = 0.003f, CritResistance = 1 } },
-        { ResistanceTypes.Antimater, new ResistanceInfo { Armor = 10, CritChance = 0.03f, CritResistance = 1 } },
-    };
 
     public GameObject dmgPrefab = null;
 
     public void TakeDamage(WeaponInfo info)
     {
-        bool crit = false;
-        double value = rng.NextDouble();
-        if (value <= info.CritChance)
-        {
-            crit = true;
-            info.Damage = info.Damage + (info.CritDamageMultiplier * info.Damage);
-        }
+        double rng = EntityInfo.rng.NextDouble();
 
-        if (Armors.ContainsKey(info.DamageType))
-        {
-            DamageReductionReport report = Armors[info.DamageType].ReduceDamage(info.Damage);
-            Debug.Log("Attack Crit: " + crit + " Value: " + value.ToString("n4") + " Damage: " + info.Damage + " Defense Crit: " + report.Crit + " Reduction: " + report.Reduction + " Final: " + report.Remaining);
-            info.Damage = report.Remaining;
-        }
+        DamageReport report = new DamageReport();
+        report.Crit = rng <= info.CritChance;
+        report.SetIncoming(info);
 
-        Health -= info.Damage;
+        Health -= report.TotalIncoming();
         if (Health <= 0)
         {
             Destroy(gameObject);

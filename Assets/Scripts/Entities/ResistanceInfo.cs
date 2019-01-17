@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 
-public enum ResistanceTypes { Plate, Thermal, Antimater }
-
 public class ResistanceInfo
 {
     private static Random rng = new Random((int)(DateTime.Now.Ticks / 17));
@@ -15,22 +13,22 @@ public class ResistanceInfo
     public float CritResistance;
 
 
-    public DamageReductionReport ReduceDamage(float damage)
-    {
-        DamageReductionReport info = new DamageReductionReport();
+    //public DamageReport ReduceDamage(float damage)
+    //{
+    //    DamageReport info = new DamageReport();
 
-        if (rng.NextDouble() <= CritChance)
-        {
-            info.Crit = true;
-            info.Reduction = (Armor * CritResistance);
-        }
+    //    if (rng.NextDouble() <= CritChance)
+    //    {
+    //        info.Crit = true;
+    //        info.Reduction = (Armor * CritResistance);
+    //    }
 
-        info.Reduction += Armor;
+    //    info.Reduction += Armor;
 
-        info.Remaining = (damage - info.Reduction < 0) ? 0 : damage - info.Reduction;
+    //    info.Remaining = (damage - info.Reduction < 0) ? 0 : damage - info.Reduction;
 
-        return info;
+    //    return info;
 
-    }
+    //}
 
 }

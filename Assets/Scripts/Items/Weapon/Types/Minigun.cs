@@ -25,7 +25,7 @@ public class Minigun : ProjectileWeapon
         Ammunition = (int)(AmmoMin + Mathf.Abs(Roll()) * (AmmoMax - AmmoMin));
         ReloadTime = ReloadMin + Mathf.Abs(Roll()) * (ReloadMax - ReloadMin);
 
-        Stats.Damage = PowerLevel + (PowerLevel / 4) * Roll(); //PowerLevel * (Roll() * 5 + 40);
+        Stats.SetDamage(DamageTypes.Standard, PowerLevel + (PowerLevel / 4) * Roll());
         Stats.CritChance = Mathf.Abs(Roll()) / 2;
         Stats.CritDamageMultiplier = 1;
     }

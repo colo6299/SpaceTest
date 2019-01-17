@@ -45,13 +45,13 @@ public class BeamWeapon: WeaponBase {
                     if (ship != null)
                     {
 
-                        ship.TakeDamage(new WeaponInfo
-                        {
-                            DamageType = ResistanceTypes.Thermal,
-                            CritChance = Stats.CritChance,
-                            CritDamageMultiplier = Stats.CritDamageMultiplier,
-                            Damage = Stats.Damage * Time.deltaTime,
-                        });
+                        //ship.TakeDamage(new WeaponInfo
+                        //{
+                        //    DamageType = DamageTypes.Heat,
+                        //    CritChance = Stats.CritChance,
+                        //    CritDamageMultiplier = Stats.CritDamageMultiplier,
+                        //    Damage = Stats.Damage * Time.deltaTime,
+                        //});
                     }
                 }
             }

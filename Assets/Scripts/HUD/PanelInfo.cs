@@ -23,8 +23,8 @@ public class PanelInfo : MonoBehaviour {
         public float ReloadTime = float.NaN;
         public float OldReloadTime = float.NaN;
 
-        public ResistanceTypes DamageType;
-        public ResistanceTypes OldDamageType;
+        public DamageTypes DamageType;
+        public DamageTypes OldDamageType;
 
         public float Damage = float.NaN;
         public float OldDamage = float.NaN;
@@ -55,8 +55,8 @@ public class PanelInfo : MonoBehaviour {
             builder.Ammunition = w.Ammunition;
             builder.ReloadTime = w.ReloadTime;
 
-            builder.DamageType = w.Stats.DamageType;
-            builder.Damage = w.Stats.Damage;
+            //builder.DamageType = w.Stats.DamageType;
+            //builder.Damage = w.Stats.Damage;
             builder.CritChance = w.Stats.CritChance;
             builder.CritDamageMultiplier = w.Stats.CritDamageMultiplier;
 
@@ -72,8 +72,8 @@ public class PanelInfo : MonoBehaviour {
             builder.OldAmmunition = w.Ammunition;
             builder.OldReloadTime = w.ReloadTime;
 
-            builder.OldDamageType = w.Stats.DamageType;
-            builder.OldDamage = w.Stats.Damage;
+            //builder.OldDamageType = w.Stats.DamageType;
+            //builder.OldDamage = w.Stats.Damage;
             builder.OldCritChance = w.Stats.CritChance;
             builder.OldCritDamageMultiplier = w.Stats.CritDamageMultiplier;
         }

@@ -15,8 +15,6 @@ public abstract class WeaponBase : Item
     /// </summary>
     public WeaponInfo Stats = new WeaponInfo
     {
-        DamageType = ResistanceTypes.Plate,
-        Damage = 50,
         CritChance = 0.03f,
         CritDamageMultiplier = 1f
     };
@@ -42,6 +40,8 @@ public abstract class WeaponBase : Item
     {
         Entity = GetComponentInParent<EntityInfo>();
         Coordinator = GetComponentInParent<FireCoordinator>();
+
+        Stats.SetDamage(DamageTypes.Standard, 50);
     }
 
     /// <summary>

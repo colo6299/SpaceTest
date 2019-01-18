@@ -23,6 +23,6 @@ public class AutoLaser : ProjectileWeapon
 
         Stats.SetDamage(DamageTypes.Standard, PowerLevel + (PowerLevel / 4) * Roll());
         Stats.CritChance = Mathf.Abs(Roll()) / 2;
-        Stats.CritDamageMultiplier = 1;
+        Stats.CritDamage = 1;
     }
 }

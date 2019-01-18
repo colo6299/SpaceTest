@@ -20,7 +20,7 @@ public class ProjectileWeapon : WeaponBase, IItem
     /// <summary>
     /// Reload Time in seconds
     /// </summary>
-    public float ReloadTime = 1000;
+    public float ReloadTime = 1;
 
     protected int currentBarrelIndex = 0;
     protected double timeTillNextShot = 1;
@@ -36,6 +36,25 @@ public class ProjectileWeapon : WeaponBase, IItem
     public bool IsReloading()
     {
         return currentReloadTime > 0;
+    }
+
+    public override float DPS()
+    {
+
+        float shotsPerSecond = RateOfFire / 60;
+
+        if (Ammunition == 0 || ReloadTime == 0)
+        {
+            return Stats.TotalDamage() * shotsPerSecond;
+        }
+
+        float shotInterval = 1 / shotsPerSecond;
+
+        float burstDuration = shotInterval * Ammunition;
+
+        float totalTime = ReloadTime + burstDuration;
+
+        return Stats.TotalDamage() * Ammunition / totalTime;
     }
 
     void Start()

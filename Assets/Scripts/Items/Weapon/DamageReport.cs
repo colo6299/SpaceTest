@@ -20,7 +20,7 @@ public class DamageReport
         for (int i = 0; i < Incoming.Count; i++)
         {
             DamageTypes type = (DamageTypes)i;
-            Incoming[type] = (Crit) ? info.Crit(type) : info.TypeDamage(type);
+            Incoming[type] = (Crit) ? info.Crit(type) : info.Damage(type);
         }
     }
 

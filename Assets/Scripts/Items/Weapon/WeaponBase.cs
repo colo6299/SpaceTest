@@ -16,7 +16,7 @@ public abstract class WeaponBase : Item
     public WeaponInfo Stats = new WeaponInfo
     {
         CritChance = 0.03f,
-        CritDamageMultiplier = 1f
+        CritDamage = 1f
     };
 
     /// <summary>
@@ -53,5 +53,10 @@ public abstract class WeaponBase : Item
         return Coordinator != null &&
             ((Type == SlotType.Primary && Coordinator.IsPrimaryFiring) ||
             (Type == SlotType.Secondary && Coordinator.IsSecondaryFiring));
+    }
+
+    public virtual float DPS()
+    {
+        return 0;
     }
 }

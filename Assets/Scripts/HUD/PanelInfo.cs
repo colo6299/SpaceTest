@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,113 +12,108 @@ public class PanelInfo : MonoBehaviour {
         public SlotType Slot;
         public Rarity Rarity;
 
-        public string WeaponClass;
-        public string OldWeaponClass;
+        public string Class;
 
+        public float DPS = float.NaN;
         public float RateOfFire = float.NaN;
-        public float OldRateOfFire = float.NaN;
-
         public float Ammunition = float.NaN;
-        public float OldAmmunition = float.NaN;
-
         public float ReloadTime = float.NaN;
-        public float OldReloadTime = float.NaN;
 
-        public DamageTypes DamageType;
-        public DamageTypes OldDamageType;
+        public WeaponInfo Stats = new WeaponInfo()
+        {
+            CritChance = float.NaN,
+            CritDamage = float.NaN
+        };
 
-        public float Damage = float.NaN;
-        public float OldDamage = float.NaN;
+        public static InfoBuilder GetInfo(Item item)
+        {
+            InfoBuilder info = new InfoBuilder();
 
-        public float CritChance = float.NaN;
-        public float OldCritChance = float.NaN;
+            if (item == null)
+            {
+                return info;
+            }
 
-        public float CritDamageMultiplier = float.NaN;
-        public float OldCritDamageMultiplier = float.NaN;
+            info.Name = item.name;
+            info.Slot = item.Slot();
+            info.Rarity = item.Rarity;
+
+            if (item is ProjectileWeapon)
+            {
+                ProjectileWeapon w = item as ProjectileWeapon;
+                info.Class = "Projectile";
+
+                info.DPS = w.DPS();
+                info.RateOfFire = w.RateOfFire;
+                info.Ammunition = w.Ammunition;
+                info.ReloadTime = w.ReloadTime;
+
+                info.Stats = w.Stats;
+            }
+
+            return info;
+        }
     }
 
 
     public void UpdateStats(Item hoveredItem, Item slottedItem)
     {
-        InfoBuilder builder = new InfoBuilder();
+        InfoBuilder hovered = InfoBuilder.GetInfo(hoveredItem);
+        InfoBuilder slotted = InfoBuilder.GetInfo(slottedItem);
 
-        builder.Name = hoveredItem.name;
-        builder.Slot = hoveredItem.Slot();
-        builder.Rarity = hoveredItem.Rarity;
-
-        if (hoveredItem is ProjectileWeapon)
-        {
-            ProjectileWeapon w = hoveredItem as ProjectileWeapon;
-            builder.WeaponClass = "Projectile";
-
-
-            builder.RateOfFire = w.RateOfFire;
-            builder.Ammunition = w.Ammunition;
-            builder.ReloadTime = w.ReloadTime;
-
-            //builder.DamageType = w.Stats.DamageType;
-            //builder.Damage = w.Stats.Damage;
-            builder.CritChance = w.Stats.CritChance;
-            builder.CritDamageMultiplier = w.Stats.CritDamageMultiplier;
-
-
-        }
-
-        if (slottedItem is ProjectileWeapon)
-        {
-            ProjectileWeapon w = slottedItem as ProjectileWeapon;
-            builder.OldWeaponClass = "Projectile";
-
-            builder.OldRateOfFire = w.RateOfFire;
-            builder.OldAmmunition = w.Ammunition;
-            builder.OldReloadTime = w.ReloadTime;
-
-            //builder.OldDamageType = w.Stats.DamageType;
-            //builder.OldDamage = w.Stats.Damage;
-            builder.OldCritChance = w.Stats.CritChance;
-            builder.OldCritDamageMultiplier = w.Stats.CritDamageMultiplier;
-        }
+        Transform HoveredPanel = transform.Find("New");
 
         // panel
 
-        transform.Find("BorderImage").GetComponent<Image>().color = Constants.RarityColor[builder.Rarity];
+        HoveredPanel.Find("BorderImage").GetComponent<Image>().color = Constants.RarityColor[hovered.Rarity];
 
         // header
 
-        Text headerName = transform.Find("Header").transform.Find("Name").GetComponent<Text>();
-        Text headerSlot = transform.Find("Header").transform.Find("Slot").GetComponent<Text>();
+        Text headerName = HoveredPanel.Find("Header").transform.Find("Name").GetComponent<Text>();
+        Text headerSlot = HoveredPanel.Find("Header").transform.Find("Slot").GetComponent<Text>();
 
-        headerName.text = builder.Name;
-        headerName.color = Constants.RarityColor[builder.Rarity];
-
-        headerSlot.text = builder.Slot.ToString();
+        headerName.text = hovered.Name;
+        headerName.color = Constants.RarityColor[hovered.Rarity];
+        headerSlot.text = hovered.Slot.ToString();
 
         // class
 
-        Text classHovered = transform.Find("Class").transform.Find("Hovered").GetComponent<Text>();
-        Text classPointer = transform.Find("Class").transform.Find("->").GetComponent<Text>();
-        Text classSlotted = transform.Find("Class").transform.Find("Slotted").GetComponent<Text>();
+        Text weaponClass = HoveredPanel.Find("Class").transform.Find("Value").GetComponent<Text>();
 
-        classHovered.text = builder.WeaponClass;
-
-        if (builder.OldWeaponClass != string.Empty)
-        {
-            classPointer.gameObject.SetActive(true);
-            classSlotted.gameObject.SetActive(true);
-
-            classSlotted.text = builder.OldWeaponClass;
-        }
-        else
-        {
-            classPointer.gameObject.SetActive(false);
-            classSlotted.gameObject.SetActive(false);
-        }
+        weaponClass.text = hovered.Class;
 
         // damage
 
-        DisplayType("Damage", builder.Damage.ToString("n2"), builder.OldDamage.ToString("n2"), GetColor(builder.Damage, builder.OldDamage), GetColor(builder.OldDamage, builder.Damage));
-        DisplayType("CritChance", builder.CritChance.ToString("p2"), builder.OldCritChance.ToString("p2"), GetColor(builder.CritChance, builder.OldCritChance), GetColor(builder.OldCritChance, builder.CritChance));
-        DisplayType("CritDamage", builder.CritDamageMultiplier.ToString("p2"), builder.OldCritDamageMultiplier.ToString("p2"), GetColor(builder.CritDamageMultiplier, builder.OldCritDamageMultiplier), GetColor(builder.OldCritDamageMultiplier, builder.CritDamageMultiplier));
+        Display(HoveredPanel, "DPS", hovered.DPS.ToString("n2"), GetColor(hovered.DPS, slotted.DPS));
+        Display(HoveredPanel, "Crit", hovered.Stats.CritChance.ToString("p1"), GetColor(hovered.Stats.CritChance, slotted.Stats.CritChance));
+        Display(HoveredPanel, "CritDamage", hovered.Stats.CritDamage.ToString("p0"), GetColor(hovered.Stats.CritDamage, slotted.Stats.CritDamage));
+        Display(HoveredPanel, "Ammo", hovered.Ammunition.ToString(), GetColor(hovered.Ammunition, slotted.Ammunition));
+        Display(HoveredPanel, "Reload", hovered.ReloadTime.ToString("n3"), GetColor(slotted.ReloadTime, hovered.ReloadTime));
+        Display(HoveredPanel, "RateOfFire", hovered.RateOfFire.ToString(), GetColor(hovered.RateOfFire, slotted.RateOfFire));
+
+        DamageTypes[] types = hovered.Stats.Sort();
+
+        StringBuilder sb = new StringBuilder();
+
+        foreach (DamageTypes type in types)
+        {
+            float damage = hovered.Stats.Damage(type);
+
+            if (damage > 0)
+            {
+                sb.Append(type.ToString() + ", ");
+            }
+        }
+
+        Display(HoveredPanel, "DamageTypes", sb.ToString().TrimEnd(' ', ','), Color.white);
+    }
+
+    private void Display(Transform panel, string name, string value, Color color)
+    {
+        Text textbox = panel.Find(name).transform.Find("Value").GetComponent<Text>();
+
+        textbox.text = value;
+        textbox.color = color;
     }
 
     private Color GetColor(float v1, float v2)
@@ -138,17 +134,5 @@ public class PanelInfo : MonoBehaviour {
         }
 
         return (v1 > v2) ? Color.green : Color.red;
-    }
-
-    private void DisplayType(string name, string newValue, string oldValue, Color newColor, Color oldColor)
-    {
-        Text hovered = transform.Find(name).transform.Find("Hovered").GetComponent<Text>();
-        Text slotted = transform.Find(name).transform.Find("Slotted").GetComponent<Text>();
-
-        hovered.text = newValue;
-        hovered.color = newColor;
-
-        slotted.text = oldValue;
-        slotted.color = oldColor;
     }
 }

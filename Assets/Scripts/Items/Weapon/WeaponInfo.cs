@@ -9,7 +9,7 @@ public class WeaponInfo
     private Dictionary<DamageTypes, float> DamageByTypes;
 
     public float CritChance;
-    public float CritDamageMultiplier;
+    public float CritDamage;
 
 
     public WeaponInfo()
@@ -17,15 +17,10 @@ public class WeaponInfo
         DamageByTypes = CreateEmptyDictionary();
     }
 
-    //public DamageTypes[] GetTypes()
-    //{
-    //    return DamageByTypes.Keys.ToArray();
-    //}
-
 
     private float Crit(float dmg)
     {
-        return dmg + (dmg * CritDamageMultiplier);
+        return dmg + (dmg * CritDamage);
     }
 
     public float Crit()
@@ -35,7 +30,7 @@ public class WeaponInfo
 
     public float Crit(DamageTypes type)
     {
-        return Crit(TypeDamage(type));
+        return Crit(Damage(type));
     }
 
     public float TotalDamage()
@@ -50,30 +45,14 @@ public class WeaponInfo
         return total;
     }
 
-    public float TypeDamage(DamageTypes type)
+    public float Damage(DamageTypes type)
     {
         return DamageByTypes[type];
-
-        //if (DamageByTypes.ContainsKey(type))
-        //{
-        //    return DamageByTypes[type];
-        //}
-
-        //return 0;
     }
 
     public void SetDamage(DamageTypes type, float damage)
     {
         DamageByTypes[type] = damage;
-
-        //if (!DamageByTypes.ContainsKey(type))
-        //{
-        //    DamageByTypes.Add(type, damage);
-        //}
-        //else
-        //{
-        //    DamageByTypes[type] = damage;
-        //}
 
         if (DamageByTypes[type] < 0)
         {
@@ -83,15 +62,6 @@ public class WeaponInfo
 
     public void AddDamage(DamageTypes type, float amount)
     {
-        //if (!DamageByTypes.ContainsKey(type))
-        //{
-        //    DamageByTypes.Add(type, amount);
-        //}
-        //else
-        //{
-        //    DamageByTypes[type] += amount;
-        //}
-
         DamageByTypes[type] += amount;
 
         if (DamageByTypes[type] < 0)
@@ -103,6 +73,36 @@ public class WeaponInfo
     public void RemoveDamage(DamageTypes type, float amount)
     {
         AddDamage(type, -amount);
+    }
+
+    /// <summary>
+    /// the most glorious of crappy sorting algorithms
+    /// </summary>
+    /// <returns></returns>
+    public DamageTypes[] Sort()
+    {
+        List<DamageTypes> types = new List<DamageTypes>();
+
+        for (int i = 0; i < DamageByTypes.Count; i++)
+        {
+            DamageTypes type = DamageTypes.Standard;
+            float best = -1;
+
+            for (int j = 0; j < DamageByTypes.Count; j++)
+            {
+                DamageTypes t = (DamageTypes)j;
+
+                if (DamageByTypes[t] > best && !types.Contains(t))
+                {
+                    best = DamageByTypes[t];
+                    type = t;
+                }
+            }
+
+            types.Add(type);
+        }
+
+        return types.ToArray();
     }
 
     public static Dictionary<DamageTypes, float> CreateEmptyDictionary()

@@ -11,7 +11,7 @@ public class EntityInfo : MonoBehaviour
 
     public GameObject dmgPrefab = null;
 
-    public void TakeDamage(WeaponInfo info)
+    public virtual void TakeDamage(WeaponInfo info)
     {
         double rng = EntityInfo.rng.NextDouble();
 

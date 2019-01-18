@@ -11,6 +11,8 @@ public class HudCoordinator : MonoBehaviour
     private LoadoutManager loadout;
     private PanelInfo InfoPanel;
 
+    private Item CurrentHover = null;
+
 
     private DragContainer selectedItem;
     private DropContainer selectedItemSlot;
@@ -41,7 +43,12 @@ public class HudCoordinator : MonoBehaviour
         if (item != null)
         {
             Item i = item.GetComponent<DragContainer>().Item;
-            InfoPanel.UpdateStats(i, loadout.GetItemInSlot(i.Type));
+
+            if (i != CurrentHover)
+            {
+                InfoPanel.UpdateStats(i, loadout.GetItemInSlot(i.Type));
+                CurrentHover = i;
+            }
         }
 
         if (selectedItem == null) return;

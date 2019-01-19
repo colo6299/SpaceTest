@@ -1,65 +1,128 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelInfo : MonoBehaviour {
+public class PanelInfo : MonoBehaviour
+{
+
+    enum PropertyNames { DPS, CritChance, CritDamage, WeaponStat1, WeaponStat2, WeaponStat3, WeaponStat4, WeaponStat5, WeaponStat6 }
+
+    private class Property
+    {
+        public bool Enabled;
+        public string Name;
+        public float Value;
+        public string Format;
+
+        public Property(string n, float v, bool enabled = true)
+        {
+            Enabled = enabled;
+            Name = n;
+            Value = v;
+            Format = "n0";
+        }
+
+        public Property(string n, float v, string f, bool enabled = true)
+        {
+            Enabled = enabled;
+            Name = n;
+            Value = v;
+            Format = f;
+        }
+    }
 
     private class InfoBuilder
     {
         public string Name;
         public SlotType Slot;
         public Rarity Rarity;
-
         public string Class;
+        public string DamageType;
 
-        public float DPS = float.NaN;
-        public float RateOfFire = float.NaN;
-        public float Ammunition = float.NaN;
-        public float ReloadTime = float.NaN;
+        public Property[] Properties;
 
-        public WeaponInfo Stats = new WeaponInfo()
+        public InfoBuilder(Item item, SlotType hoveredItemType = SlotType.None)
         {
-            CritChance = float.NaN,
-            CritDamage = float.NaN
-        };
+            // Prep the property array.
+            string[] names = Enum.GetNames(typeof(PropertyNames));
+            Properties = new Property[names.Length];
 
-        public static InfoBuilder GetInfo(Item item)
-        {
-            InfoBuilder info = new InfoBuilder();
+            for (int i = 0; i < names.Length; i++)
+            {
+                if (names[i].Contains("WeaponStat"))
+                {
+                    Properties[i] = new Property(names[i], float.NaN, false);
+                }
+                else
+                {
+                    Properties[i] = new Property(names[i], float.NaN);
+                }
+            }
 
             if (item == null)
             {
-                return info;
+                Name = "None";
+                Slot = hoveredItemType;
+                Rarity = Rarity.None;
+                Class = "None";
+                DamageType = "None";
+            }
+            else
+            {
+                Name = item.name;
+                Slot = item.Slot();
+                Rarity = item.Rarity;
             }
 
-            info.Name = item.name;
-            info.Slot = item.Slot();
-            info.Rarity = item.Rarity;
+            if (item is WeaponBase)
+            {
+                WeaponBase wb = item as WeaponBase;
+                DamageTypes[] types = wb.Stats.Sort();
+                StringBuilder sb = new StringBuilder();
+
+                foreach (DamageTypes type in types)
+                {
+                    float damage = wb.Stats.Damage(type);
+
+                    if (damage > 0)
+                    {
+                        sb.Append(type.ToString() + ", ");
+                    }
+                }
+
+                DamageType = sb.ToString().TrimEnd(' ', ',');
+
+                Properties[(int)PropertyNames.DPS].Value = wb.DPS();
+                Properties[(int)PropertyNames.CritChance].Value = wb.Stats.CritChance;
+                Properties[(int)PropertyNames.CritChance].Format = "n1";
+                Properties[(int)PropertyNames.CritDamage].Value = wb.Stats.CritDamage;
+            }
 
             if (item is ProjectileWeapon)
             {
-                ProjectileWeapon w = item as ProjectileWeapon;
-                info.Class = "Projectile";
+                ProjectileWeapon pw = item as ProjectileWeapon;
+                Class = "Projectile";
 
-                info.DPS = w.DPS();
-                info.RateOfFire = w.RateOfFire;
-                info.Ammunition = w.Ammunition;
-                info.ReloadTime = w.ReloadTime;
+                Properties[(int)PropertyNames.WeaponStat1] = new Property("RoF", pw.RateOfFire, "n1");
+                Properties[(int)PropertyNames.WeaponStat2] = new Property("Ammo", pw.Ammunition);
+                Properties[(int)PropertyNames.WeaponStat3] = new Property("Reload", pw.ReloadTime, "n3");
 
-                info.Stats = w.Stats;
             }
-
-            return info;
+            else if (item is BeamWeapon)
+            {
+                BeamWeapon bw = item as BeamWeapon;
+                Class = "Beam";
+            }
         }
     }
 
 
     public void UpdateStats(Item hoveredItem, Item slottedItem)
     {
-        InfoBuilder hovered = InfoBuilder.GetInfo(hoveredItem);
-        InfoBuilder slotted = InfoBuilder.GetInfo(slottedItem);
+        InfoBuilder hovered = new InfoBuilder(hoveredItem);
+        InfoBuilder slotted = new InfoBuilder(slottedItem, hovered.Slot);
 
         Transform HoveredPanel = transform.Find("New");
 
@@ -69,51 +132,91 @@ public class PanelInfo : MonoBehaviour {
 
         // header
 
-        Text headerName = HoveredPanel.Find("Header").transform.Find("Name").GetComponent<Text>();
-        Text headerSlot = HoveredPanel.Find("Header").transform.Find("Slot").GetComponent<Text>();
+        Text headerName = HoveredPanel.Find("Header").GetChild(0).GetComponent<Text>();
+        Text headerSlot = HoveredPanel.Find("Header").GetChild(1).GetComponent<Text>();
 
         headerName.text = hovered.Name;
         headerName.color = Constants.RarityColor[hovered.Rarity];
         headerSlot.text = hovered.Slot.ToString();
 
-        // class
+        // General
 
-        Text weaponClass = HoveredPanel.Find("Class").transform.Find("Value").GetComponent<Text>();
-
+        Text weaponClass = HoveredPanel.Find("Class").GetChild(1).GetComponent<Text>();
         weaponClass.text = hovered.Class;
 
-        // damage
+        Text damageTypes = HoveredPanel.Find("DamageTypes").GetChild(1).GetComponent<Text>();
+        damageTypes.text = hovered.DamageType;
 
-        Display(HoveredPanel, "DPS", hovered.DPS.ToString("n2"), GetColor(hovered.DPS, slotted.DPS));
-        Display(HoveredPanel, "Crit", hovered.Stats.CritChance.ToString("p1"), GetColor(hovered.Stats.CritChance, slotted.Stats.CritChance));
-        Display(HoveredPanel, "CritDamage", hovered.Stats.CritDamage.ToString("p0"), GetColor(hovered.Stats.CritDamage, slotted.Stats.CritDamage));
-        Display(HoveredPanel, "Ammo", hovered.Ammunition.ToString(), GetColor(hovered.Ammunition, slotted.Ammunition));
-        Display(HoveredPanel, "Reload", hovered.ReloadTime.ToString("n3"), GetColor(slotted.ReloadTime, hovered.ReloadTime));
-        Display(HoveredPanel, "RateOfFire", hovered.RateOfFire.ToString(), GetColor(hovered.RateOfFire, slotted.RateOfFire));
 
-        DamageTypes[] types = hovered.Stats.Sort();
 
-        StringBuilder sb = new StringBuilder();
-
-        foreach (DamageTypes type in types)
+        for (int i = 0; i < hovered.Properties.Length; i++)
         {
-            float damage = hovered.Stats.Damage(type);
+            Property p = hovered.Properties[i];
+            Property s = slotted.Properties[i];
+            Color color = Color.white;
 
-            if (damage > 0)
+            if (p.Name == s.Name)
             {
-                sb.Append(type.ToString() + ", ");
+                if (p.Name == "Reload")
+                {
+                    color = GetColor(s.Value, p.Value);
+                }
+                else
+                {
+                    color = GetColor(p.Value, s.Value);
+                }
             }
+
+            Display(HoveredPanel, p.Name, p.Value.ToString(p.Format), color);
         }
 
-        Display(HoveredPanel, "DamageTypes", sb.ToString().TrimEnd(' ', ','), Color.white);
+
+
+        // other
+
+        //Display(HoveredPanel, "DPS", hovered.DPS.ToString("n2"), GetColor(hovered.DPS, slotted.DPS));
+        //Display(HoveredPanel, "Crit", hovered.Stats.CritChance.ToString("p1"), GetColor(hovered.Stats.CritChance, slotted.Stats.CritChance));
+        //Display(HoveredPanel, "CritDamage", hovered.Stats.CritDamage.ToString("p0"), GetColor(hovered.Stats.CritDamage, slotted.Stats.CritDamage));
+        //Display(HoveredPanel, "Ammo", hovered.Ammunition.ToString(), GetColor(hovered.Ammunition, slotted.Ammunition));
+        //Display(HoveredPanel, "Reload", hovered.ReloadTime.ToString("n3"), GetColor(slotted.ReloadTime, hovered.ReloadTime));
+        //Display(HoveredPanel, "RateOfFire", hovered.RateOfFire.ToString(), GetColor(hovered.RateOfFire, slotted.RateOfFire));
+
+        //DamageTypes[] types = hovered.Stats.Sort();
+
+        //StringBuilder sb = new StringBuilder();
+
+        //foreach (DamageTypes type in types)
+        //{
+        //    float damage = hovered.Stats.Damage(type);
+
+        //    if (damage > 0)
+        //    {
+        //        sb.Append(type.ToString() + ", ");
+        //    }
+        //}
+
+        //Display(HoveredPanel, "DamageTypes", sb.ToString().TrimEnd(' ', ','), Color.white);
     }
 
-    private void Display(Transform panel, string name, string value, Color color)
+    private void Display(Transform panel, string name, string value, Color color, bool enabled = true)
     {
-        Text textbox = panel.Find(name).transform.Find("Value").GetComponent<Text>();
 
-        textbox.text = value;
-        textbox.color = color;
+        Transform node = panel.Find(name);
+
+        if (enabled)
+        {
+            node.gameObject.SetActive(true);
+            node.GetChild(0).GetComponent<Text>().text = name;
+
+            Text textbox = node.GetChild(1).GetComponent<Text>();
+            textbox.text = value;
+            textbox.color = color;
+        }
+        else
+        {
+            node.gameObject.SetActive(false);
+        }
+
     }
 
     private Color GetColor(float v1, float v2)

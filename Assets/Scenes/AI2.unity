@@ -1713,6 +1713,11 @@ Prefab:
       propertyPath: acceleration
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 114292384959765940, guid: d9715b5bff0006745bac2812ec8cda1a,
+        type: 2}
+      propertyPath: MaxSpeed
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9715b5bff0006745bac2812ec8cda1a, type: 2}
   m_IsPrefabAsset: 0
@@ -6311,8 +6316,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d19e52fa1e09f14ca24437c3e83cced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
-  endTime: 0
+  difficulty: 1
+  waveLength: 65
+  spawnRate: 20
+  coolTime: 30
+  waveNumber: 0
+  spawned: []
 --- !u!4 &1599262969
 Transform:
   m_ObjectHideFlags: 0

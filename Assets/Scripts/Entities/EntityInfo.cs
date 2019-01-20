@@ -6,10 +6,29 @@ public class EntityInfo : MonoBehaviour
 {
     private static System.Random rng = new System.Random((int)(DateTime.Now.Ticks / 5));
 
+    public float MaxHealth = 2000;
     public float Health = 2000;
+
+    public float MaxEnergy = 2000;
     public float Energy = 2000;
+    public float EnergyRegen = 25;
+    public bool IsEnergyRegenerating = true;
 
     public GameObject dmgPrefab = null;
+
+    public void Update()
+    {
+        // recover
+        if (IsEnergyRegenerating)
+        {
+            Energy += EnergyRegen * Time.deltaTime;
+
+            if (Energy > MaxEnergy)
+            {
+                Energy = MaxEnergy;
+            }
+        }
+    }
 
     public virtual void TakeDamage(WeaponInfo info)
     {

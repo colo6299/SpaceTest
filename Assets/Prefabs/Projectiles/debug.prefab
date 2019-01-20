@@ -108,6 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f312ffacc74db704d9aaf294c302ee4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Parent: {fileID: 0}
   MaxTrajectory: 1000
-  Damage: 10
   Speed: 50

@@ -15,7 +15,7 @@ public class Wave : MonoBehaviour {
     private bool spawning = false;
     private bool coolDown = false;
 
-    public static List<GameObject> spawned = new List<GameObject>();
+    private bool spawnHold = false;
 
     void Start()
     {
@@ -25,36 +25,29 @@ public class Wave : MonoBehaviour {
     void Update()
     {
 
-        spawned.TrimExcess();
-        Debug.Log(spawned.Count);
-
         if (inWave && !spawning)
         {
             InvokeRepeating("SpawnSquad", 0, spawnRate);
             spawning = true;
             endTime = Time.time + waveLength;
+            //InvokeRepeating("WaveEnder", , 5);
         }
 
         if (Time.time > endTime)
         {
             if (spawning)
             {
-                endTime = Time.time + coolTime;
-                coolDown = true;
-                inWave = false;
-                spawning = false;
+                InvokeRepeating("WaveEnder", 1, 5);
+                CancelInvoke("SpawnSquad");
             }
 
             else
             {
                 endTime = Time.time + waveLength;
                 waveNumber++;
-                spawning = true;
                 inWave = true;
                 coolDown = false;
             }
-
-
         }
 
         if (!spawning)
@@ -63,29 +56,41 @@ public class Wave : MonoBehaviour {
         }        
     }
 
+    private void WaveEnder()
+    {
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        {
+            inWave = false;
+            CancelInvoke("WaveEnder");
+            endTime = Time.time + coolTime;
+            coolDown = true;
+            spawning = false;
+        }
+    }
+
     private void SpawnSquad()
     {
         SquadInfo sd = EnemyHolder.RandomSquad(difficulty, waveNumber);
         foreach (int id in sd.trash)
         {
-            spawned.Add(Instantiate(EnemyHolder.staticTrashArray[id],
+            Instantiate(EnemyHolder.staticTrashArray[id],
                 new Vector3(Random.value, Random.value, Random.value) * 1000,
                 transform.rotation, null
-                ));
+                );
         }
         foreach (int id in sd.normal)
         {
-            spawned.Add(Instantiate(EnemyHolder.staticNormalArray[id],
+            Instantiate(EnemyHolder.staticNormalArray[id],
                 new Vector3(Random.value, Random.value, Random.value) * 1000,
                 transform.rotation, null
-                ));
+                );
         }
         foreach (int id in sd.elite)
         {
-            spawned.Add(Instantiate(EnemyHolder.staticEliteArray[id],
+            Instantiate(EnemyHolder.staticEliteArray[id],
                 new Vector3(Random.value, Random.value, Random.value) * 1000,
                 transform.rotation, null
-                ));
+                );
         }
     }
 }

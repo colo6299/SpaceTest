@@ -27,11 +27,38 @@ public class EnemyHolder : MonoBehaviour {
 
     public static SquadInfo RandomSquad(float difficulty, int waveNumber)
     {
-        float total = Mathf.Sqrt(waveNumber) * 10;
+        int total = (int)(Mathf.Sqrt(waveNumber) * 10);
+
+        int t = 0;
+        int n = 0;
+        int e = 0;
+
+        int ttl = total;
+
+        while (t + n + e < total)
+        {
+            if (Random.value < eliteFrac)
+            {
+                e++;
+                ttl--;
+            }
+            else if (Random.value < normalFrac)
+            {
+                n++;
+                ttl--;
+            }
+            else if (Random.value < trashFrac)
+            {
+                t++;
+                ttl--;
+            }
+
+        }
+
         return new SquadInfo(
-            TrashGroup(difficulty, (int)(total * trashFrac)),
-            NormalGroup(difficulty, (int)(total * normalFrac)),
-            EliteGroup(difficulty, (int)(total * eliteFrac))
+            TrashGroup(difficulty, t),
+            NormalGroup(difficulty, n),
+            EliteGroup(difficulty, e)
             );
     }
 

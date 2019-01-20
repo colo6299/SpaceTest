@@ -1,7 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class StandardProjectile : ProjectileBase
-{
+public class RocketProjectile : ProjectileBase {
+
+
+    public GameObject blast;
+
     void Update()
     {
         float distance = Speed * Time.deltaTime;

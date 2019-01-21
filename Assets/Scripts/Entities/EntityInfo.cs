@@ -16,7 +16,7 @@ public class EntityInfo : MonoBehaviour
 
     public GameObject dmgPrefab = null;
 
-    public void Update()
+    public virtual void Update()
     {
         // recover
         if (IsEnergyRegenerating)
@@ -47,6 +47,12 @@ public class EntityInfo : MonoBehaviour
             {
                 Destroy(Instantiate(dmgPrefab, transform.position, transform.rotation, null), 5f);
             }
+        }
+
+        EntityHpBar bar = GetComponentInChildren<EntityHpBar>();
+        if (bar != null)
+        {
+            bar.UpdateBar(Health, MaxHealth);
         }
     }
 

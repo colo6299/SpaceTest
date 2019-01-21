@@ -26,7 +26,7 @@ public class Wave : MonoBehaviour {
     {
 
         spawned.TrimExcess();
-        Debug.Log(spawned.Count);
+        //Debug.Log(spawned.Count);
 
         if (inWave && !spawning)
         {

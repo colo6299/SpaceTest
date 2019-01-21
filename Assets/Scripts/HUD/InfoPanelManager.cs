@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class InfoPanelManager : MonoBehaviour {
 
-    private InfoPanel hovered;
-    private InfoPanel slotted;
-
-    public void Start()
-    {
-        hovered = transform.GetChild(0).GetComponent<InfoPanel>();
-        slotted = transform.GetChild(1).GetComponent<InfoPanel>();
-    }
+    public InfoPanel hovered;
+    public InfoPanel slotted;
 
     public void DisplayItemComparison(Item h, Item s)
     {

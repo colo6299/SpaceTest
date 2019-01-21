@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 114225265130136376}
   - component: {fileID: 114485029771483998}
   m_Layer: 5
-  m_Name: Sloted
+  m_Name: Slotted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3107,26 +3107,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215003efe5316c64daaf13ef66a33325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  border: {fileID: 0}
-  title: {fileID: 0}
-  slot: {fileID: 0}
-  itemClass: {fileID: 0}
-  damageType: {fileID: 0}
-  dps: {fileID: 0}
-  critChance: {fileID: 0}
-  critDamage: {fileID: 0}
-  stat1Title: {fileID: 0}
-  stat1Value: {fileID: 0}
-  stat2Title: {fileID: 0}
-  stat2Value: {fileID: 0}
-  stat3Title: {fileID: 0}
-  stat3Value: {fileID: 0}
-  stat4Title: {fileID: 0}
-  stat4Value: {fileID: 0}
-  stat5Title: {fileID: 0}
-  stat5Value: {fileID: 0}
-  stat6Title: {fileID: 0}
-  stat6Value: {fileID: 0}
+  border: {fileID: 114769312605384462}
+  title: {fileID: 114410096665470602}
+  slot: {fileID: 114193787048324630}
+  itemClass: {fileID: 114783964933389640}
+  damageType: {fileID: 114575440578163298}
+  dps: {fileID: 114487626342572304}
+  critChance: {fileID: 114866923943431068}
+  critDamage: {fileID: 114243650121295324}
+  stat1Title: {fileID: 114665121286098598}
+  stat1Value: {fileID: 114041260247569180}
+  stat2Title: {fileID: 114485509984227292}
+  stat2Value: {fileID: 114524042126112530}
+  stat3Title: {fileID: 114625176169954722}
+  stat3Value: {fileID: 114695642130273620}
+  stat4Title: {fileID: 114212773966737502}
+  stat4Value: {fileID: 114596688469079940}
+  stat5Title: {fileID: 114899173126187586}
+  stat5Value: {fileID: 114604696978826704}
+  stat6Title: {fileID: 114146349030204888}
+  stat6Value: {fileID: 114168666357043912}
 --- !u!114 &114485509984227292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4107,26 +4107,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215003efe5316c64daaf13ef66a33325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  border: {fileID: 0}
-  title: {fileID: 0}
-  slot: {fileID: 0}
-  itemClass: {fileID: 0}
-  damageType: {fileID: 0}
-  dps: {fileID: 0}
-  critChance: {fileID: 0}
-  critDamage: {fileID: 0}
-  stat1Title: {fileID: 0}
-  stat1Value: {fileID: 0}
-  stat2Title: {fileID: 0}
-  stat2Value: {fileID: 0}
-  stat3Title: {fileID: 0}
-  stat3Value: {fileID: 0}
-  stat4Title: {fileID: 0}
-  stat4Value: {fileID: 0}
-  stat5Title: {fileID: 0}
-  stat5Value: {fileID: 0}
-  stat6Title: {fileID: 0}
-  stat6Value: {fileID: 0}
+  border: {fileID: 114686242401382104}
+  title: {fileID: 114010048895726996}
+  slot: {fileID: 114989541784576206}
+  itemClass: {fileID: 114966924554423650}
+  damageType: {fileID: 114223801195275952}
+  dps: {fileID: 114495001322822698}
+  critChance: {fileID: 114170177419809556}
+  critDamage: {fileID: 114100206687255016}
+  stat1Title: {fileID: 114679987075663758}
+  stat1Value: {fileID: 114658883977360264}
+  stat2Title: {fileID: 114872922342317876}
+  stat2Value: {fileID: 114441446665752002}
+  stat3Title: {fileID: 114743645134850530}
+  stat3Value: {fileID: 114218488904345276}
+  stat4Title: {fileID: 114738738970136940}
+  stat4Value: {fileID: 114088105903742852}
+  stat5Title: {fileID: 114758083530573806}
+  stat5Value: {fileID: 114180204216054816}
+  stat6Title: {fileID: 114514354482644448}
+  stat6Value: {fileID: 114468992001131480}
 --- !u!114 &114679987075663758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4436,6 +4436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742cd3d86554bf9478ac1a1345dc580b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hovered: {fileID: 114678752894184270}
+  slotted: {fileID: 114485029771483998}
 --- !u!114 &114730958201605108
 MonoBehaviour:
   m_ObjectHideFlags: 1

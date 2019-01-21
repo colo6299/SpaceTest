@@ -35,35 +35,35 @@ public class InfoPanel : MonoBehaviour
 
     public void Start()
     {
-        border = transform.GetChild(0).GetComponent<Image>();
+        //border = transform.GetChild(0).GetComponent<Image>();
 
-        title = transform.GetChild(1).GetChild(0).GetComponent<Text>();
-        slot = transform.GetChild(1).GetChild(1).GetComponent<Text>();
+        //title = transform.GetChild(1).GetChild(0).GetComponent<Text>();
+        //slot = transform.GetChild(1).GetChild(1).GetComponent<Text>();
 
-        itemClass = transform.GetChild(2).GetChild(0).GetChild(1).GetComponent<Text>();
-        damageType = transform.GetChild(2).GetChild(1).GetChild(1).GetComponent<Text>();
-        dps = transform.GetChild(2).GetChild(2).GetChild(1).GetComponent<Text>();
+        //itemClass = transform.GetChild(2).GetChild(0).GetChild(1).GetComponent<Text>();
+        //damageType = transform.GetChild(2).GetChild(1).GetChild(1).GetComponent<Text>();
+        //dps = transform.GetChild(2).GetChild(2).GetChild(1).GetComponent<Text>();
 
-        critChance = transform.GetChild(3).GetChild(0).GetChild(1).GetComponent<Text>();
-        critDamage = transform.GetChild(3).GetChild(1).GetChild(1).GetComponent<Text>();
+        //critChance = transform.GetChild(3).GetChild(0).GetChild(1).GetComponent<Text>();
+        //critDamage = transform.GetChild(3).GetChild(1).GetChild(1).GetComponent<Text>();
 
-        stat1Title = transform.GetChild(4).GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
-        stat1Value = transform.GetChild(4).GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>();
+        //stat1Title = transform.GetChild(4).GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
+        //stat1Value = transform.GetChild(4).GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>();
 
-        stat2Title = transform.GetChild(4).GetChild(1).GetChild(0).GetChild(0).GetComponent<Text>();
-        stat2Value = transform.GetChild(4).GetChild(1).GetChild(0).GetChild(1).GetComponent<Text>();
+        //stat2Title = transform.GetChild(4).GetChild(1).GetChild(0).GetChild(0).GetComponent<Text>();
+        //stat2Value = transform.GetChild(4).GetChild(1).GetChild(0).GetChild(1).GetComponent<Text>();
 
-        stat3Title = transform.GetChild(4).GetChild(0).GetChild(1).GetChild(0).GetComponent<Text>();
-        stat3Value = transform.GetChild(4).GetChild(0).GetChild(1).GetChild(1).GetComponent<Text>();
+        //stat3Title = transform.GetChild(4).GetChild(0).GetChild(1).GetChild(0).GetComponent<Text>();
+        //stat3Value = transform.GetChild(4).GetChild(0).GetChild(1).GetChild(1).GetComponent<Text>();
 
-        stat4Title = transform.GetChild(4).GetChild(1).GetChild(1).GetChild(0).GetComponent<Text>();
-        stat4Value = transform.GetChild(4).GetChild(1).GetChild(1).GetChild(1).GetComponent<Text>();
+        //stat4Title = transform.GetChild(4).GetChild(1).GetChild(1).GetChild(0).GetComponent<Text>();
+        //stat4Value = transform.GetChild(4).GetChild(1).GetChild(1).GetChild(1).GetComponent<Text>();
 
-        stat5Title = transform.GetChild(4).GetChild(0).GetChild(2).GetChild(0).GetComponent<Text>();
-        stat5Value = transform.GetChild(4).GetChild(0).GetChild(2).GetChild(1).GetComponent<Text>();
+        //stat5Title = transform.GetChild(4).GetChild(0).GetChild(2).GetChild(0).GetComponent<Text>();
+        //stat5Value = transform.GetChild(4).GetChild(0).GetChild(2).GetChild(1).GetComponent<Text>();
 
-        stat6Title = transform.GetChild(4).GetChild(1).GetChild(2).GetChild(0).GetComponent<Text>();
-        stat6Value = transform.GetChild(4).GetChild(1).GetChild(2).GetChild(1).GetComponent<Text>();
+        //stat6Title = transform.GetChild(4).GetChild(1).GetChild(2).GetChild(0).GetComponent<Text>();
+        //stat6Value = transform.GetChild(4).GetChild(1).GetChild(2).GetChild(1).GetComponent<Text>();
     }
 
     public void ResetFields()

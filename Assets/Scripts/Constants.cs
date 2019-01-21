@@ -12,11 +12,10 @@ public class Constants
     public static readonly Dictionary<Rarity, Color> RarityColor = new Dictionary<Rarity, Color>
     {
         { Rarity.Common, new Color(0.7f, 0.7f, 0.7f, 1f) },
-        { Rarity.Uncommon, new Color(55/255, 1, 0, 1) },
-        { Rarity.Rare, new Color(0, 160/225, 1, 1) },
-        { Rarity.Legendary, new Color(160/225, 0, 1, 1) },
-        { Rarity.Ultimate, new Color(1, 245/255, 0, 1) },
-
+        { Rarity.Uncommon, new Color(55f/255f, 1f, 0, 1) },
+        { Rarity.Rare, new Color(0, 160f/225f, 1f, 1) },
+        { Rarity.Legendary, new Color(160f/225f, 0, 1f, 1) },
+        { Rarity.Ultimate, new Color(1f, 245f/255f, 0, 1) },
         { Rarity.None, Color.red },
         { Rarity.Unique, Color.red },
     };

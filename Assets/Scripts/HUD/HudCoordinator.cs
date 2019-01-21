@@ -8,10 +8,11 @@ public class HudCoordinator : MonoBehaviour
     private Camera thisCamera;
     private GraphicRaycaster rayCaster;
     private PointerEventData eventData;
-    private LoadoutManager loadout;
-    private PanelInfo InfoPanel;
 
-    private Item CurrentHover = null;
+    private LoadoutManager loadout;
+    private InfoPanelManager infoPanelManager;
+    private GameObject Trash;
+    private Item CurrentHover;
 
 
     private DragContainer selectedItem;
@@ -24,36 +25,44 @@ public class HudCoordinator : MonoBehaviour
         rayCaster = GetComponentInParent<GraphicRaycaster>();
         eventData = new PointerEventData(null);
 
-        InfoPanel = transform.GetComponentInChildren<PanelInfo>();
+        infoPanelManager = transform.GetComponentInChildren<InfoPanelManager>();
+        infoPanelManager.gameObject.SetActive(false);
 
         // set trash to false
-        transform.GetChild(2).gameObject.SetActive(false);
+        Trash = transform.Find("Trash").gameObject;
+        Trash.SetActive(false);
 
         SystemControls.HudStateChange += OnHudChange;
         SystemControls.ClickDown += BeginDrag;
         SystemControls.ClickUp += EndDrag;
 
         loadout = GameObject.FindGameObjectWithTag("Loadout").GetComponent<LoadoutManager>();
+        CurrentHover = null;
     }
 
     private void Update()
     {
-        GameObject item = RaycastUI("UI_Item");
-
-        if (item != null)
+        if (selectedItem == null)
         {
-            Item i = item.GetComponent<DragContainer>().Item;
+            GameObject item = RaycastUI("UI_Item");
 
-            if (i != CurrentHover)
+            if (item != null)
             {
-                InfoPanel.UpdateStats(i, loadout.GetItemInSlot(i.Type));
-                CurrentHover = i;
+                infoPanelManager.gameObject.SetActive(true);
+                Item i = item.GetComponent<DragContainer>().Item;
+
+                if (i != CurrentHover)
+                {
+                    infoPanelManager.DisplayItemComparison(i, loadout.GetItemInSlot(i.Type));
+                    CurrentHover = i;
+                }
             }
         }
-
-        if (selectedItem == null) return;
-
-        selectedItem.transform.position = Input.mousePosition;
+        else
+        {
+            infoPanelManager.gameObject.SetActive(false);
+            selectedItem.transform.position = Input.mousePosition;
+        }
     }
 
     private void OnHudChange(SystemControls.HudStates state)
@@ -67,6 +76,8 @@ public class HudCoordinator : MonoBehaviour
         else
         {
             EndDrag();
+            infoPanelManager.gameObject.SetActive(false);
+
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             enabled = false;
@@ -84,7 +95,7 @@ public class HudCoordinator : MonoBehaviour
             selectedItemSlot = slot.GetComponent<DropContainer>();
         }
 
-        transform.GetChild(2).gameObject.SetActive(true);
+        Trash.SetActive(true);
     }
 
     private void EndDrag()
@@ -138,7 +149,7 @@ public class HudCoordinator : MonoBehaviour
         }
 
         selectedItem.transform.localPosition = Vector3.zero;
-        transform.GetChild(2).gameObject.SetActive(false);
+        Trash.SetActive(false);
         selectedItem = null;
         selectedItemSlot = null;
     }

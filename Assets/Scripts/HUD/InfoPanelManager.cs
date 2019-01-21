@@ -55,6 +55,49 @@ public class InfoPanelManager : MonoBehaviour {
                 hovered.critDamage.color = Color.red;
                 slotted.critDamage.color = Color.green;
             }
+
+            if (h is ProjectileWeapon && s is ProjectileWeapon)
+            {
+                ProjectileWeapon hpw = h as ProjectileWeapon;
+                ProjectileWeapon spw = s as ProjectileWeapon;
+
+                int hAmmo = (hpw.Ammunition == 0) ? int.MaxValue : hpw.Ammunition;
+                int sAmmo = (spw.Ammunition == 0) ? int.MaxValue : spw.Ammunition;
+
+                if (hAmmo > sAmmo)
+                {
+                    hovered.stat1Value.color = Color.green;
+                    slotted.stat1Value.color = Color.red;
+                }
+                else if (hAmmo < sAmmo)
+                {
+                    hovered.stat1Value.color = Color.red;
+                    slotted.stat1Value.color = Color.green;
+                }
+
+                if (hpw.RateOfFire > spw.RateOfFire)
+                {
+                    hovered.stat2Value.color = Color.green;
+                    slotted.stat2Value.color = Color.red;
+                }
+                else if (hpw.RateOfFire < spw.RateOfFire)
+                {
+                    hovered.stat2Value.color = Color.red;
+                    slotted.stat2Value.color = Color.green;
+                }
+
+                if (hpw.ReloadTime < spw.ReloadTime)
+                {
+                    hovered.stat3Value.color = Color.green;
+                    slotted.stat3Value.color = Color.red;
+                }
+                else if (hpw.ReloadTime > spw.ReloadTime)
+                {
+                    hovered.stat3Value.color = Color.red;
+                    slotted.stat3Value.color = Color.green;
+                }
+            }
+
         }
     }
 

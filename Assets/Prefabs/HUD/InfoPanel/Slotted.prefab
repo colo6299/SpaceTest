@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 114665416757634672}
   - component: {fileID: 114760485313719030}
   m_Layer: 5
-  m_Name: Sloted
+  m_Name: Slotted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2383,6 +2383,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215003efe5316c64daaf13ef66a33325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  border: {fileID: 0}
+  title: {fileID: 0}
+  slot: {fileID: 0}
+  itemClass: {fileID: 0}
+  damageType: {fileID: 0}
+  dps: {fileID: 0}
+  critChance: {fileID: 0}
+  critDamage: {fileID: 0}
+  stat1Title: {fileID: 0}
+  stat1Value: {fileID: 0}
+  stat2Title: {fileID: 0}
+  stat2Value: {fileID: 0}
+  stat3Title: {fileID: 0}
+  stat3Value: {fileID: 0}
+  stat4Title: {fileID: 0}
+  stat4Value: {fileID: 0}
+  stat5Title: {fileID: 0}
+  stat5Value: {fileID: 0}
+  stat6Title: {fileID: 0}
+  stat6Value: {fileID: 0}
 --- !u!114 &114762924466082448
 MonoBehaviour:
   m_ObjectHideFlags: 1

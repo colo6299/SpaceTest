@@ -143,14 +143,17 @@ public class BeamWeapon : WeaponBase {
 
     private bool ConsumePower()
     {
+
         float powerDraw = PowerConsumption * Time.deltaTime;
 
-        if (Entity.Energy >= powerDraw)
-        {
-            Entity.Energy -= powerDraw;
-            return true;
-        }
+        return Entity.ConsumeEnergy(powerDraw);
 
-        return false;
+        //if (Entity.Energy >= powerDraw)
+        //{
+        //    Entity.Energy -= powerDraw;
+        //    return true;
+        //}
+
+        //return false;
     }
 }

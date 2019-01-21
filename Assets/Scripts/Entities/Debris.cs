@@ -31,10 +31,6 @@ public class Debris : EntityInfo {
             {
                 Health = MaxHealth;
             }
-
-            EntityHpBar bar = GetComponentInChildren<EntityHpBar>();
-
-            if (bar != null) bar.UpdateBar(Health, MaxHealth);
         }
     }
 

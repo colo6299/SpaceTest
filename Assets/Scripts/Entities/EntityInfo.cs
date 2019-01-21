@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityInfo : MonoBehaviour
 {
+
+    public static event Action<EntityInfo, DamageReport> DamageReport;
+
     private static System.Random rng = new System.Random((int)(DateTime.Now.Ticks / 5));
 
     public float MaxHealth = 2000;
@@ -12,22 +14,42 @@ public class EntityInfo : MonoBehaviour
     public float MaxEnergy = 2000;
     public float Energy = 2000;
     public float EnergyRegen = 25;
-    public bool IsEnergyRegenerating = true;
+    public float EnergyCooldownTime = 2;
 
-    public GameObject dmgPrefab = null;
+    private bool EnergyOnCooldown = false;
+    private float currentEnergyTime = 0;
+
+    public GameObject DamagePrefab;
+    public EntityStatusBar StatusBar;
 
     public virtual void Update()
     {
-        // recover
-        if (IsEnergyRegenerating)
+        if (EnergyOnCooldown)
         {
-            Energy += EnergyRegen * Time.deltaTime;
+            currentEnergyTime += Time.deltaTime;
 
-            if (Energy > MaxEnergy)
+            if (currentEnergyTime >= EnergyCooldownTime)
             {
-                Energy = MaxEnergy;
+                currentEnergyTime = 0;
+                EnergyOnCooldown = false;
             }
         }
+        else
+        {
+            // recover
+            if (Energy < MaxEnergy)
+            {
+                Energy += EnergyRegen * Time.deltaTime;
+
+                if (Energy > MaxEnergy)
+                {
+                    Energy = MaxEnergy;
+                }
+            }
+        }
+
+        if (StatusBar != null)
+            StatusBar.UpdateBars(this);
     }
 
     public virtual void TakeDamage(WeaponInfo info)
@@ -39,27 +61,34 @@ public class EntityInfo : MonoBehaviour
         report.SetIncoming(info);
 
         Health -= report.TotalIncoming();
+
+        // report damage taken
+        if (DamageReport != null)
+        {
+            DamageReport.Invoke(this, report);
+        }
+
         if (Health <= 0)
         {
             Destroy(gameObject);
 
-            if (dmgPrefab != null)
+            if (DamagePrefab != null)
             {
-                Destroy(Instantiate(dmgPrefab, transform.position, transform.rotation, null), 5f);
+                Destroy(Instantiate(DamagePrefab, transform.position, transform.rotation, null), 5f);
             }
-        }
-
-        EntityHpBar bar = GetComponentInChildren<EntityHpBar>();
-        if (bar != null)
-        {
-            bar.UpdateBar(Health, MaxHealth);
         }
     }
 
+    public virtual bool ConsumeEnergy(float amount)
+    {
+        if (amount <= Energy)
+        {
+            Energy -= amount;
+            currentEnergyTime = 0;
+            EnergyOnCooldown = true;
+            return true;
+        }
 
-
-
-
-
-
+        return false;
+    }
 }

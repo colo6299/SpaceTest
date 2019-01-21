@@ -328,7 +328,9 @@ MonoBehaviour:
   Energy: 2000
   EnergyRegen: 25
   IsEnergyRegenerating: 1
-  dmgPrefab: {fileID: 1430535507656180, guid: c1a4bdc2059be144aa7dbb05fa994887, type: 2}
+  DamagePrefab: {fileID: 1430535507656180, guid: c1a4bdc2059be144aa7dbb05fa994887,
+    type: 2}
+  StatusBar: {fileID: 114958611932915400}
 --- !u!114 &114286430052018422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -431,7 +433,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b251a2f7874b0a544a74e48e2c8f6217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitPoints: {fileID: 114952538465599532}
+  Health: {fileID: 1950625072092292}
+  Energy: {fileID: 0}
 --- !u!222 &222243822742757246
 CanvasRenderer:
   m_ObjectHideFlags: 1

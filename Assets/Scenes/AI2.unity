@@ -6317,11 +6317,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 1
-  waveLength: 65
+  waveLength: 10
   spawnRate: 20
-  coolTime: 30
+  coolTime: 1
   waveNumber: 0
-  spawned: []
 --- !u!4 &1599262969
 Transform:
   m_ObjectHideFlags: 0

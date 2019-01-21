@@ -111,6 +111,10 @@ public class BeamWeapon : WeaponBase {
         }
 	}
 
+    public override float DPS()
+    {
+        return Stats.TotalDamage();
+    }
 
     private void CreateBeams()
     {

@@ -97,7 +97,33 @@ public class InfoPanelManager : MonoBehaviour {
                     slotted.stat3Value.color = Color.green;
                 }
             }
+            else if (h is BeamWeapon && s is BeamWeapon)
+            {
+                BeamWeapon hbw = h as BeamWeapon;
+                BeamWeapon sbw = s as BeamWeapon;
 
+                if (hbw.PowerConsumption < sbw.PowerConsumption)
+                {
+                    hovered.stat1Value.color = Color.green;
+                    slotted.stat1Value.color = Color.red;
+                }
+                else if (hbw.PowerConsumption > sbw.PowerConsumption)
+                {
+                    hovered.stat1Value.color = Color.red;
+                    slotted.stat1Value.color = Color.green;
+                }
+
+                if (hbw.DamageFalloff > sbw.DamageFalloff)
+                {
+                    hovered.stat2Value.color = Color.green;
+                    slotted.stat2Value.color = Color.red;
+                }
+                else if (hbw.DamageFalloff < sbw.DamageFalloff)
+                {
+                    hovered.stat2Value.color = Color.red;
+                    slotted.stat2Value.color = Color.green;
+                }
+            }
         }
     }
 
@@ -125,8 +151,11 @@ public class InfoPanelManager : MonoBehaviour {
             StringBuilder sb = new StringBuilder();
             foreach (DamageTypes dt in w.Stats.Sort())
             {
-                sb.Append(dt.ToString());
-                sb.Append(", ");
+                if (w.Stats.Damage(dt) > 0)
+                {
+                    sb.Append(dt.ToString());
+                    sb.Append(", ");
+                }
             }
             panel.damageType.text = sb.ToString().TrimEnd(',', ' ');
 
@@ -157,8 +186,17 @@ public class InfoPanelManager : MonoBehaviour {
 
                 panel.itemClass.text = "Beam Weapon";
 
-                panel.stat1Title.text = "Power Cost:";
-                panel.stat1Value.text = b.PowerConsumption.ToString("n2");
+                panel.stat1Title.text = "Power:";
+                panel.stat1Value.text = b.PowerConsumption.ToString("n0") +"/s";
+                panel.stat1Title.transform.parent.gameObject.SetActive(true);
+
+                panel.stat2Title.text = "Falloff:";
+                panel.stat2Value.text = b.DamageFalloff.ToString("n2") + "m";
+                panel.stat2Title.transform.parent.gameObject.SetActive(true);
+
+                panel.stat3Title.text = "Tick Rate:";
+                panel.stat3Value.text = b.TickRate.ToString("n0");
+                panel.stat3Title.transform.parent.gameObject.SetActive(true);
 
             }
         }

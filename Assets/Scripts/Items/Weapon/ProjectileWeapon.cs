@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class ProjectileWeapon : WeaponBase, IItem
+public class ProjectileWeapon : WeaponBase
 {
 
     /// <summary>
@@ -21,6 +21,11 @@ public class ProjectileWeapon : WeaponBase, IItem
     /// Reload Time in seconds
     /// </summary>
     public float ReloadTime = 1;
+
+    /// <summary>
+    /// Shot deviation
+    /// </summary>
+    public float Accuracy = 1f;
 
     protected int currentBarrelIndex = 0;
     protected double timeTillNextShot = 1;
@@ -62,24 +67,7 @@ public class ProjectileWeapon : WeaponBase, IItem
         Entity = GetComponentInParent<EntityInfo>();
         Coordinator = GetComponentInParent<FireCoordinator>();
         currentAmmunition = Ammunition;
-
     }
-
-    //void OnGUI()
-    //{
-    //    if (Application.isEditor)  // or check the app debug flag
-    //    {
-    //        StringBuilder sb = new StringBuilder();
-
-    //        sb.AppendLine("Type: " + Type.ToString());
-    //        sb.AppendLine("System: " + System.ToString());
-    //        sb.AppendLine("Projectile: " + Projectile.GetType().Name);
-    //        sb.AppendLine(string.Format("Shot: {0}/{1}", currentAmmunition, Ammunition));
-    //        sb.AppendLine(string.Format("Reload: {0}/{1}", currentReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
-    //        sb.AppendLine(string.Format("Idle Reload: {0}/{1}", idleReloadTime.ToString("n2"), ReloadTime.ToString("n2")));
-    //        GUI.Label(new Rect(10, 0, 500, 500), sb.ToString());
-    //    }
-    //}
 
     // Update is called once per frame
     void Update()
@@ -172,6 +160,7 @@ public class ProjectileWeapon : WeaponBase, IItem
     public void FireProjectile(Transform tran)
     {
         ProjectileBase projectile = Instantiate(Projectile, tran.position, tran.rotation).GetComponent<ProjectileBase>();
+        projectile.transform.forward = Deviate(projectile.transform.forward, Accuracy);
         projectile.Parent = gameObject.GetComponent<WeaponBase>();
     }
 

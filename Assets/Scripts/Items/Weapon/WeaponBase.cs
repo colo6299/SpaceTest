@@ -5,6 +5,8 @@ public abstract class WeaponBase : Item
 {
     public enum FiringSystem { Sequenced, Simultaneous }
 
+    public const float MaxDeviation = 0.1f;
+
     /// <summary>
     /// How projectiles are spawned between weapon barrels
     /// </summary>
@@ -58,5 +60,18 @@ public abstract class WeaponBase : Item
     public virtual float DPS()
     {
         return 0;
+    }
+
+    private static Vector3 Deviate(Vector3 direction, float accuracy)
+    {
+
+        float deviation = MaxDeviation - (accuracy * MaxDeviation);
+
+        float x = Random.Range(-deviation, deviation);
+        float y = Random.Range(-deviation, deviation);
+        float z = Random.Range(-deviation, deviation);
+
+        return new Vector3(direction.x + x, direction.y + y, direction.z + z);
+
     }
 }

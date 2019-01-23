@@ -7,7 +7,7 @@ using UnityEngine;
 public enum SlotType { Primary, Secondary, Armor, Engine, None}
 public enum Rarity { Common, Uncommon, Rare, Legendary, Ultimate, Unique, None };
 
-public class Item : MonoBehaviour, IItem
+public class Item : MonoBehaviour
 {
     public SlotType Type;
     public Rarity Rarity;
@@ -45,4 +45,6 @@ public class Item : MonoBehaviour, IItem
         rollArray = _Info.rollArray;
         rollIterator = -1;
     }
+
+
 }

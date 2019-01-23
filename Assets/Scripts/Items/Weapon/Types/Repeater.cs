@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class Repeater : ProjectileWeapon
 {
+
+    public float FireRateMin = 600;
+    public float FireRateMax = 800;
+
     public override void RollStats(RollInfo info)
     {
-
-        float FireRateMin = 600;
-        float FireRateMax = 800;
+        base.RollStats(info);
 
         info.name = info.rarity + " Repeater";
-        Rarity = info.rarity;
-        StartRolling(info);
         name = info.name;
-        PowerLevel = Mathf.RoundToInt(Roll());
+
+        // this has been moved to Item.cs
+        //Rarity = info.rarity;
+        //StartRolling(info);
+        //PowerLevel = Mathf.RoundToInt(Roll() * RarityMultiplyer());
 
         RateOfFire = FireRateMin + Mathf.Abs(Roll()) * (FireRateMax - FireRateMin);
         Ammunition = 0;
         ReloadTime = 0;
+        Accuracy = Mathf.Abs(Roll());
 
         Stats.SetDamage(DamageTypes.Standard, PowerLevel + (PowerLevel / 4) * Roll());
         Stats.CritChance = Mathf.Abs(Roll()) / 2;

@@ -31,6 +31,9 @@ public class Item : MonoBehaviour
 
     public virtual void RollStats(RollInfo info)
     {
+        Rarity = info.rarity;
+        StartRolling(info);
+        PowerLevel = Mathf.RoundToInt(Roll() * RarityMultiplyer());
     }
 
     protected float Roll()
@@ -46,5 +49,20 @@ public class Item : MonoBehaviour
         rollIterator = -1;
     }
 
-
+    public float RarityMultiplyer()
+    {
+        switch (Rarity)
+        {
+            case Rarity.Uncommon:
+                return 1.10f;
+            case Rarity.Rare:
+                return 1.20f;
+            case Rarity.Legendary:
+                return 1.30f;
+            case Rarity.Ultimate:
+                return 1.50f;
+            default:
+                return 1;
+        }
+    }
 }

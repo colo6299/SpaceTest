@@ -7,18 +7,20 @@ using UnityEngine;
 public class HeatLance : BeamWeapon
 {
 
+    public float MinPowerConsumption = 25;
+    public float MaxPowerConsumption = 200;
+
     public override void RollStats(RollInfo info)
     {
-        float MinPowerConsumption = 25;
-        float MaxPowerConsumption = 200;
-
+        base.RollStats(info);
 
         info.name = info.rarity + " Heat Lance";
         name = info.name;
-
-        Rarity = info.rarity;
-        StartRolling(info);
-        PowerLevel = Mathf.RoundToInt(Roll());
+        
+        // this has been moved to item.cs
+        //Rarity = info.rarity;
+        //StartRolling(info);
+        //PowerLevel = Mathf.RoundToInt(Roll());
 
         PowerConsumption = MinPowerConsumption + Mathf.Abs(Roll()) * (MaxPowerConsumption - MinPowerConsumption);
 

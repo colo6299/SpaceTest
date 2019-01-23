@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class AutoLaser : ProjectileWeapon
 {
+    public float FireRateMin = 80;
+    public float FireRateMax = 100;
 
     public override void RollStats(RollInfo info)
     {
-
-        float FireRateMin = 80;
-        float FireRateMax = 100;
+        base.RollStats(info);
 
         info.name = info.rarity + " Autolaser";
-        Rarity = info.rarity;
-        StartRolling(info);
         name = info.name;
-        PowerLevel = Mathf.RoundToInt(Roll());
+
+        // this has been moved to item.cs
+        //Rarity = info.rarity;
+        //StartRolling(info);
+        //PowerLevel = Mathf.RoundToInt(Roll());
 
         RateOfFire = FireRateMin + Mathf.Abs(Roll()) * (FireRateMax - FireRateMin);
         Ammunition = 0;

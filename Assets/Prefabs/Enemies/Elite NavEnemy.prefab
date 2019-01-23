@@ -1078,6 +1078,7 @@ MonoBehaviour:
   DamagePrefab: {fileID: 1430535507656180, guid: c1a4bdc2059be144aa7dbb05fa994887,
     type: 2}
   StatusBar: {fileID: 114052830101702774}
+  Loot: {fileID: 1496986700389758, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
   Acceleration: 80
   MaxSpeed: 60
   SkidRatio: 0.8

@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class Minigun : ProjectileWeapon
 {
+    public int AmmoMin = 25;
+    public int AmmoMax = 125;
+
+    public float ReloadMin = 1;
+    public float ReloadMax = 5;
+
+    public float FireRateMin = 600;
+    public float FireRateMax = 1000;
+
     public override void RollStats(RollInfo info)
     {
-        int AmmoMin = 25;
-        int AmmoMax = 125;
-
-        float ReloadMin = 1;
-        float ReloadMax = 5;
-
-        float FireRateMin = 600;
-        float FireRateMax = 1000;
+        base.RollStats(info);
 
         info.name = info.rarity + " Minigun";
-        Rarity = info.rarity;
-        StartRolling(info);
         name = info.name;
-        PowerLevel = Mathf.RoundToInt(Roll());
+
+        // this has been moved to item.cs
+        //Rarity = info.rarity;
+        //StartRolling(info);
+        //PowerLevel = Mathf.RoundToInt(Roll());
 
         RateOfFire = FireRateMin + Mathf.Abs(Roll()) * (FireRateMax - FireRateMin);
         Ammunition = (int)(AmmoMin + Mathf.Abs(Roll()) * (AmmoMax - AmmoMin));
         ReloadTime = ReloadMin + Mathf.Abs(Roll()) * (ReloadMax - ReloadMin);
-
         Accuracy = Mathf.Abs(Roll());
 
         Stats.SetDamage(DamageTypes.Standard, PowerLevel + (PowerLevel / 4) * Roll());

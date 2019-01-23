@@ -21,6 +21,7 @@ public class EntityInfo : MonoBehaviour
 
     public GameObject DamagePrefab;
     public EntityStatusBar StatusBar;
+    public GameObject Loot;
 
     public virtual void Update()
     {
@@ -75,6 +76,12 @@ public class EntityInfo : MonoBehaviour
             if (DamagePrefab != null)
             {
                 Destroy(Instantiate(DamagePrefab, transform.position, transform.rotation, null), 5f);
+
+                if (UnityEngine.Random.Range(0, 1) < 0.5f)
+                {
+                    GameObject spawn = Instantiate(Loot, transform.position, transform.rotation, null);
+                    spawn.GetComponent<PickupItem>().roll = BaseRoller.RollItem(120);
+                }
             }
         }
     }

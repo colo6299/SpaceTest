@@ -16,7 +16,7 @@ public class DungeonMaster : MonoBehaviour {
     {
         GameObject prefab = PrefabHolder.staticItemArray[item.prefabID];
         GameObject gen = Instantiate(prefab, position, rotation, parent);
-        gen.GetComponent<IItem>().RollStats(item);
+        gen.GetComponent<Item>().RollStats(item);
 
         return gen;
     }

@@ -105,7 +105,7 @@ public class BaseRoller {
     {
         GameObject prefab = PrefabHolder.staticItemArray[info.prefabID];
         GameObject gen = GameObject.Instantiate(prefab, position, rotation, parent);
-        gen.GetComponent<IItem>().RollStats(info);
+        gen.GetComponent<Item>().RollStats(info);
 
         return gen;
     }

@@ -5,7 +5,7 @@ public abstract class WeaponBase : Item
 {
     public enum FiringSystem { Sequenced, Simultaneous }
 
-    public const float MaxDeviation = 0.1f;
+    public const float MaxDeviation = 0.01f;
 
     /// <summary>
     /// How projectiles are spawned between weapon barrels

@@ -62,7 +62,7 @@ public abstract class WeaponBase : Item
         return 0;
     }
 
-    private static Vector3 Deviate(Vector3 direction, float accuracy)
+    public static Vector3 Deviate(Vector3 direction, float accuracy)
     {
 
         float deviation = MaxDeviation - (accuracy * MaxDeviation);

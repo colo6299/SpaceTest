@@ -10,12 +10,8 @@ public abstract class ProjectileBase : MonoBehaviour
     protected Vector3 inharetedVelocity;
     protected float currentTrajectory = 0;
 
-    private void Start()
-    {
-        inharetedVelocity = Parent.GetComponentInParent<Rigidbody>().velocity;
+    public virtual void Start()
+    {      
+                                            
     }
-
-    // Update is called once per frame
-
-
 }

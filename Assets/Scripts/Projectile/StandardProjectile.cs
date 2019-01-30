@@ -6,7 +6,7 @@ public class StandardProjectile : ProjectileBase
     {
         float distance = Speed * Time.deltaTime;
         currentTrajectory += distance;
-        transform.position += ((transform.forward * distance) + inharetedVelocity * Time.deltaTime);
+        transform.position += (transform.forward * distance) + inharetedVelocity * Time.deltaTime;
 
         RaycastHit hit;
         if (Physics.SphereCast(transform.position, 5, transform.forward, out hit, distance))

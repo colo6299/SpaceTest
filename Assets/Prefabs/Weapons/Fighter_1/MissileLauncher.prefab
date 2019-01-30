@@ -9,31 +9,64 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1905832755134520}
+  m_RootGameObject: {fileID: 1258927980499006}
   m_IsPrefabAsset: 1
---- !u!1 &1315699372603414
+--- !u!1 &1247342664403216
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4996450598534920}
+  - component: {fileID: 4253849664128370}
+  - component: {fileID: 33336842438258604}
+  - component: {fileID: 23953134470198654}
   m_Layer: 0
-  m_Name: FirePos (1)
+  m_Name: LightCannonGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1666685011881870
+--- !u!1 &1258927980499006
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4790394410825446}
+  - component: {fileID: 4915145064028156}
+  - component: {fileID: 114736490572416662}
+  m_Layer: 0
+  m_Name: MissileLauncher
+  m_TagString: Primary
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1656693066941610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4765404094269688}
+  m_Layer: 0
+  m_Name: 'FirePos (1) '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1771035458076622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4918882719782406}
   m_Layer: 0
   m_Name: FirePos (2)
   m_TagString: Untagged
@@ -41,100 +74,67 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1876240213104554
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4573702650719332}
-  - component: {fileID: 33528432375307408}
-  - component: {fileID: 23320631026003196}
-  m_Layer: 0
-  m_Name: M134DGFX
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1905832755134520
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4198899646032332}
-  - component: {fileID: 114747837693745468}
-  m_Layer: 0
-  m_Name: M134D
-  m_TagString: Primary
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4198899646032332
+--- !u!4 &4253849664128370
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1905832755134520}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 1247342664403216}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: -0.50204235, z: 3.8292058}
+  m_LocalScale: {x: 100, y: 99.99989, z: 99.99989}
+  m_Children: []
+  m_Father: {fileID: 4915145064028156}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4765404094269688
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1656693066941610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4615, y: -0.3987, z: 1.1724}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4915145064028156}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4915145064028156
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258927980499006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4573702650719332}
-  - {fileID: 4996450598534920}
-  - {fileID: 4790394410825446}
+  - {fileID: 4253849664128370}
+  - {fileID: 4765404094269688}
+  - {fileID: 4918882719782406}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4573702650719332
+--- !u!4 &4918882719782406
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1876240213104554}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: -0.5, z: 3.8292062}
-  m_LocalScale: {x: 100, y: 99.99994, z: 99.99994}
-  m_Children: []
-  m_Father: {fileID: 4198899646032332}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4790394410825446
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1666685011881870}
+  m_GameObject: {fileID: 1771035458076622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4534, y: -0.2858, z: 0.592}
+  m_LocalPosition: {x: -1.4615, y: -0.39870045, z: 1.1724}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4198899646032332}
+  m_Father: {fileID: 4915145064028156}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4996450598534920
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1315699372603414}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4534, y: -0.2858, z: 0.592}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4198899646032332}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23320631026003196
+--- !u!23 &23953134470198654
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1876240213104554}
+  m_GameObject: {fileID: 1247342664403216}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -165,22 +165,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33528432375307408
+--- !u!33 &33336842438258604
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1876240213104554}
-  m_Mesh: {fileID: 4300006, guid: 675a5020bb2bcf143a1cbf8d4722245a, type: 3}
---- !u!114 &114747837693745468
+  m_GameObject: {fileID: 1247342664403216}
+  m_Mesh: {fileID: 4300008, guid: accd29c077e079d41a9304d61959100a, type: 3}
+--- !u!114 &114736490572416662
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1905832755134520}
+  m_GameObject: {fileID: 1258927980499006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaad195904dc1354caf62e1523b390c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cb002e8049c20e44b6ac78db49303da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
@@ -195,16 +195,16 @@ MonoBehaviour:
     rollArray: []
   System: 0
   Barrels:
-  - {fileID: 4996450598534920}
-  - {fileID: 4790394410825446}
-  Projectile: {fileID: 1687546613928352, guid: 04233f75c9e057f44a1954c6c0851d72, type: 2}
-  RateOfFire: 0
-  Ammunition: 0
-  ReloadTime: 0
+  - {fileID: 4765404094269688}
+  - {fileID: 4918882719782406}
+  Projectile: {fileID: 1190609310763746, guid: 0d0b29636d2a3c5489dee78751ef0fe6, type: 2}
+  RateOfFire: 400
+  Ammunition: 100
+  ReloadTime: 1000
   Accuracy: 1
-  AmmoMin: 25
-  AmmoMax: 125
-  ReloadMin: 1
-  ReloadMax: 5
-  FireRateMin: 600
-  FireRateMax: 1000
+  AmmoMin: 10
+  AmmoMax: 25
+  ReloadMin: 2
+  ReloadMax: 3
+  FireRateMin: 100
+  FireRateMax: 150

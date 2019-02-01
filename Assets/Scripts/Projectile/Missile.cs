@@ -6,21 +6,34 @@ public class Missile : ProjectileBase {
 
     public GameObject target = null;
 
-    public float AngularSpeed = 0.01f;
+    public float MaxTurnAngle = 180f;
 
     public void Update () {
 
         if (target == null)
         {
             target = GetTarget(); // add a cooldown to this so that it is not updating every time when no enemies are present
-
-            if (target == null) return;
         }
 
-        Vector3 heading = target.transform.position - transform.position;
-        Quaternion targetRotatioin = Quaternion.LookRotation(heading);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotatioin, AngularSpeed);
+        if (target != null)
+        {
+            Vector3 heading = target.transform.position - transform.position;
+            float angle = Vector3.Angle(heading, transform.forward);
+
+            Quaternion targetRotation = Quaternion.LookRotation(heading);
+
+            float turnRate = MaxTurnAngle * Time.deltaTime;
+
+            if (angle > turnRate)
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnRate / angle);
+            }
+            else
+            {
+                transform.rotation = targetRotation;
+            }
+        }
 
         float distance = Speed * Time.deltaTime;
         currentTrajectory += distance;

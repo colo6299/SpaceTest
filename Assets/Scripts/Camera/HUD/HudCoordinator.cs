@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class HudCoordinator : MonoBehaviour
 {
+    private PlayerShip ship;
+
     private Camera thisCamera;
     private GraphicRaycaster rayCaster;
     private PointerEventData eventData;
 
-    private LoadoutManager loadout;
     private InfoPanelManager infoPanelManager;
     private GameObject Trash;
     private Item CurrentHover;
@@ -22,6 +24,7 @@ public class HudCoordinator : MonoBehaviour
     {
         GameObject obj = GameObject.FindGameObjectWithTag("Player");
         thisCamera = obj.GetComponentInChildren<Camera>();
+        ship = obj.GetComponent<PlayerShip>();
         rayCaster = GetComponentInParent<GraphicRaycaster>();
         eventData = new PointerEventData(null);
 
@@ -36,7 +39,6 @@ public class HudCoordinator : MonoBehaviour
         SystemControls.ClickDown += BeginDrag;
         SystemControls.ClickUp += EndDrag;
 
-        loadout = GameObject.FindGameObjectWithTag("Loadout").GetComponent<LoadoutManager>();
         CurrentHover = null;
     }
 
@@ -53,7 +55,7 @@ public class HudCoordinator : MonoBehaviour
 
                 if (i != CurrentHover)
                 {
-                    infoPanelManager.DisplayItemComparison(i, loadout.GetItemInSlot(i.Type));
+                    infoPanelManager.DisplayItemComparison(i, ship.GetEquippedItem(i.Type));
                     CurrentHover = i;
                 }
             }
@@ -115,7 +117,7 @@ public class HudCoordinator : MonoBehaviour
         else if (container.name == "Trash")
         {
             selectedItem.transform.SetParent(container.transform);
-            loadout.TrashItem(selectedItem.Item);
+            ship.TrashItem(selectedItem.Item);
 
             if (selectedItemSlot.transform.parent.name == "PendingItems")
             {
@@ -130,7 +132,7 @@ public class HudCoordinator : MonoBehaviour
             // swap items
             if (container.transform.childCount > 0) 
             {
-                loadout.SlotItem(selectedItem.Item);
+                ship.EquipItem(selectedItem.Item, dropContainer.Type);
 
                 container.transform.GetChild(0).SetParent(selectedItemSlot.transform);
                 selectedItem.transform.SetParent(container.transform);
@@ -138,7 +140,7 @@ public class HudCoordinator : MonoBehaviour
             // fill empty slot
             else
             {
-                loadout.SlotItem(selectedItem.Item);
+                ship.EquipItem(selectedItem.Item, dropContainer.Type);
                 selectedItem.transform.SetParent(container.transform);
 
                 if (selectedItemSlot.name == "Slot")

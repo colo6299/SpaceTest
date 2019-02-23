@@ -945,7 +945,7 @@ MonoBehaviour:
   DamagePrefab: {fileID: 0}
   StatusBar: {fileID: 114974567385880728}
   Loot: {fileID: 1496986700389758, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
-  physics: {fileID: 0}
+  physics: {fileID: 54919830707082032}
   Acceleration: 10
   MaxSpeed: 20
   SkidRatio: 0.8

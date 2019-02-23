@@ -1,76 +1,64 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 
-public class SkidFly : MonoBehaviour {
+public class Ship : Entity
+{
+    public Rigidbody physics;
 
-    public Rigidbody ship;
-    public float acceleration = 10f;
-    public float maxSpeed = 20f;
-    public float skidRatio = 0.8f;
-    public ShipInfo info;
+    public float Acceleration = 10f;
+    public float MaxSpeed = 20f;
+    public float SkidRatio = 0.8f;
 
     private float xavg;
     private float yavg;
     private float zavg;
 
-
-    void Start()
+    public override void Start()
     {
-
-        info = GetComponent<ShipInfo>();
-
-        UpdateInfo();
+        base.Start();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    void Update()
+    public override void Update()
     {
-        //simple mouse ship angle w/ rotate
+        base.Update();
+
         AngleShip();
 
     }
 
-    void FixedUpdate()
+    public override void FixedUpdate()
     {
-        FlightSkid();
-    }
+        base.FixedUpdate();
 
-    public void UpdateInfo()
-    {
-        acceleration = info.Acceleration;
-        maxSpeed = info.MaxSpeed;
-        skidRatio = info.SkidRatio;
+        FlightSkid();
     }
 
     void FlightSkid()
     {
 
         //clamp velocity
-        ship.velocity = Vector3.ClampMagnitude(ship.velocity, maxSpeed);
+        physics.velocity = Vector3.ClampMagnitude(physics.velocity, MaxSpeed);
 
         if (!Input.GetKey(KeyCode.LeftShift))
         {
 
             //do the skid thing
-            Vector3 calcVel = ship.velocity;
+            Vector3 calcVel = physics.velocity;
             float speed = calcVel.magnitude;
-            calcVel = Vector3.Slerp(calcVel.normalized, ship.transform.forward, skidRatio * Time.deltaTime);
+            calcVel = Vector3.Slerp(calcVel.normalized, physics.transform.forward, SkidRatio * Time.deltaTime);
             calcVel *= speed;
-            ship.velocity = calcVel;         
+            physics.velocity = calcVel;
 
             //do the thrust thing
-            ship.velocity += ship.transform.forward * Time.deltaTime * acceleration;
-        }
-
-        else
-        {
-           
+            physics.velocity += physics.transform.forward * Time.deltaTime * Acceleration;
         }
     }
-
 
     void AngleShip()
     {
@@ -87,15 +75,13 @@ public class SkidFly : MonoBehaviour {
 
         Vector3 rotVec = new Vector3(rotx, roty, rotz);
 
-        ship.angularVelocity = ship.transform.TransformDirection(rotVec) * Time.deltaTime * 10 + ship.angularVelocity;
+        physics.angularVelocity = physics.transform.TransformDirection(rotVec) * Time.deltaTime * 10 + physics.angularVelocity;
 
-        ship.maxAngularVelocity = 5f;
+        physics.maxAngularVelocity = 5f;
 
 
         //transform.RotateAround(ship.transform.right, rotx  * Time.deltaTime * 2);
         //transform.RotateAround(ship.transform.up, roty  * Time.deltaTime * 2);
         //transform.RotateAround(ship.transform.forward, rotz  * Time.deltaTime * 3.5f);
     }
-
-
 }

@@ -6,7 +6,7 @@ public class EnemyAI : MonoBehaviour
 {
     public GameObject player;
 
-    private ShipInfo info;
+    private Ship info;
     private float speed;
 
     private string navState = "Standby";
@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         prb = player.GetComponent<Rigidbody>();
         rb = GetComponent<Rigidbody>();
-        info = GetComponent<ShipInfo>();
+        info = GetComponent<Ship>();
         UpdateStats();
     }
 

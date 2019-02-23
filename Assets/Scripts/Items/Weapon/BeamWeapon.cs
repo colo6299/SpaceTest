@@ -23,7 +23,7 @@ public class BeamWeapon : WeaponBase {
 
     private float timeSinceLastShot;
 
-    private Dictionary<EntityInfo, WeaponInfo> TargetDamageLogs = new Dictionary<EntityInfo, WeaponInfo>();
+    private Dictionary<Entity, WeaponInfo> TargetDamageLogs = new Dictionary<Entity, WeaponInfo>();
     private DamageTypes[] types;
 
     private GameObject[] Beams;
@@ -32,7 +32,7 @@ public class BeamWeapon : WeaponBase {
 
     void Start()
     {
-        Entity = GetComponentInParent<EntityInfo>();
+        Entity = GetComponentInParent<Entity>();
         Coordinator = GetComponentInParent<FireCoordinator>();
 
         Beams = new GameObject[Barrels.Length];
@@ -64,7 +64,7 @@ public class BeamWeapon : WeaponBase {
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.forward, out hit, range, LayerMask.GetMask("Enemy") | LayerMask.GetMask("Environment")))
                 {
-                    EntityInfo target = hit.transform.GetComponent<EntityInfo>();
+                    Entity target = hit.transform.GetComponent<Entity>();
 
                     if (target != null)
                     {
@@ -101,7 +101,7 @@ public class BeamWeapon : WeaponBase {
 
         if (timeSinceLastShot >= TickRateInSeconds)
         {
-            foreach (KeyValuePair<EntityInfo, WeaponInfo> data in TargetDamageLogs)
+            foreach (KeyValuePair<Entity, WeaponInfo> data in TargetDamageLogs)
             {
                 data.Key.TakeDamage(data.Value);
             }
@@ -143,17 +143,15 @@ public class BeamWeapon : WeaponBase {
 
     private bool ConsumePower()
     {
-
         float powerDraw = PowerConsumption * Time.deltaTime;
 
-        return Entity.ConsumeEnergy(powerDraw);
+        if (Entity.Energy.Value >= powerDraw)
+        {
+            Entity.Energy.Value -= powerDraw;
+            Entity.Energy.BeginOrResetCooldown();
+            return true;
+        }
 
-        //if (Entity.Energy >= powerDraw)
-        //{
-        //    Entity.Energy -= powerDraw;
-        //    return true;
-        //}
-
-        //return false;
+        return false;
     }
 }

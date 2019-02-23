@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 114241332269951210}
   - component: {fileID: 114843999914360708}
   - component: {fileID: 114719449890556932}
-  - component: {fileID: 114747831129153154}
+  - component: {fileID: 114109988753245200}
   m_Layer: 11
   m_Name: Trash NavEnemy
   m_TagString: Enemy
@@ -97,17 +97,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1355180426335574
+--- !u!1 &1371138298097146
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4803215492622414}
-  - component: {fileID: 135328487820623138}
+  - component: {fileID: 4276956487567168}
+  - component: {fileID: 135481538769025830}
   m_Layer: 11
-  m_Name: GameObject
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,6 +303,19 @@ Transform:
   m_Father: {fileID: 4662212785200202}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4276956487567168
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1371138298097146}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.19, z: 6.7598}
+  m_LocalScale: {x: 1.1583126, y: 1.1583126, z: 0.39460596}
+  m_Children: []
+  m_Father: {fileID: 4706580767183822}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4289411355974156
 Transform:
   m_ObjectHideFlags: 1
@@ -400,7 +413,7 @@ Transform:
   m_Children:
   - {fileID: 4662212785200202}
   - {fileID: 4968538743200788}
-  - {fileID: 4803215492622414}
+  - {fileID: 4276956487567168}
   - {fileID: 224809020915374446}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -417,19 +430,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4662212785200202}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4803215492622414
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1355180426335574}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.19, z: 6.7598}
-  m_LocalScale: {x: 1.1583, y: 1.1583, z: 0.39460966}
-  m_Children: []
-  m_Father: {fileID: 4706580767183822}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4910900639620758
 Transform:
@@ -919,6 +919,36 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114109988753245200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214181825999108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b1aa122b0b6b143b16ee33f80ab444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthMax: 1000
+  HealthCurrent: 1000
+  HealthRegen: 0
+  HealthCooldown: 0
+  EnergyMax: 1000
+  EnergyCurrent: 1000
+  EnergyRegen: 50
+  EnergyCooldown: 3
+  BoostMax: 1000
+  BoostCurrent: 1000
+  BoostRegen: 50
+  BoostCooldown: 3
+  DamagePrefab: {fileID: 0}
+  StatusBar: {fileID: 114974567385880728}
+  Loot: {fileID: 1496986700389758, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
+  physics: {fileID: 0}
+  Acceleration: 10
+  MaxSpeed: 20
+  SkidRatio: 0.8
 --- !u!114 &114241332269951210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1002,30 +1032,6 @@ MonoBehaviour:
   left: 0
   topLeft: 0
   lastDistance: 0
---- !u!114 &114747831129153154
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1214181825999108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e68838493a67a94c9091c59c6137ecb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 200
-  Health: 200
-  MaxEnergy: 2000
-  Energy: 2000
-  EnergyRegen: 25
-  EnergyCooldownTime: 2
-  DamagePrefab: {fileID: 1430535507656180, guid: c1a4bdc2059be144aa7dbb05fa994887,
-    type: 2}
-  StatusBar: {fileID: 114974567385880728}
-  Loot: {fileID: 1496986700389758, guid: ee3645189625f8945ba02567c7daa8dd, type: 2}
-  Acceleration: 80
-  MaxSpeed: 60
-  SkidRatio: 0.8
 --- !u!114 &114761761946541014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1094,12 +1100,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: {fileID: 1578710370029108}
   Energy: {fileID: 0}
---- !u!135 &135328487820623138
+--- !u!135 &135481538769025830
 SphereCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1355180426335574}
+  m_GameObject: {fileID: 1371138298097146}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1

@@ -64,7 +64,7 @@ public class ProjectileWeapon : WeaponBase
 
     void Start()
     {
-        Entity = GetComponentInParent<EntityInfo>();
+        Entity = GetComponentInParent<Entity>();
         Coordinator = GetComponentInParent<FireCoordinator>();
         currentAmmunition = Ammunition;
     }

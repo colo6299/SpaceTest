@@ -42,7 +42,7 @@ public class Missile : ProjectileBase {
         RaycastHit hit;
         if (Physics.SphereCast(transform.position, 5, transform.forward, out hit, distance))
         {
-            EntityInfo ship = hit.transform.GetComponent<EntityInfo>();
+            Entity ship = hit.transform.GetComponent<Entity>();
 
             if (ship != null)
             {

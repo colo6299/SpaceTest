@@ -34,13 +34,13 @@ public abstract class WeaponBase : Item
     /// <summary>
     /// The stat details for this ship/entity
     /// </summary>
-    protected EntityInfo Entity;
+    protected Entity Entity;
     protected FireCoordinator Coordinator;
 
     // Use this for initialization
     void Start()
     {
-        Entity = GetComponentInParent<EntityInfo>();
+        Entity = GetComponentInParent<Entity>();
         Coordinator = GetComponentInParent<FireCoordinator>();
 
         Stats.SetDamage(DamageTypes.Standard, 50);

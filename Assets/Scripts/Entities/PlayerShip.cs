@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class PlayerShip : Ship
 {
-    public Item Primary { get; private set; }
-    public Item Secondary { get; private set; }
-    public Item Armor { get; private set; }
-    public Item Engine { get; private set; }
+    public Item Primary;
+    public Item Secondary;
+    public Item Armor;
+    public Item Engine;
 
     private Dictionary<SlotType, Item> Slots = new Dictionary<SlotType, Item>
-        {
-            { SlotType.None, null },
-            { SlotType.Primary, null },
-            { SlotType.Secondary, null },
-            { SlotType.Armor, null },
-            { SlotType.Engine, null }
-        };
+    {
+        { SlotType.None, null },
+        { SlotType.Primary, null },
+        { SlotType.Secondary, null },
+        { SlotType.Armor, null },
+        { SlotType.Engine, null }
+    };
 
     public override void Start()
     {

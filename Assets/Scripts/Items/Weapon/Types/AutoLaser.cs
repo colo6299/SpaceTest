@@ -25,7 +25,7 @@ public class AutoLaser : ProjectileWeapon
 
         Accuracy = Mathf.Abs(Roll());
 
-        Stats.SetDamage(DamageTypes.Standard, PowerLevel + (PowerLevel / 4) * Roll());
+        Stats.SetDamage(DamageTypes.Kinetic, PowerLevel + (PowerLevel / 4) * Roll());
         Stats.CritChance = Mathf.Abs(Roll()) / 2;
         Stats.CritDamage = 1;
     }

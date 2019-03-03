@@ -43,7 +43,7 @@ public abstract class WeaponBase : Item
         Entity = GetComponentInParent<Entity>();
         Coordinator = GetComponentInParent<FireCoordinator>();
 
-        Stats.SetDamage(DamageTypes.Standard, 50);
+        Stats.SetDamage(DamageTypes.Kinetic, 50);
     }
 
     /// <summary>

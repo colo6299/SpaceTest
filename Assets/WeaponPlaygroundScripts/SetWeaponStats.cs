@@ -17,7 +17,7 @@ public class SetWeaponStats : MonoBehaviour {
 
         WeaponInfo info = new WeaponInfo();
 
-        info.SetDamage(DamageTypes.Standard, StandardDamage);
+        info.SetDamage(DamageTypes.Kinetic, StandardDamage);
         info.SetDamage(DamageTypes.Heat, HeatDamage);
         info.SetDamage(DamageTypes.Antimater, MaterDamage);
 

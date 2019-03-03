@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public enum DamageTypes { Standard, Heat, Antimater }
+public enum DamageTypes { Kinetic, Heat, Antimater }
 
 public class WeaponInfo
 {
@@ -85,7 +85,7 @@ public class WeaponInfo
 
         for (int i = 0; i < DamageByTypes.Count; i++)
         {
-            DamageTypes type = DamageTypes.Standard;
+            DamageTypes type = DamageTypes.Kinetic;
             float best = -1;
 
             for (int j = 0; j < DamageByTypes.Count; j++)

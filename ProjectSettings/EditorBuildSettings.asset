@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/SessionStart.unity
+    guid: cd0b2f2e55c23ec4c84829cf1808024a
+  - enabled: 1
+    path: Assets/Scenes/AsteroidScene.unity
+    guid: cc59905ac8375ff41a0a84097a59919f
+  - enabled: 1
+    path: Assets/Scenes/MapTest.unity
+    guid: adcb8dffa397f3a49989a2e2c343f481
   m_configObjects: {}
